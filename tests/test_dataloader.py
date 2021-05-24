@@ -29,6 +29,12 @@ data_alt['Date'] = pd.to_datetime(data_alt['Date'])
 data_alt.set_index('Date', inplace=True)
 
 
+data_alt_high = pd.DataFrame(data_alt['High'])
+data_alt_low = pd.DataFrame(data_alt['Low'])
+data_alt_open = pd.DataFrame(data_alt['Open'])
+data_alt_close = pd.DataFrame(data_alt['Close'])
+data_alt_volume = pd.DataFrame(data_alt['Volume'])
+data_alt_stat = data_alt.describe()
 
 class Testing(unittest.TestCase):
 
@@ -49,10 +55,25 @@ class Testing(unittest.TestCase):
     def test_statistics(self):
         assert_frame_equal(stat, data_stat)
 
+# AlternativeDataLoader tests
+
     def test_alternative_get_data(self):
         assert_frame_equal(output_alternative, data_alt)
+    def test_alternative_get_high(self):
+        assert_frame_equal(high_alternative, data_alt_high)
+    def test_alternative_get_low(self):
+        assert_frame_equal(low_alternative, data_alt_low)
+    def test_alternative_get_open(self):
+        assert_frame_equal(open_alternative, data_alt_open)
+    def test_alternative_get_close(self):
+        assert_frame_equal(close_alternative, data_alt_close)
+    def test_alternative_get_volume(self):
+        assert_frame_equal(volume_alternative, data_alt_volume)
+    def test_alternative_statistics(self):
+        assert_frame_equal(stat_alternative, data_alt_stat)
 
 if __name__ == '__main__':
+
     loaded = DataLoader('aapl', '2010-02-01', '2010-02-10')
     output = loaded.get_data()
     high = loaded.get_high()
@@ -65,7 +86,11 @@ if __name__ == '__main__':
 
     alternative = AlternativeDataLoader('AAPL', 'United States', '01/02/2010', '10/02/2010', 'stock')
     output_alternative = alternative.get_data()
+    high_alternative = alternative.get_high()
+    low_alternative = alternative.get_low()
+    open_alternative = alternative.get_open()
+    close_alternative = alternative.get_close()
+    volume_alternative = alternative.get_volume()
+    stat_alternative = alternative.statistics()
     unittest.main()
-
-
 
