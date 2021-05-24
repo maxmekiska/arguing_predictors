@@ -250,8 +250,8 @@ class AlternativeDataLoader:
             Parameters:
                 ticker (str): Stock exchange ticker symbol of stock.
                 country (str): Country of financial product.
-                start_date (str): Start date of price retrieval, format: yyyy-mm-dd
-                end_date (str): End date of price retrieval, format: yyyy-mm-dd
+                start_date (str): Start date of price retrieval, format: dd/mm/yyyy
+                end_date (str): End date of price retrieval, format: dd/mm/yyyy
                 category (str): Financial product: stock, fund, etf, index
             Returns:
                 (Object): Dataloader object containing stock data data frame 
