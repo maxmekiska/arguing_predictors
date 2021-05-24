@@ -97,12 +97,14 @@ class BasicUnivariatePredictor:
         return X, y
 
     def create_mlp(self):
-        '''Creates MLP 
+        '''Creates MLP model by defining all layers with activation functions, optimizer, loss function and evaluation metrics. 
         '''
-        self.input_x = self.input_x.reshape((self.input_x.shape[0], self.input_x.shape[1]))
+        self.input_x = self.input_x.reshape((self.input_x.shape[0], self.input_x.shape[1])) # necessary to account for different shape input for MLP compared to the other models.
 
         self.model = Sequential()
         self.model.add(Dense(50, activation='relu', input_dim = self.input_x.shape[1]))
+        self.model.add(Dense(25, activation='relu'))
+        self.model.add(Dense(25, activation='relu'))
         self.model.add(Dense(self.input_y.shape[1]))
         self.model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_squared_error'])
 
