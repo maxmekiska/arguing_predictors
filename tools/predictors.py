@@ -95,6 +95,16 @@ class BasicUnivariatePredictor:
         X = X.reshape((X.shape[0], X.shape[1], 1))
         return X, y
 
+    def create_mlp(self):
+        '''Creates MLP 
+        '''
+        self.input_x = self.input_x.reshape((self.input_x.shape[0], self.input_x.shape[1]))
+
+        self.model = Sequential()
+        self.model.add(Dense(50, activation='relu', input_dim = self.input_x.shape[1]))
+        self.model.add(Dense(self.input_y.shape[1]))
+        self.model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_squared_error'])
+
     def create_lstm(self):
         '''Creates LSTM model by defining all layers with activation functions, optimizer, loss function and evaluation metrics.
         '''
@@ -177,8 +187,13 @@ class BasicUnivariatePredictor:
                 (array): Forecast for sequence provided.
         '''
         data = array(data)
-        data = data.reshape((1, self.input_x.shape[1], 1))
-        y_pred = self.model.predict(data, verbose=0)
+        try:
+            data = data.reshape((1, self.input_x.shape[1], 1))
+            y_pred = self.model.predict(data, verbose=0)
+        except:
+            data = data.reshape((1, self.input_x.shape[1]))
+            y_pred = self.model.predict(data, verbose=0)
+            
         return y_pred
 
     def save_model(self):
