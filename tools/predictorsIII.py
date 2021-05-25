@@ -1,3 +1,12 @@
+'''
+References:
+----------
+Code insperations have been taken from:
+https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/
+'''
+
+
+
 import matplotlib.pyplot as plt
 from numpy import array
 from numpy import reshape
