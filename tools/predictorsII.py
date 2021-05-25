@@ -4,7 +4,11 @@ import pandas as pd
 
 from neuralprophet import NeuralProphet
 
+from fbprophet import Prophet
 
+
+from fbprophet.diagnostics import performance_metrics
+from fbprophet.diagnostics import cross_validation
 
 class UnivariatePredictorII:
     '''Implements the Facebooks Neural Prophet and Prophet libraries to forecast time series. This class is mainly a wrapper to ease usability.
@@ -13,11 +17,11 @@ class UnivariatePredictorII:
         -------
         __data_prep(self, data):
             Private method to shape input data for predictor ingestion.
-        fit_model(self, epochs: int, frequency: str):
+        fit_neural_model(self, epochs: int, frequency: str):
             Fits the model and validates during fitting process.
-        show_performance(self):
+        show_performance_neural(self):
             Plots the model performance.
-        predict(self):
+        predict_neural(self):
             Outputs prediction values.
     '''
 
@@ -43,7 +47,7 @@ class UnivariatePredictorII:
         data = data.rename(columns={'Date': 'ds'}, inplace = False)
         return data
 
-    def fit_model(self, epochs: int, frequency: str):
+    def fit_neural_model(self, epochs: int, frequency: str):
         '''Method that implements the training and validation process of the model.
 
             Parameters:
@@ -52,8 +56,14 @@ class UnivariatePredictorII:
         '''
         self.model = NeuralProphet()
         self.details = self.model.fit(self.data, epochs = epochs, validate_each_epoch=True, freq = frequency)
+    
+    def fit_prophet_model(self):
+        '''Method that implements the training and validation process of the model.
+        '''
+        self.model = Prophet()
+        self.details = self.model.fit(self.data)
 
-    def show_performance(self):
+    def show_performance_neural(self):
         '''Plots two graphs.
         1. Models mean average error of trainings and validation data.
         2. Models smooth L1 loss of trainings and validation data.
@@ -79,14 +89,40 @@ class UnivariatePredictorII:
         plt.tight_layout()
         plt.show()
 
-    def predict(self):
-        '''Returns the forecasted values starting from the next data point from the very last data point in data provided.
+    def show_performance_prophet(self):
+        '''Plots MSE for each horizon. Delivers general performance statistics. Initial training is set to 80% of data.
 
+            Returns:
+                (df): Model performance statistics.
+        '''
+        cross_val = cross_validation(self.model, initial = f'{(round(0.8*len(self.data)))} days', horizon = f'{self.future} days')
+        performance = performance_metrics(cross_val)
+        
+
+        plt.plot(performance['mse'])
+        plt.title('Model Mean Average Error')
+        plt.ylabel('MSE')
+        plt.xlabel('Horizon')
+        
+        return performance
+
+
+
+    def predict_neural(self):
+        '''Returns the forecasted values starting from the next data point from the very last data point of data provided.
             Returns:
                 (df): Forecast for data provided.
         '''
         prediction = self.model.make_future_dataframe(self.data, periods=self.future)
         output = self.model.predict(prediction)
         return output['yhat1']
+
+    def predict_prophet(self):
+        '''Returns the forecasted values starting from teh next data point from teh very last data point of data provided.
+        '''
+        prediction = self.model.make_future_dataframe(periods = self.future)
+        output = self.model.predict(prediction)
+        output = output['yhat']
+        return output[-(self.future):]
 
 
