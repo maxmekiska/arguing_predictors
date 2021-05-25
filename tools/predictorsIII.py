@@ -47,6 +47,7 @@ class HybridUnivariatePredictor:
         '''
             Parameters:
                 data (array): Input data for model training.
+                sub_seq (int): Further division of given steps a predictor will look backward.
                 steps_past (int): Steps predictor will look backward.
                 steps_future (int): Steps predictor will look forward.
         '''
@@ -62,12 +63,15 @@ class HybridUnivariatePredictor:
 
             Parameters:
                 input_sequence (array): Sequence that contains time series in array format
+                sub_seq (int): Further division of given steps a predictor will look backward.
                 steps_past (int): Steps the predictor will look backward
                 steps_future (int): Steps the predictor will look forward
 
             Returns:
                 X (array): Array containing all looking back sequences
                 y (array): Array containing all looking forward sequences
+                modified_back (int): Modified looking back sequence length
+
         '''
         length = len(input_sequence)
         X = []
@@ -90,7 +94,7 @@ class HybridUnivariatePredictor:
         return X, y, modified_back # special treatment to account for sub sequence division
 
     def create_cnnlstm(self):
-        '''Creates MLP model by defining all layers with activation functions, optimizer, loss function and evaluation metrics. 
+        '''Creates CNN-LSTM hybrid model by defining all layers with activation functions, optimizer, loss function and evaluation metrics. 
         '''
         self.model = Sequential()
         self.model.add(TimeDistributed(Conv1D(filters=64, kernel_size=1, activation='relu'), input_shape=(None,self.modified_back, 1)))
