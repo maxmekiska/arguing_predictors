@@ -18,10 +18,16 @@ class UnivariatePredictorII:
         __data_prep(self, data):
             Private method to shape input data for predictor ingestion.
         fit_neural_model(self, epochs: int, frequency: str):
-            Fits the model and validates during fitting process.
+            Fits the neural model and validates during fitting process.
+        fit_prophet_model(self):
+            Fits the prophet model.
         show_performance_neural(self):
             Plots the model performance.
+        show_performance_prophet(self):
+            Conducts a cross validation with 80% of initial training. Plots MSE and displays further model performance metrices.
         predict_neural(self):
+            Outputs prediction values.
+        predict_prophet(self):
             Outputs prediction values.
     '''
 
