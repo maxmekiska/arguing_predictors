@@ -54,14 +54,14 @@ class BasicUnivariatePredictor:
             Load model from location specified.
     '''
 
-    def __init__(self, data: array, steps_past: int, steps_future: int) -> object:
+    def __init__(self, data, steps_past: int, steps_future: int) -> object:
         '''
             Parameters:
                 data (array): Input data for model training.
                 steps_past (int): Steps predictor will look backward.
                 steps_future (int): Steps predictor will look forward.
         '''
-        self.data = data
+        self.data = array(data)
         self.input_x, self.input_y = self.__sequence_prep(data, steps_past, steps_future)
 
 
