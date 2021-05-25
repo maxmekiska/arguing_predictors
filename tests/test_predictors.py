@@ -58,10 +58,13 @@ solution_y = np.array([[27.79999924],
 
 class Testing(unittest.TestCase):
 
-    def test_sequence_pred(self):
-        X, y = sequence_prep(test_price, 2, 1)
+    def test_sequence_pred_X(self):
+        X, _ = sequence_prep(test_price, 2, 1)
         np.testing.assert_array_equal(X, solution_X, 'not eaqual')
-        #np.testing.assert_array_equal(y, solution_y, 'not equal')
+
+    def test_seuence_pred_y(self):
+        _, y = sequence_prep(test_price, 2, 1)
+        np.testing.assert_array_equal(y, solution_y, 'not equal')
 
 
 if __name__ == '__main__':
