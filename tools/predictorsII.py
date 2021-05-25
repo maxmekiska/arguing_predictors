@@ -18,9 +18,9 @@ class UnivariatePredictorII:
         data = data.rename(columns={'Date': 'ds'}, inplace = False)
         return data
 
-    def fit_model(self, frequency: str):
+    def fit_model(self, epochs: int, frequency: str):
         self.model = NeuralProphet()
-        self.details = self.model.fit(self.data, validate_each_epoch=True, freq= frequency)
+        self.details = self.model.fit(self.data, epochs = epochs, validate_each_epoch=True, freq = frequency)
 
     def show_performance(self):
         information = self.details
