@@ -97,7 +97,16 @@ def new_weights(preds: list, real_value: float) -> list:
     
     total_error = sum(individual_error)
     for j in range(len(individual_error)):
-        new_weights.append(1-(individual_error[j]/total_error))
+        try:
+            if sum(total_error) == 0:
+                new_weights.append(1)
+            else:
+                new_weights.append(1-(individual_error[j]/total_error))
+        except:
+            if total_error == 0:
+                new_weights.append(1)
+            else:
+                new_weights.append(1-(individual_error[j]/total_error))
         
     for k in range(len(new_weights)):
         final_weights.append((new_weights[k]/sum(new_weights)) * len(preds))
