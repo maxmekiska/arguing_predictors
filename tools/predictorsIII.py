@@ -10,6 +10,7 @@ https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-fo
 import matplotlib.pyplot as plt
 from numpy import array
 from numpy import reshape
+import pandas as pd
 import os
 
 from keras.models import Sequential
@@ -20,8 +21,6 @@ from keras.layers import Flatten
 from keras.layers.convolutional import Conv1D
 from keras.layers.convolutional import MaxPooling1D
 from keras.layers import TimeDistributed
-
-
 
 
 
@@ -80,7 +79,6 @@ class HybridUnivariatePredictor:
                 X (array): Array containing all looking back sequences
                 y (array): Array containing all looking forward sequences
                 modified_back (int): Modified looking back sequence length
-
         '''
         length = len(input_sequence)
         X = []
@@ -168,8 +166,9 @@ class HybridUnivariatePredictor:
         data = data.reshape((1, self.sub_seq, self.modified_back, 1))
         y_pred = self.model.predict(data, verbose=0)
 
+        y_pred = y_pred.reshape(y_pred.shape[1], y_pred.shape[0])
             
-        return y_pred
+        return pd.DataFrame(y_pred, columns=['CNN-LSTM'])
 
     def save_model(self):
         '''Save the current model to the current directory.
