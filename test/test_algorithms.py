@@ -10,11 +10,28 @@ from tools.algorithms import *
 d = {'Predictor I': [2, 4, 6, 6], 'Predictor II': [5, 5, 6, 5], 'Predictor III': [10, 5, 8, 8]}
 df = pd.DataFrame(data=d)
 
+dtwo = {'Predictor I': [2, 4, 6, 6], 'Predictor II': [5, 5, 6, 5], 'Predictor III': [10, 5, 8, 8], 'Predictor IV': [2, 4, 6, 6]}
+dftwo = pd.DataFrame(data=dtwo)
+
+dthree = {'Predictor I': [2, 4, 6, 6], 'Predictor II': [5, 5, 6, 5]}
+dfthree = pd.DataFrame(data=dthree)
+
 d1 = {'Real Value': [6, 5, 6, 7]}
 df1 = pd.DataFrame(data=d1)
 
+
+
+
 solution_0 = {'System Disagreement': [3.555556, 0.444444, 0.888889, 1.3333333]}
 solution_disagreement = pd.DataFrame(data=solution_0)
+
+solution_0_1 = {'System Disagreement': [1.5, 0.5, 0.0, 0.5]}
+solution_disagreement_0 = pd.DataFrame(data=solution_0_1)
+
+solution_0_2 = {'System Disagreement': [3.375, 0.500, 0.750, 1.125]}
+solution_disagreement_1 = pd.DataFrame(data=solution_0_2)
+
+
 
 solution_1 = {0: [3.666667, 0.666667, 0.666667, 1.000000], 1: [2.666667, 0.333333, 0.666667, 1.333333],
               2: [4.333333, 0.333333, 1.333333, 1.666667]}
@@ -39,8 +56,14 @@ solution_average_consolidation = [5.666666666666667, 4.666666666666667, 6.666666
 
 class Testing(unittest.TestCase):
 
-    def test_disagreement(self):
+    def test_disagreement_threePredictors(self):
         assert_frame_equal(disagreement(df), solution_disagreement)
+    
+    def test_disagreement_fourPredictors(self):
+        assert_frame_equal(disagreement(dftwo), solution_disagreement_1)
+    
+    def test_disagreement_twoPredictors(self):
+        assert_frame_equal(disagreement(dfthree), solution_disagreement_0)
 
     def test_predictor_score(self):
         assert_frame_equal(predictor_score(df), solution_predictor)
