@@ -96,8 +96,10 @@ class Testing(unittest.TestCase):
 
     def test_consolidation_memory(self):
         self.assertEqual(consolidated_predictions_memory(df, df1), solution_consolidation_memory, 'Does not match solution')
+
     def test_consolidation_memory_twoPredictors(self):
         self.assertEqual(consolidated_predictions_memory(dfthree, df1), solution_consolidation_memory_1, 'Does not match solution')
+
     def test_consolidation_memory_fourPredictors(self):
         self.assertEqual(consolidated_predictions_memory(dftwo, df1), solution_consolidation_memory_2, 'Does not match solution')
 
