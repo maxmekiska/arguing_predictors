@@ -104,10 +104,12 @@ class HybridUnivariatePredictor:
         '''Creates CNN-LSTM hybrid model by defining all layers with activation functions, optimizer, loss function and evaluation metrics. 
         '''
         self.model = Sequential()
-        self.model.add(TimeDistributed(Conv1D(filters=64, kernel_size=1, activation='relu'), input_shape=(None,self.modified_back, 1)))
+        self.model.add(TimeDistributed(Conv1D(filters=64, kernel_size=2, activation='relu'), input_shape=(None,self.modified_back, 1)))
+        self.model.add(TimeDistributed(Conv1D(filters=32, kernel_size=2, activation='relu')))
         self.model.add(TimeDistributed(MaxPooling1D(pool_size=2)))
         self.model.add(TimeDistributed(Flatten()))
-        self.model.add(LSTM(50, activation='relu'))
+        self.model.add(LSTM(50, activation='relu', return_sequences=True))
+        self.model.add(LSTM(25, activation='relu'))
         self.model.add(Dense(self.input_y.shape[1]))
         self.model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_squared_error'])
 
