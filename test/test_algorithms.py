@@ -2,7 +2,7 @@ import sys
 sys.path.append('../')
 
 import pandas as pd
-from pandas.util.testing import assert_frame_equal
+from pandas.testing import assert_frame_equal
 import unittest
 from tools.algorithms import *
 
@@ -59,6 +59,7 @@ class Testing(unittest.TestCase):
 
     def test_consolidation_anchor(self):
         self.assertEqual(consolidated_predictions_anchor(df, df1, 1.2), solution_consolidation_anchor, 'Does not match solution')
+
     def test_average_consolidation(self):
         self.assertEqual(average_consolidation(df), solution_average_consolidation, 'Does not match solution')
 
