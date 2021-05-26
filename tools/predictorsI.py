@@ -12,6 +12,7 @@ Code insperations have been taken from:
 import matplotlib.pyplot as plt
 from numpy import array
 from numpy import reshape
+import pandas as pd
 import os
 
 from keras.models import Sequential
@@ -63,6 +64,8 @@ class BasicUnivariatePredictor:
         '''
         self.data = array(data)
         self.input_x, self.input_y = self.__sequence_prep(data, steps_past, steps_future)
+        
+        self.model_id = ''
 
 
     def __sequence_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
@@ -99,6 +102,8 @@ class BasicUnivariatePredictor:
     def create_mlp(self):
         '''Creates MLP model by defining all layers with activation functions, optimizer, loss function and evaluation metrics. 
         '''
+        self.model_id  = 'MLP'
+
         self.input_x = self.input_x.reshape((self.input_x.shape[0], self.input_x.shape[1])) # necessary to account for different shape input for MLP compared to the other models.
 
         self.model = Sequential()
@@ -111,6 +116,8 @@ class BasicUnivariatePredictor:
     def create_lstm(self):
         '''Creates LSTM model by defining all layers with activation functions, optimizer, loss function and evaluation metrics.
         '''
+        self.model_id = 'LSTM'
+
         self.model = Sequential()
         self.model.add(LSTM(40, activation='relu', return_sequences=True, input_shape=(self.input_x.shape[1], 1)))
         self.model.add(LSTM(50, activation='relu', return_sequences=True))
@@ -121,6 +128,8 @@ class BasicUnivariatePredictor:
     def create_cnn(self):
         '''Creates the CNN model by defining all layers with activation functions, optimizer, loss function and evaluation metrics.
         '''
+        self.model_id = 'CNN'
+
         self.model = Sequential()
         self.model.add(Conv1D(filters=64, kernel_size=2, activation='relu', input_shape=(self.input_x.shape[1], 1)))
         self.model.add(Conv1D(filters=32, kernel_size=2, activation='relu'))
@@ -133,6 +142,8 @@ class BasicUnivariatePredictor:
     def create_bilstm(self):
         '''Creates a bidirectional LSTM model by defining all layers with activation functions, optimizer, loss function and evaluation matrics.
         '''
+        self.model_id = 'Bidirectional LSTM'
+
         self.model = Sequential()
         self.model.add(Bidirectional(LSTM(50, activation='relu', return_sequences=True), input_shape=(self.input_x.shape[1], 1)))
         self.model.add(LSTM(50, activation='relu'))
@@ -196,8 +207,12 @@ class BasicUnivariatePredictor:
         except:
             data = data.reshape((1, self.input_x.shape[1]))
             y_pred = self.model.predict(data, verbose=0)
+
+
+        y_pred = y_pred.reshape(y_pred.shape[1], y_pred.shape[0])
             
-        return y_pred
+        return pd.DataFrame(y_pred, columns=[f'{self.model_id}'])
+
 
     def save_model(self):
         '''Save the current model to the current directory.
