@@ -121,7 +121,11 @@ class UnivariatePredictorII:
         '''
         prediction = self.model.make_future_dataframe(self.data, periods=self.future)
         output = self.model.predict(prediction)
-        return output['yhat1']
+        output = output['yhat1'].to_frame()
+        output = output.rename(columns={'yhat1': 'Neural Prophet'})
+
+        return output
+
 
     def predict_prophet(self):
         '''Returns the forecasted values starting from teh next data point from teh very last data point of data provided.
@@ -129,6 +133,12 @@ class UnivariatePredictorII:
         prediction = self.model.make_future_dataframe(periods = self.future)
         output = self.model.predict(prediction)
         output = output['yhat']
-        return output[-(self.future):]
+        output = output[-(self.future):]
+        output = output.to_frame()
+        output = output.rename(columns={'yhat':'Prophet'})
+        output = output.reset_index(drop=True)
+
+        return output
+        
 
 
