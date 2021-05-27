@@ -114,6 +114,42 @@ def new_weights(preds: list, real_value: float) -> list:
     return formatting(final_weights)
 
 
+def new_weights_focused(preds: list, real_value: float) -> list:
+    '''Helper function to calculated new weights, depending on t-1 forecast errors of predictors. Weights can only be 1 or 0.
+    
+        Parameters:
+            preds (list): t-1 predictions of each predictor
+            real_value (float): real value at t
+        
+        
+        Returns:
+            (list): list containing the new weight values for each predictor
+    '''
+    if type(preds) != type(list):
+        preds = list(preds)
+        
+    individual_error = []
+    new_weights = []
+    final_weights = []
+    
+    for i in range(len(preds)):
+        individual_error.append(abs(preds[i] - real_value))
+    
+    total_error = sum(individual_error)
+    for j in range(len(individual_error)):
+        if sum([total_error]) == 0: # new approach, substitutes try except clauses. Needs testing
+            new_weights.append(1)
+        else:
+            new_weights.append(1-(individual_error[j]/total_error))
+
+    for k in range(len(new_weights)):
+        if new_weights[k] == max(new_weights):
+            final_weights.append(1)
+        else:
+            final_weights.append(0)
+    
+    return formatting(final_weights)
+
 
 def consolidated_predictions(data,real) -> list:
     '''Function to calculate the consolidated prediction value of all individual predictors.
@@ -174,6 +210,36 @@ def consolidated_predictions_memory(data, real) -> list:
 
     
     return final_predictions
+
+def consolidated_predictions_focused(data, real) -> list:
+    '''Function to calculate the consolidated prediction value of all individual predictors.
+       Takes the sole estimate of the individual predictor that best predicted in the past.
+    
+        Parameters:
+            data (df): predictions values from each individual predictor
+            real (df): actual value
+        
+        
+        Returns:
+            (list): list containing consolidated prediction value considering new weight assignments for each predictor
+    '''
+    final_predictions = []
+    weight_history = []
+    weights = [1] * data.shape[1]
+
+    for j in range(data.shape[0]):
+        temp = []
+        for i in range(data.shape[1]):
+            temp.append(data.iloc[j, i]*weights[i])
+        final_predictions.append(sum(temp)/sum(weights))
+        weight_history.append(weights)
+        weights = new_weights_focused(data.iloc[j], real.iloc[j][0])
+
+    
+    return final_predictions
+
+
+
 
 def consolidated_predictions_anchor(data, real, anchor: int) -> list:
     '''Function to calculate the consolidated prediction value of all individual predictors. To prevent the

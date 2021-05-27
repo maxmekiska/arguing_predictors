@@ -47,6 +47,9 @@ value_2 = 6
 solution_list_weights = [0.83333333333333334, 1.3333333333333333, 0.8333333333333334]
 solution_list_weights_2 = [0.0, 1.5, 1.5]
 
+solution_list_weights_focused = [0, 1, 0]
+solution_list_weights_focused_2 = [0, 1, 1] 
+
 solution_consolidation = [5.666666666666667, 4.722222222222222, 7.0, 5.5]
 solution_consolidation_1 = [3.5, 4.8, 6.0, 5.5] # dfthree
 solution_consolidation_2 = [4.75, 4.538461538461538, 6.666666666666666, 5.666666666666666]  # dftwo
@@ -54,6 +57,10 @@ solution_consolidation_2 = [4.75, 4.538461538461538, 6.666666666666666, 5.666666
 solution_consolidation_memory = [5.666666666666667, 4.694444444444445, 6.7407407407407405, 6.111111111111111]
 solution_consolidation_memory_1 = [3.5, 4.65, 6.0, 5.3] 
 solution_consolidation_memory_2 = [4.75, 4.519230769230769, 6.542735042735042, 6.100961538461537]
+
+solution_consolidation_focused = [4.75, 5.0, 7.0, 5.666666666666667]  # four
+solution_consolidation_focused_1 = [5.666666666666667, 5.0, 7.0, 5.5]  # three
+solution_consolidation_focused_2 = [3.5, 5.0, 6.0, 5.5]  
 
 solution_consolidation_anchor = [6.12, 4.626288659793814, 7.005263157894737, 6.114705882352942]
 solution_consolidation_anchor_1 = [3.65, 4.822695035460993, 6.08421052631579, 5.533333333333333] 
@@ -85,6 +92,12 @@ class Testing(unittest.TestCase):
     def test_weights_2(self):
         self.assertEqual(new_weights(list_2, value_2), solution_list_weights_2, 'Does not match solution')
 
+    def test_weights_focused_1(self):
+        self.assertEqual(new_weights_focused(list_1, value_2), solution_list_weights_focused, 'Does not match solution')
+
+    def test_weights_focused_2(self):
+        self.assertEqual(new_weights_focused(list_2, value_2), solution_list_weights_focused_2, 'Does not match solution')
+
     def test_consolidation(self):
         self.assertEqual(consolidated_predictions(df, df1), solution_consolidation, 'Does not match solution')
 
@@ -102,6 +115,15 @@ class Testing(unittest.TestCase):
 
     def test_consolidation_memory_fourPredictors(self):
         self.assertEqual(consolidated_predictions_memory(dftwo, df1), solution_consolidation_memory_2, 'Does not match solution')
+    
+    def test_consolidation_focused(self):
+        self.assertEqual(consolidated_predictions_focused(df, df1), solution_consolidation_focused_1, 'Does not match solution')
+
+    def test_consolidation_focused_twoPredictors(self):
+        self.assertEqual(consolidated_predictions_focused(dfthree, df1), solution_consolidation_focused_2, 'Does not match solution')
+
+    def test_consolidation_focused_fourPredictors(self):
+        self.assertEqual(consolidated_predictions_focused(dftwo, df1), solution_consolidation_focused, 'Does not match solution')
 
     def test_consolidation_anchor(self):
         self.assertEqual(consolidated_predictions_anchor(df, df1, 1.2), solution_consolidation_anchor, 'Does not match solution')
