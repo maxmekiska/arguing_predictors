@@ -4,7 +4,7 @@ sys.path.append('../')
 import pandas as pd
 from pandas.testing import assert_frame_equal
 import unittest
-from tools.algorithms import *
+from consensus.algorithms import *
 
 
 d = {'Predictor I': [2, 4, 6, 6], 'Predictor II': [5, 5, 6, 5], 'Predictor III': [10, 5, 8, 8]}
