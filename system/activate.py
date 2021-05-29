@@ -1,6 +1,9 @@
 import pandas as pd
 from pandas import DataFrame
 
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
+
 import sys
 sys.path.append('../')
 
@@ -106,7 +109,25 @@ def print_simple_statistics(df):
     for k in range(start, df.shape[1]):
         print(df.iloc[:,k].median())
 
+def mse_score(df):
+    end = (list(df.columns).index('Real Value'))
+    y_true = df['Real Value']
 
+    mse = []
+    for i in range(0, end):
+        mse.append(mean_squared_error(y_true, df.iloc[:,i]))
+
+    return mse
+
+def r2(df):
+    end = (list(df.columns).index('Real Value'))
+    y_true = df['Real Value']
+
+    r2 = []
+    for i in range(0, end):
+        r2.append(r2_score(y_true, df.iloc[:,i]))
+
+    return r2
 
 def plot_performance(data):
 
