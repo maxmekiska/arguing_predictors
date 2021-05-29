@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from pandas_datareader import data
 from pandas.plotting import register_matplotlib_converters
+from pandas import DataFrame
 
 import investpy
 
@@ -61,87 +62,87 @@ class DataLoader:
         '''
         return f"Total count of rows: {self.stockdata.shape[0]}\nTicker: {self.ticker}\nStart: {self.start_date}\nEnd: {self.end_date}"
     
-    def get_data(self):
+    def get_data(self) -> DataFrame:
         '''Returns data frame containing stock data of ticker symbol specified.
 
             Returns:
-                (df): data frame containing stock data
+                (DataFrame): Data frame containing stock data.
         '''
         return self.stockdata
 
-    def get_high(self):
+    def get_high(self) -> DataFrame:
         '''Returns data frame containing daily high valuses of ticker symbol specified.
 
             Returns:
-                (df): data frame containing daily high values of ticker symbol
+                (DataFrame): Data frame containing daily high values of ticker symbol.
         '''
         return pd.DataFrame(self.stockdata['High'])
 
-    def get_low(self):
+    def get_low(self) -> DataFrame:
         '''Returns data frame containing daily lowest valuses of ticker symbol specified.
 
             Returns:
-                (df): data frame containing daily lowest values of ticker symbol
+                (DataFrame): Data frame containing daily lowest values of ticker symbol.
         '''
         return pd.DataFrame(self.stockdata['Low'])
 
-    def get_open(self):
+    def get_open(self) -> DataFrame:
         '''Returns data frame containing daily opening valuses of ticker symbol specified.
 
             Returns:
-                (df): data frame containing daily opening values of ticker symbol
+                (DataFrame): Data frame containing daily opening values of ticker symbol.
         '''
         return pd.DataFrame(self.stockdata['Open'])
 
-    def get_close(self):
+    def get_close(self) -> DataFrame:
         '''Returns data frame containing daily closing valuses of ticker symbol specified.
 
             Returns:
-                (df): data frame containing daily closing values of ticker symbol
+                (DataFrame): Data frame containing daily closing values of ticker symbol.
         '''
         return pd.DataFrame(self.stockdata['Close'])
 
-    def get_volume(self):
+    def get_volume(self) -> DataFrame:
         '''Returns data frame containing daily volume valuses of ticker symbol specified.
 
             Returns:
-                (df): data frame containing daily volume values of ticker symbol
+                (DataFrame): Data frame containing daily volume values of ticker symbol.
         '''
         return pd.DataFrame(self.stockdata['Volume'])
 
-    def get_adjclose(self):
+    def get_adjclose(self) -> DataFrame:
         '''Returns data frame containing daily adjusted closing valuses of ticker symbol specified.
 
             Returns:
-                (df): data frame containing daily adjusted closing values of ticker symbol
+                (DataFrame): Data frame containing daily adjusted closing values of ticker symbol.
         '''
         return pd.DataFrame(self.stockdata['Adj Close'])
 
-    def calculate_returns_open(self):
+    def calculate_returns_open(self) -> DataFrame:
         '''Calculates return values of daily opening values. return = ((price today - price yesterday)/price yesterday)
 
             Returns:
-                (df): data frame containing daily return values
+                (DataFrame): Data frame containing daily return values.
         '''
         data = pd.DataFrame(self.stockdata['Open'].diff(1))
         data.rename(columns={'Open':'Return'}, inplace=True)
         return data
 
-    def calculate_returns_close(self):
+    def calculate_returns_close(self) -> DataFrame:
         '''Calculates return values of daily closing values. return = ((price today - price yesterday)/price yesterday)
 
             Returns:
-                (df): data frame containing daily return values
+                (DataFrame): Data frame containing daily return values.
         '''
         data = pd.DataFrame(self.stockdata['Close'].diff(1))
         data.rename(columns={'Close':'Return'}, inplace=True)
         return data
 
-    def calculate_returns_adj(self):
+    def calculate_returns_adj(self) -> DataFrame:
         '''Calculates return values of daily adjusted closing values. return = ((price today - price yesterday)/price yesterday)
 
             Returns:
-                (df): data frame containing daily return values
+                (DataFrame): Data frame containing daily return values.
         '''
         data = pd.DataFrame(self.stockdata['Adj Close'].diff(1))
         data.rename(columns={'Adj Close':'Return'}, inplace=True)
@@ -195,10 +196,10 @@ class DataLoader:
         plt.show()
 
 
-    def statistics(self):
+    def statistics(self) -> DataFrame:
         '''Calculates and returns basic statistics of data loaded. Statistics include: count, mean, std, min, 25%, 50%, 75%, max.
             Returns:
-                (df): Dataframe containing statistics
+                (DataFrame): Dataframe containing statistics.
 
         '''
         return self.stockdata.describe()
@@ -279,70 +280,70 @@ class AlternativeDataLoader:
         '''
         return f"Total count of rows: {self.stockdata.shape[0]}\nTicker: {self.ticker}\nStart: {self.start_date}\nEnd: {self.end_date}"
     
-    def get_data(self):
+    def get_data(self) -> DataFrame:
         '''Returns data frame containing stock data of ticker symbol specified.
 
             Returns:
-                (df): data frame containing stock data
+                (DataFrame): Data frame containing stock data.
         '''
         return self.stockdata
 
-    def get_high(self):
+    def get_high(self) -> DataFrame:
         '''Returns data frame containing daily high valuses of ticker symbol specified.
 
             Returns:
-                (df): data frame containing daily high values of ticker symbol
+                (DataFrame): Data frame containing daily high values of ticker symbol.
         '''
         return pd.DataFrame(self.stockdata['High'])
 
-    def get_low(self):
+    def get_low(self) -> DataFrame:
         '''Returns data frame containing daily lowest valuses of ticker symbol specified.
 
             Returns:
-                (df): data frame containing daily lowest values of ticker symbol
+                (DataFrame): Data frame containing daily lowest values of ticker symbol.
         '''
         return pd.DataFrame(self.stockdata['Low'])
 
-    def get_open(self):
+    def get_open(self) -> DataFrame:
         '''Returns data frame containing daily opening valuses of ticker symbol specified.
 
             Returns:
-                (df): data frame containing daily opening values of ticker symbol
+                (DataFrame): Data frame containing daily opening values of ticker symbol.
         '''
         return pd.DataFrame(self.stockdata['Open'])
 
-    def get_close(self):
+    def get_close(self) -> DataFrame:
         '''Returns data frame containing daily closing valuses of ticker symbol specified.
 
             Returns:
-                (df): data frame containing daily closing values of ticker symbol
+                (DataFrame): Data frame containing daily closing values of ticker symbol.
         '''
         return pd.DataFrame(self.stockdata['Close'])
 
-    def get_volume(self):
+    def get_volume(self) -> DataFrame:
         '''Returns data frame containing daily volume valuses of ticker symbol specified.
 
             Returns:
-                (df): data frame containing daily volume values of ticker symbol
+                (DataFrame): Data frame containing daily volume values of ticker symbol.
         '''
         return pd.DataFrame(self.stockdata['Volume'])
 
 
-    def calculate_returns_open(self):
+    def calculate_returns_open(self) -> DataFrame:
         '''Calculates return values of daily opening values. return = ((price today - price yesterday)/price yesterday)
 
             Returns:
-                (df): data frame containing daily return values
+                (DataFrame): Data frame containing daily return values.
         '''
         data = pd.DataFrame(self.stockdata['Open'].diff(1))
         data.rename(columns={'Open':'Return'}, inplace=True)
         return data
 
-    def calculate_returns_close(self):
+    def calculate_returns_close(self) -> DataFrame:
         '''Calculates return values of daily closing values. return = ((price today - price yesterday)/price yesterday)
 
             Returns:
-                (df): data frame containing daily return values
+                (DataFrame): data frame containing daily return values.
         '''
         data = pd.DataFrame(self.stockdata['Close'].diff(1))
         data.rename(columns={'Close':'Return'}, inplace=True)
@@ -390,10 +391,10 @@ class AlternativeDataLoader:
         plt.show()
 
 
-    def statistics(self):
+    def statistics(self) -> DataFrame:
         '''Calculates and returns basic statistics of data loaded. Statistics include: count, mean, std, min, 25%, 50%, 75%, max.
             Returns:
-                (df): Dataframe containing statistics
+                (DataFrame): Data frame containing statistics.
 
         '''
         return self.stockdata.describe()
