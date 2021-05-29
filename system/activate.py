@@ -180,10 +180,10 @@ def mse_score(df: DataFrame) -> [(list, list)]:
     mse1 = []
     mse2 = []
     for i in range(0, end):
-        mse1.append(mean_squared_error(y_true, df.iloc[:,i]))
+        mse1.append((df.columns[i], mean_squared_error(y_true, df.iloc[:,i])))
     
     for i in range(start, df.shape[1]):
-        mse2.append(mean_squared_error(y_true, df.iloc[:,i]))
+        mse2.append((df.columns[i], mean_squared_error(y_true, df.iloc[:,i])))
 
     return mse1, mse2
 
@@ -204,10 +204,10 @@ def mae_score(df: DataFrame) -> [(list, list)]:
     mae1 = []
     mae2 = []
     for i in range(0, end):
-        mae1.append(mean_absolute_error(y_true, df.iloc[:,i]))
+        mae1.append((df.columns[i], mean_absolute_error(y_true, df.iloc[:,i])))
     
     for i in range(start, df.shape[1]):
-        mae2.append(mean_absolute_error(y_true, df.iloc[:,i]))
+        mae2.append((df.columns[i], mean_absolute_error(y_true, df.iloc[:,i])))
 
     return mae1, mae2
 
@@ -228,10 +228,10 @@ def mse_log_score(df: DataFrame) -> [(list, list)]:
     mse_log1 = []
     mse_log2 = []
     for i in range(0, end):
-        mse_log1.append(mean_squared_log_error(y_true, df.iloc[:,i]))
+        mse_log1.append((df.columns[i], mean_squared_log_error(y_true, df.iloc[:,i])))
     
     for i in range(start, df.shape[1]):
-        mse_log2.append(mean_squared_log_error(y_true, df.iloc[:,i]))
+        mse_log2.append((df.columns[i], mean_squared_log_error(y_true, df.iloc[:,i])))
 
     return mse_log1, mse_log2
 
@@ -250,7 +250,7 @@ def plot_performance(data: DataFrame):
     plt.title('Average Algorithm Error')
     plt.ylabel('Absolute Error')
     plt.xlabel('Time')
-    plt.legend(['Real Value', 'Consensus'], loc='upper right')
+    plt.legend(['Real Value', 'Consensus', 'Error'], loc='upper right')
     plt.show()
    
     plt.figure(figsize=(15,6))
