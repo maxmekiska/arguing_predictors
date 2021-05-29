@@ -147,10 +147,12 @@ def combined_frame(df1: DataFrame, df2:DataFrame, real: DataFrame) -> DataFrame:
     '''Combining the individual predictors forecast DataFrame with the algorithm consensus values DataFrame. These two DataFrames are divided by the Real Value column.
 
         Parameters:
+            df1 (DataFrame): First DataFrame, for example: DataFrame containing algorithms consensus values.
+            df2 (DataFrame): Second DataFrame, for example: DataFrame containing individual predictors forecasts.
+            real (DataFrame): DataFrame containing the real values.
             
-
-
-
+        Returns:
+            (DataFrame): Combined DataFrame with Real Value column in the middle. 
     '''
     df1 = set_same_index(df1, real)
     df2 = evaluation_frame(df2, real)
@@ -161,7 +163,15 @@ def combined_frame(df1: DataFrame, df2:DataFrame, real: DataFrame) -> DataFrame:
 
 
 
-def mse_score(df):
+def mse_score(df: DataFrame) -> [(list, list)]:
+    '''Calculates the mean squared error for the individual predictors and consensus algorithms.
+
+        Parameters:
+            df (DataFrame): DataFrame containing individual predictors forecasts and consensus values of algorithms.
+
+        Returns:
+            [(list, list)]: Lists containing mean squared error of individual predictors forecasts and consensus values of algorithms.
+    '''
     end = (list(df.columns).index('Real Value'))
     start = (list(df.columns).index('Real Value')) + 1
 
@@ -177,7 +187,15 @@ def mse_score(df):
 
     return mse1, mse2
 
-def mae_score(df):
+def mae_score(df: DataFrame) -> [(list, list)]:
+    '''Calculates the mean absolute error for the individual predictors and consensus algorithms.
+
+        Parameters:
+            df (DataFrame): DataFrame containing individual predictors forecasts and consensus values of algorithms.
+
+        Returns:
+            [(list, list)]: Lists containing mean absolute error of individual predictors forecasts and consensus values of algorithms.
+    '''
     end = (list(df.columns).index('Real Value'))
     start = (list(df.columns).index('Real Value')) + 1
 
@@ -193,7 +211,15 @@ def mae_score(df):
 
     return mae1, mae2
 
-def mse_log_score(df):
+def mse_log_score(df: DataFrame) -> [(list, list)]:
+    '''Calculates the mean squared log error for the individual predictors and consensus algorithms.
+
+        Parameters:
+            df (DataFrame): DataFrame containing individual predictors forecasts and consensus values of algorithms.
+
+        Returns:
+            [(list, list)]: Lists containing mean squared log error of individual predictors forecasts and consensus values of algorithms.
+    '''
     end = (list(df.columns).index('Real Value'))
     start = (list(df.columns).index('Real Value')) + 1
 
@@ -211,7 +237,12 @@ def mse_log_score(df):
 
 
 
-def plot_performance(data):
+def plot_performance(data: DataFrame):
+    '''Plots individual predictors forecasts and consensus values of algorithms against the real values.
+
+        Parameters:
+            data (DataFrame): DataFrame containing individual predictors forecasts, consensus values and real values.
+    '''
 
     plt.figure(figsize=(15,6))
     plt.plot(data['Real Value'])
