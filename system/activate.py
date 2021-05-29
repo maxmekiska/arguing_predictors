@@ -2,7 +2,7 @@ import pandas as pd
 from pandas import DataFrame
 
 from sklearn.metrics import mean_squared_error
-from sklearn.metrics import r2_score
+
 
 import sys
 sys.path.append('../')
@@ -68,6 +68,10 @@ def consensus(df, real):
     
     return consensus
 
+def set_same_index(algorithms, real_df):
+    algorithms = algorithms.set_index(real_df.index)
+
+    return algorithms
 
 def evaluation_frame(algorithms, real_df):
     algorithms = algorithms.set_index(real_df.index)
@@ -75,59 +79,33 @@ def evaluation_frame(algorithms, real_df):
     
     return algorithms
 
+def combined_frame(df1, df2, real):
+    df1 = set_same_index(df1, real)
+    df2 = evaluation_frame(df2, real)
 
-def calculate_error_predictors(data):
-    error = data.copy()
+    combined_frame = pd.concat([df2, df1], axis=1)
     
-    error['Error CNN-LSTM'] = abs(error['Real Value'] - error['CNN-LSTM'])
-    error['Error Bidirectional LSTM'] = abs(error['Real Value'] - error['Bidirectional LSTM'])
-    error['Error CNN'] = abs(error['Real Value'] - error['CNN'])
-    
-    return error
+    return combined_frame
 
-def calculate_error_algorithms(data):
-    error = data.copy()
-    
-    error['Error Average'] = abs(error['Real Value'] - error['Average'])
-    error['Error NoMemory'] = abs(error['Real Value'] - error['NoMemory'])
-    error['Error Memory'] = abs(error['Real Value'] - error['Memory'])
-    error['Error Focus'] = abs(error['Real Value'] - error['Focus'])
-    error['Error Anchor'] = abs(error['Real Value'] - error['Anchor'])
-    
-    return error
 
-def print_simple_statistics(df):
-    start = (list(df.columns).index('Real Value')) + 1
-
-    print('-------SUM-------')
-    for i in range(start,df.shape[1]):
-        print(df.iloc[:,i].sum())
-    print('------AVERAGE----')
-    for j in range(start, df.shape[1]):
-        print(df.iloc[:,j].mean())
-    print('------MEDIAN-----')
-    for k in range(start, df.shape[1]):
-        print(df.iloc[:,k].median())
 
 def mse_score(df):
     end = (list(df.columns).index('Real Value'))
+    start = (list(df.columns).index('Real Value')) + 1
+
     y_true = df['Real Value']
 
-    mse = []
+    mse1 = []
+    mse2 = []
     for i in range(0, end):
-        mse.append(mean_squared_error(y_true, df.iloc[:,i]))
+        mse1.append(mean_squared_error(y_true, df.iloc[:,i]))
+    
+    for i in range(start, df.shape[1]):
+        mse2.append(mean_squared_error(y_true, df.iloc[:,i]))
 
-    return mse
+    return mse1, mse2
 
-def r2(df):
-    end = (list(df.columns).index('Real Value'))
-    y_true = df['Real Value']
 
-    r2 = []
-    for i in range(0, end):
-        r2.append(r2_score(y_true, df.iloc[:,i]))
-
-    return r2
 
 def plot_performance(data):
 
