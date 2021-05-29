@@ -1,15 +1,16 @@
 import pandas as pd
 
+from pandas import DataFrame
 
-def disagreement(data) -> list:
+def disagreement(data: DataFrame) -> DataFrame:
     '''Takes in a DataFrame containing forecasts of different predictors and
        calculates the disagreement score of the overall system.
     
         Parameters:
-            data (df): individual predictors forecast output
+            data (DataFrame): individual predictors forecast output
         
         Returns:
-            (df): containing overall system disagrement scores
+            (DataFrame): containing overall system disagrement scores
     '''
     system_disagreement = []
     for k in range(data.shape[0]):
@@ -27,15 +28,15 @@ def disagreement(data) -> list:
 
 
 
-def predictor_score(data) -> list:
+def predictor_score(data: DataFrame) -> DataFrame:
     '''Takes in a DataFrame and calculates each individual predictors disagreement
        scores.
     
         Parameters:
-            data (df): individual predictors forecast output
+            data (DataFrame): individual predictors forecast output
         
         Returns:
-            (df): containing all predictors individual 
+            (DataFrame): containing all predictors individual 
     '''
     individual_score_collection = []
     for k in range(data.shape[0]):
@@ -56,12 +57,10 @@ def predictor_score(data) -> list:
 def formatting(target: list) -> list:
     '''Helper function to transform a list containing additional, unnecessary dataframe details into a pure list
        containing only target values.
-       
-       
+        
         Parameters:
             target (list): list containing unnecessary additional information
-        
-        
+         
         Returns:
             (list): list containing target values
     '''
@@ -80,8 +79,7 @@ def new_weights(preds: list, real_value: float) -> list:
         Parameters:
             preds (list): t-1 predictions of each predictor
             real_value (float): real value at t
-        
-        
+          
         Returns:
             (list): list containing the new weight values for each predictor
     '''
@@ -120,8 +118,7 @@ def new_weights_focused(preds: list, real_value: float) -> list:
         Parameters:
             preds (list): t-1 predictions of each predictor
             real_value (float): real value at t
-        
-        
+         
         Returns:
             (list): list containing the new weight values for each predictor
     '''
@@ -151,14 +148,13 @@ def new_weights_focused(preds: list, real_value: float) -> list:
     return formatting(final_weights)
 
 
-def consolidated_predictions(data,real) -> list:
+def consolidated_predictions(data: DataFrame, real: DataFrame) -> list:
     '''Function to calculate the consolidated prediction value of all individual predictors.
     
         Parameters:
-            data (df): predictions values from each individual predictor
-            real (df): actual value
-        
-        
+            data (DataFrame): predictions values from each individual predictor
+            real (DataFrame): actual values
+         
         Returns:
             (list): list containing consolidated prediction value considering new weight assignments for each predictor
     '''
@@ -179,16 +175,15 @@ def consolidated_predictions(data,real) -> list:
     return final_predictions
 
 
-def consolidated_predictions_memory(data, real) -> list:
+def consolidated_predictions_memory(data: DataFrame, real: DataFrame) -> list:
     '''Function to calculate the consolidated prediction value of all individual predictors. This function furthermore
        extends consolidated_predictions by keeping a memory of prior assigned weights. An average of all prior assigned
        weights is calculated and applied to calculate the final consolidation value.
     
         Parameters:
-            data (df): predictions values from each individual predictor
-            real (df): actual value
-        
-        
+            data (DataFrame): predictions values from each individual predictor
+            real (DataFrame): actual value
+         
         Returns:
             (list): list containing consolidated prediction value considering new weight assignments for each predictor
     '''
@@ -211,15 +206,14 @@ def consolidated_predictions_memory(data, real) -> list:
     
     return final_predictions
 
-def consolidated_predictions_focused(data, real) -> list:
+def consolidated_predictions_focused(data: DataFrame, real: DataFrame) -> list:
     '''Function to calculate the consolidated prediction value of all individual predictors.
        Takes the sole estimate of the individual predictor that best predicted in the past.
     
         Parameters:
-            data (df): predictions values from each individual predictor
-            real (df): actual value
-        
-        
+            data (DataFrame): predictions values from each individual predictor
+            real (DataFrame): actual value
+         
         Returns:
             (list): list containing consolidated prediction value considering new weight assignments for each predictor
     '''
@@ -241,18 +235,17 @@ def consolidated_predictions_focused(data, real) -> list:
 
 
 
-def consolidated_predictions_anchor(data, real, anchor: int) -> list:
+def consolidated_predictions_anchor(data: DataFrame, real: DataFrame, anchor: int) -> list:
     '''Function to calculate the consolidated prediction value of all individual predictors. To prevent the
        algorithm from being limited to produce consolidation values within the min and max value predicted by
        the individual predictors, min and max anchors are launched that extend above the biggest and smallest value
        estimated.
     
         Parameters:
-            data (df): predictions values from each individual predictor
-            real (df): actual value
+            data (DataFrame): predictions values from each individual predictor
+            real (DataFrame): actual value
             anchor (int): how far should max, min prediction be extended
-        
-        
+         
         Returns:
             (list): list containing consolidated prediction value considering new weight assignments for each predictor
     '''
@@ -282,14 +275,12 @@ def consolidated_predictions_anchor(data, real, anchor: int) -> list:
     
     return final_predictions
 
-def average_consolidation(data) -> list:
+def average_consolidation(data: DataFrame) -> list:
     '''Function to calculate simple average of all predictor forecasts.
     
         Parameters:
-            data (df): prediction values from each individual predictor
-        
-        
-        
+            data (DataFrame): prediction values from each individual predictor
+         
         Returns:
             (list): list containing average values of predictor forecasts
     '''
