@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from pandas import DataFrame
 
 from neuralprophet import NeuralProphet
 
@@ -31,22 +32,22 @@ class UnivariatePredictorII:
             Outputs prediction values.
     '''
 
-    def __init__(self, data, future: int) -> object:
+    def __init__(self, data: DataFrame, future: int) -> object:
         '''
             Parameters:
-                data (df): Input data onto which future predictions will be made. Next date after the last date in data is the first prediction value of model.
+                data (DataFrame): Input data onto which future predictions will be made. Next date after the last date in data is the first prediction value of model.
                 future (int): How many days will be predicted into the future.
         '''
         self.data = self.__data_prep(data)
         self.future = future
 
-    def __data_prep(self, data):
+    def __data_prep(self, data: DataFrame) -> DataFrame:
         '''Private function to prepare intake data into format that is digestible by the Neural Prophet library. The final format is a DataFrame with column 1 name = 'ds' containing date values and column 2 name = 'y' containing the data points.
             Parameters:
-                data (df): Original non-formatted time series DataFrame
+                data (DataFrame): Original non-formatted time series DataFrame.
 
             Returns:
-                data (df): Modified formatted time series DataFrame
+                (DataFrame): Modified formatted time series DataFrame.
         '''
         data = data.rename(columns={data.columns[0]: 'y'}, inplace = False)
         data = data.reset_index()
@@ -95,11 +96,11 @@ class UnivariatePredictorII:
         plt.tight_layout()
         plt.show()
 
-    def show_performance_prophet(self):
+    def show_performance_prophet(self) -> DataFrame:
         '''Plots MSE for each horizon. Delivers general performance statistics. Initial training is set to 80% of data.
 
             Returns:
-                (df): Model performance statistics.
+                (DataFrame): Model performance statistics.
         '''
         cross_val = cross_validation(self.model, initial = f'{(round(0.8*len(self.data)))} days', horizon = f'{self.future} days')
         performance = performance_metrics(cross_val)
@@ -114,10 +115,10 @@ class UnivariatePredictorII:
 
 
 
-    def predict_neural(self):
+    def predict_neural(self) -> DataFrame:
         '''Returns the forecasted values starting from the next data point from the very last data point of data provided.
             Returns:
-                (df): Forecast for data provided.
+                (DataFrame): Forecast for data provided.
         '''
         prediction = self.model.make_future_dataframe(self.data, periods=self.future)
         output = self.model.predict(prediction)
@@ -127,8 +128,10 @@ class UnivariatePredictorII:
         return output
 
 
-    def predict_prophet(self):
+    def predict_prophet(self) -> DataFrame:
         '''Returns the forecasted values starting from teh next data point from teh very last data point of data provided.
+            Returns:
+                (DataFrame): Forecast for data provided.
         '''
         prediction = self.model.make_future_dataframe(periods = self.future)
         output = self.model.predict(prediction)

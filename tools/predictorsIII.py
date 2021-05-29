@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 from numpy import array
 from numpy import reshape
 import pandas as pd
+from pandas import DataFrame
 import os
 
 from keras.models import Sequential
@@ -25,7 +26,7 @@ from keras.layers import TimeDistributed
 
 
 class HybridUnivariatePredictor:
-    '''Implements neural network based univariate multipstep predictors.
+    '''Implements neural network based univariate multipstep hybrid predictors.
         
         Methods
         -------
@@ -154,14 +155,14 @@ class HybridUnivariatePredictor:
         plt.tight_layout()
         plt.show()
 
-    def predict(self, data: array) -> array:
+    def predict(self, data: array) -> DataFrame:
         '''Takes in a sequence of values and outputs a forecast.
 
             Parameters:
                 data (array): Input sequence which needs to be forecasted.
 
             Returns:
-                (array): Forecast for sequence provided.
+                (DataFrame): Forecast for sequence provided.
         '''
         data = array(data)
 
