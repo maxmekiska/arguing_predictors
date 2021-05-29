@@ -1,4 +1,5 @@
 import pandas as pd
+from pandas import DataFrame
 
 import sys
 sys.path.append('../')
@@ -9,15 +10,14 @@ from tools.predictorsII import *
 from tools.predictorsIII import *
 
 
-def data_prep(df, input_batch_size, future_horizon):
+def data_prep(df: DataFrame, input_batch_size: int, future_horizon: int):
     input_b = df[0:input_batch_size]
     real_value = df[input_batch_size:input_batch_size + future_horizon]
     
     return input_b, real_value
 
 
-# future_horizon = length -> days into the future predicted
-def individual_predictors(training_df, input_batch, future_horizon):
+def individual_predictors(training_df, input_batch, future_horizon: int):
     one = HybridUnivariatePredictor(training_df,2, len(input_batch), future_horizon)
     one.create_cnnlstm()
     one.fit_model(10)
