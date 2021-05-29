@@ -118,21 +118,40 @@ def set_same_index(to_df: DataFrame, from_df: DataFrame) -> DataFrame:
     '''Helper function to transfer the dates of a date-time indexed dataframe to another.
 
         Parameter:
-            to_df (DataFrame): 
-        
+            to_df (DataFrame): Target DataFrame, application destination.
+            from_df (DataFrame): DataFrame containing date-time index. 
 
+        Returns:
+            (DataFrame): Target DataFrame with date-time index.
     '''
     to_df = to_df.set_index(from_df.index)
 
     return to_df
 
-def evaluation_frame(algorithms, real_df):
-    algorithms = algorithms.set_index(real_df.index)
-    algorithms['Real Value'] = real_df
-    
-    return algorithms
+def evaluation_frame(to_df: DataFrame, from_df: DataFrame) -> DataFrame:
+    '''Helper function to transfer the dates of a date-time indexed dataframe to another while additionally attaching the Real Value column.
+        
+        Parameters:
+            to_df (DataFrame): Target DataFrame, application destination.
+            from_df (DataFrame): DataFrame containing date-time index and Real Value column.
 
-def combined_frame(df1, df2, real):
+        Returns:
+            (DataFrame): Target DataFrame with date-time index and Real Valeu column.
+    '''
+    to_df = to_df.set_index(from_df.index)
+    to_df['Real Value'] = from_df
+    
+    return to_df
+
+def combined_frame(df1: DataFrame, df2:DataFrame, real: DataFrame) -> DataFrame:
+    '''Combining the individual predictors forecast DataFrame with the algorithm consensus values DataFrame. These two DataFrames are divided by the Real Value column.
+
+        Parameters:
+            
+
+
+
+    '''
     df1 = set_same_index(df1, real)
     df2 = evaluation_frame(df2, real)
 
