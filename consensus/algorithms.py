@@ -50,8 +50,11 @@ def predictor_score(data: DataFrame) -> DataFrame:
             individual_scores.clear()
             
         individual_score_collection.append(average_values)
-    
-    return pd.DataFrame(individual_score_collection)
+
+    result = pd.DataFrame(individual_score_collection) 
+    result.columns = data.columns
+
+    return result
 
 
 def formatting(target: list) -> list:

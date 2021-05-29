@@ -82,6 +82,7 @@ def system_disagreement(df: DataFrame):
     predictor_score(df).plot()
 
 
+
 def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
     '''Applies the following consensus algorithm to provide the final system forecast:
 
