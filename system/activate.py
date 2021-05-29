@@ -37,8 +37,10 @@ def individual_predictors(training_df, input_batch, future_horizon):
     prediction_one = one.predict(input_batch)
     prediction_two = two.predict(input_batch)
     prediction_three = three.predict(input_batch)
-    
-    return prediction_one, prediction_two, prediction_three
+
+    final_df = pd.concat([prediction_one, prediction_two, prediction_three], axis=1) 
+
+    return final_df
 
 
 def system_disagreement(df):
