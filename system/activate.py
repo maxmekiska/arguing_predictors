@@ -34,6 +34,7 @@ def data_prep(df: DataFrame, input_batch_size: int, future_horizon: int) -> [(Da
 
 def individual_predictors(training_df: DataFrame, input_batch: DataFrame, future_horizon: int) -> DataFrame:
     '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented here:
+
     1. CNN-LSTM
     2. Bidirectional LSTM
     3. LSTM
@@ -81,7 +82,22 @@ def system_disagreement(df: DataFrame):
     predictor_score(df).plot()
 
 
-def consensus(df, real):
+def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
+    '''Applies the following consensus algorithm to provide the final system forecast:
+
+    1. Average
+    2. No Memory
+    3. Memory
+    4. Focus
+    5. Anchor
+
+        Parameters:
+            df (DataFrame): Forecasts of all individual predictors.
+            real (DataFrame): The true/actual values.
+
+        Returns:
+            (DataFrame): Containing all final consensus values from all algorithms.
+    '''
     consensus = pd.DataFrame()
     
     average = average_consolidation(df)
@@ -98,10 +114,17 @@ def consensus(df, real):
     
     return consensus
 
-def set_same_index(algorithms, real_df):
-    algorithms = algorithms.set_index(real_df.index)
+def set_same_index(to_df: DataFrame, from_df: DataFrame) -> DataFrame:
+    '''Helper function to transfer the dates of a date-time indexed dataframe to another.
 
-    return algorithms
+        Parameter:
+            to_df (DataFrame): 
+        
+
+    '''
+    to_df = to_df.set_index(from_df.index)
+
+    return to_df
 
 def evaluation_frame(algorithms, real_df):
     algorithms = algorithms.set_index(real_df.index)
