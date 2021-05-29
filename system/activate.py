@@ -110,6 +110,7 @@ def print_simple_statistics(df):
 
 def plot_performance(data):
 
+    plt.figure(figsize=(15,6))
     plt.plot(data['Real Value'])
     plt.plot(data['Average'])
     plt.title('Average Algorithm Error')
@@ -117,7 +118,8 @@ def plot_performance(data):
     plt.xlabel('Time')
     plt.legend(['Real Value', 'Consensus'], loc='upper right')
     plt.show()
-    
+   
+    plt.figure(figsize=(15,6))
     plt.plot(data['Real Value'])
     plt.plot(data['NoMemory'])
     plt.title('NoMemory Algorithm Error')
@@ -125,7 +127,8 @@ def plot_performance(data):
     plt.xlabel('Time')
     plt.legend(['Real Value', 'Consensus'], loc='upper right')
     plt.show()
-    
+  
+    plt.figure(figsize=(15,6))
     plt.plot(data['Real Value'])
     plt.plot(data['Memory'])
     plt.title('Memory Algorithm Error')
@@ -133,7 +136,8 @@ def plot_performance(data):
     plt.xlabel('Time')
     plt.legend(['Real Value', 'Consensus'], loc='upper right')
     plt.show()
-    
+ 
+    plt.figure(figsize=(15,6))
     plt.plot(data['Real Value'])
     plt.plot(data['Focus'])
     plt.title('Focus Algorithm Error')
@@ -141,7 +145,8 @@ def plot_performance(data):
     plt.xlabel('Time')
     plt.legend(['Real Value', 'Consensus'], loc='upper right')
     plt.show()
-    
+
+    plt.figure(figsize=(15,6))
     plt.plot(data['Real Value'])
     plt.plot(data['Anchor'])
     plt.title('Anchor Algorithm Error')
