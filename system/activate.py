@@ -2,6 +2,8 @@ import pandas as pd
 from pandas import DataFrame
 
 from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_log_error
 
 
 import sys
@@ -13,14 +15,37 @@ from tools.predictorsII import *
 from tools.predictorsIII import *
 
 
-def data_prep(df: DataFrame, input_batch_size: int, future_horizon: int):
+def data_prep(df: DataFrame, input_batch_size: int, future_horizon: int) -> [(DataFrame, DataFrame)]:
+    '''Takes in data and splits it into an input batch for the individual predictors to perform a prediction on and the the real values observed.
+
+        Parameters:
+            df (DataFrame): Whole data set to be divided into prediction batch and real values.
+            input_batch_size (int): Length of input batch size.
+            future_horizon (int): How many time steps are predicted into the future.
+
+        Returns:
+            [(DataFrame, DataFrame)]: Input batch dataframe and real value dataframe.
+    '''
     input_b = df[0:input_batch_size]
     real_value = df[input_batch_size:input_batch_size + future_horizon]
     
     return input_b, real_value
 
 
-def individual_predictors(training_df, input_batch, future_horizon: int):
+def individual_predictors(training_df: DataFrame, input_batch: DataFrame, future_horizon: int) -> DataFrame:
+    '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented here:
+    1. CNN-LSTM
+    2. Bidirectional LSTM
+    3. LSTM
+
+        Parameters:
+            training_df (DataFrame): Data on which the predictors are trained on.
+            input_batch (DataFrame): Data which is fed to predictors to predict future values.
+            future_horizon (int): Length of how far into the future the predictors will predict.
+
+        Returns:
+            (DataFrame): Containing all predictions from all individual predictors.
+    '''
     one = HybridUnivariatePredictor(training_df,2, len(input_batch), future_horizon)
     one.create_cnnlstm()
     one.fit_model(10)
@@ -46,7 +71,12 @@ def individual_predictors(training_df, input_batch, future_horizon: int):
     return final_df
 
 
-def system_disagreement(df):
+def system_disagreement(df: DataFrame):
+    '''Plots the overall system disagreement and the individual disagreement scores of the algorithms.
+        
+        Parameters:
+            df (DataFrame): Containing all individual predictors forecasts.
+    '''
     disagreement(df).plot()
     predictor_score(df).plot()
 
@@ -105,6 +135,38 @@ def mse_score(df):
 
     return mse1, mse2
 
+def mae_score(df):
+    end = (list(df.columns).index('Real Value'))
+    start = (list(df.columns).index('Real Value')) + 1
+
+    y_true = df['Real Value']
+
+    mae1 = []
+    mae2 = []
+    for i in range(0, end):
+        mae1.append(mean_absolute_error(y_true, df.iloc[:,i]))
+    
+    for i in range(start, df.shape[1]):
+        mae2.append(mean_absolute_error(y_true, df.iloc[:,i]))
+
+    return mae1, mae2
+
+def mse_log_score(df):
+    end = (list(df.columns).index('Real Value'))
+    start = (list(df.columns).index('Real Value')) + 1
+
+    y_true = df['Real Value']
+
+    mse_log1 = []
+    mse_log2 = []
+    for i in range(0, end):
+        mse_log1.append(mean_squared_log_error(y_true, df.iloc[:,i]))
+    
+    for i in range(start, df.shape[1]):
+        mse_log2.append(mean_squared_log_error(y_true, df.iloc[:,i]))
+
+    return mse_log1, mse_log2
+
 
 
 def plot_performance(data):
@@ -153,3 +215,32 @@ def plot_performance(data):
     plt.xlabel('Time')
     plt.legend(['Real Value', 'Consensus'], loc='upper right')
     plt.show()
+
+    plt.figure(figsize=(15,6))
+    plt.plot(data['Real Value'])
+    plt.plot(data['CNN-LSTM'])
+    plt.title('CNN-LSTM Error')
+    plt.ylabel('Absolute Error')
+    plt.xlabel('Time')
+    plt.legend(['Real Value', 'Individual Predictor estimate'], loc='upper right')
+    plt.show()
+
+    plt.figure(figsize=(15,6))
+    plt.plot(data['Real Value'])
+    plt.plot(data['Bidirectional LSTM'])
+    plt.title('Bidirectional LSTM Error')
+    plt.ylabel('Absolute Error')
+    plt.xlabel('Time')
+    plt.legend(['Real Value', 'Individual Predictor estimate'], loc='upper right')
+    plt.show()
+
+    plt.figure(figsize=(15,6))
+    plt.plot(data['Real Value'])
+    plt.plot(data['CNN'])
+    plt.title('CNN Error')
+    plt.ylabel('Absolute Error')
+    plt.xlabel('Time')
+    plt.legend(['Real Value', 'Individual Predictor estimate'], loc='upper right')
+    plt.show()
+   
+
