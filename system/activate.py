@@ -326,29 +326,37 @@ def mae_score(df: DataFrame) -> DataFrame:
 
     return result
 
-def mse_log_score(df: DataFrame) -> [(list, list)]:
-    '''Calculates the mean squared log error for the individual predictors and consensus algorithms.
+def mse_log_score(df: DataFrame) -> DataFrame:
+    '''Calculates the mean squared log error for the individual predictors and consensus algorithms. Plots MSE log performences in descending order.
 
         Parameters:
             df (DataFrame): DataFrame containing individual predictors forecasts and consensus values of algorithms.
 
         Returns:
-            [(list, list)]: Lists containing mean squared log error of individual predictors forecasts and consensus values of algorithms.
+            (DataFrame): DataFrame containing mean squared log error of individual predictors forecasts and consensus values of algorithms.
     '''
     end = (list(df.columns).index('Real Value'))
     start = (list(df.columns).index('Real Value')) + 1
 
     y_true = df['Real Value']
 
-    mse_log1 = []
-    mse_log2 = []
+    name = []
+    mse_log = []
     for i in range(0, end):
-        mse_log1.append((df.columns[i], mean_squared_log_error(y_true, df.iloc[:,i])))
+        name.append(df.columns[i])
+        mse_log.append(mean_squared_log_error(y_true, df.iloc[:,i]))
     
     for i in range(start, df.shape[1]):
-        mse_log2.append((df.columns[i], mean_squared_log_error(y_true, df.iloc[:,i])))
+        name.append(df.columns[i])
+        mse_log.append(mean_squared_log_error(y_true, df.iloc[:,i]))
 
-    return mse_log1, mse_log2
+    data = {'Algorithms': name, 'MSE Log': mse_log}
+    result = pd.DataFrame(data)
+
+    to_plot = result.sort_values(by = 'MSE Log')
+    to_plot.plot.bar(x='Algorithms', y='MSE Log', figsize=(15, 6))
+
+    return result
 
 
 
