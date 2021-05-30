@@ -289,77 +289,18 @@ def plot_performance(data: DataFrame):
         Parameters:
             data (DataFrame): DataFrame containing individual predictors forecasts, consensus values and real values.
     '''
+    columns = data.columns
 
-    plt.figure(figsize=(15,6))
-    plt.plot(data['Real Value'])
-    plt.plot(data['Average'])
-    plt.title('Average Algorithm Error')
-    plt.ylabel('Absolute Error')
-    plt.xlabel('Time')
-    plt.legend(['Real Value', 'Consensus', 'Error'], loc='upper right')
-    plt.show()
-   
-    plt.figure(figsize=(15,6))
-    plt.plot(data['Real Value'])
-    plt.plot(data['NoMemory'])
-    plt.title('NoMemory Algorithm Error')
-    plt.ylabel('Absolute Error')
-    plt.xlabel('Time')
-    plt.legend(['Real Value', 'Consensus'], loc='upper right')
-    plt.show()
-  
-    plt.figure(figsize=(15,6))
-    plt.plot(data['Real Value'])
-    plt.plot(data['Memory'])
-    plt.title('Memory Algorithm Error')
-    plt.ylabel('Absolute Error')
-    plt.xlabel('Time')
-    plt.legend(['Real Value', 'Consensus'], loc='upper right')
-    plt.show()
- 
-    plt.figure(figsize=(15,6))
-    plt.plot(data['Real Value'])
-    plt.plot(data['Focus'])
-    plt.title('Focus Algorithm Error')
-    plt.ylabel('Absolute Error')
-    plt.xlabel('Time')
-    plt.legend(['Real Value', 'Consensus'], loc='upper right')
-    plt.show()
-
-    plt.figure(figsize=(15,6))
-    plt.plot(data['Real Value'])
-    plt.plot(data['Anchor'])
-    plt.title('Anchor Algorithm Error')
-    plt.ylabel('Absolute Error')
-    plt.xlabel('Time')
-    plt.legend(['Real Value', 'Consensus'], loc='upper right')
-    plt.show()
-
-    plt.figure(figsize=(15,6))
-    plt.plot(data['Real Value'])
-    plt.plot(data['CNN-LSTM'])
-    plt.title('CNN-LSTM Error')
-    plt.ylabel('Absolute Error')
-    plt.xlabel('Time')
-    plt.legend(['Real Value', 'Individual Predictor estimate'], loc='upper right')
-    plt.show()
-
-    plt.figure(figsize=(15,6))
-    plt.plot(data['Real Value'])
-    plt.plot(data['Bidirectional LSTM'])
-    plt.title('Bidirectional LSTM Error')
-    plt.ylabel('Absolute Error')
-    plt.xlabel('Time')
-    plt.legend(['Real Value', 'Individual Predictor estimate'], loc='upper right')
-    plt.show()
-
-    plt.figure(figsize=(15,6))
-    plt.plot(data['Real Value'])
-    plt.plot(data['CNN'])
-    plt.title('CNN Error')
-    plt.ylabel('Absolute Error')
-    plt.xlabel('Time')
-    plt.legend(['Real Value', 'Individual Predictor estimate'], loc='upper right')
-    plt.show()
-   
+    for i in range(len(columns)):
+        if columns[i] == 'Real Value':
+            continue
+        
+        plt.figure(figsize=(15,6))
+        plt.plot(data['Real Value'])
+        plt.plot(data[columns[i]])
+        plt.title(columns[i] + ' Algorithm Error')
+        plt.ylabel('Absolute Error')
+        plt.xlabel('Time')
+        plt.legend(['Real Value', 'Prediction', 'Error'], loc='upper right')
+        plt.show()
 
