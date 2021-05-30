@@ -32,7 +32,7 @@ def data_prep(df: DataFrame, input_batch_size: int, future_horizon: int) -> [(Da
     return input_b, real_value
 
 
-def individual_predictors(training_df: DataFrame, input_batch: DataFrame, future_horizon: int) -> DataFrame:
+def individual_predictors1(training_df: DataFrame, input_batch: DataFrame, future_horizon: int) -> DataFrame:
     '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented here:
 
     1. CNN-LSTM
@@ -71,6 +71,51 @@ def individual_predictors(training_df: DataFrame, input_batch: DataFrame, future
 
     return final_df
 
+
+def individual_predictors2(training_df: DataFrame, input_batch: DataFrame, future_horizon: int) -> DataFrame:
+    '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented here:
+
+    1. CNN-LSTM
+    2. Bidirectional LSTM
+    3. CNN
+    4. MLP
+
+        Parameters:
+            training_df (DataFrame): Data on which the predictors are trained on.
+            input_batch (DataFrame): Data which is fed to predictors to predict future values.
+            future_horizon (int): Length of how far into the future the predictors will predict.
+
+        Returns:
+            (DataFrame): Containing all predictions from all individual predictors.
+    '''
+    one = HybridUnivariatePredictor(training_df,2, len(input_batch), future_horizon)
+    one.create_cnnlstm()
+    one.fit_model(10)
+    one.show_performance()
+    
+    two = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    two.create_bilstm()
+    two.fit_model(10)
+    two.show_performance()
+     
+    three = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    three.create_cnn()
+    three.fit_model(10)
+    three.show_performance()
+
+    four = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    four.create_mlp()
+    four.fit_model(10)
+    four.show_performance()
+    
+    prediction_one = one.predict(input_batch)
+    prediction_two = two.predict(input_batch)
+    prediction_three = three.predict(input_batch)
+    prediction_four = four.predict(input_batch)
+
+    final_df = pd.concat([prediction_one, prediction_two, prediction_three, prediction_four], axis=1) 
+
+    return final_df
 
 def system_disagreement(df: DataFrame):
     '''Plots the overall system disagreement and the individual disagreement scores of the algorithms.
