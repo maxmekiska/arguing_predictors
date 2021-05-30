@@ -263,13 +263,13 @@ def combined_frame(df1: DataFrame, df2:DataFrame, real: DataFrame) -> DataFrame:
 
 
 def mse_score(df: DataFrame) -> DataFrame:
-    '''Calculates the mean squared error for the individual predictors and consensus algorithms.
+    '''Calculates the mean squared error for the individual predictors and consensus algorithms. Plots MSE performences in descending order.
 
         Parameters:
             df (DataFrame): DataFrame containing individual predictors forecasts and consensus values of algorithms.
 
         Returns:
-            [(list, list)]: Lists containing mean squared error of individual predictors forecasts and consensus values of algorithms.
+            (DataFrame): DataFrame containing mean squared error of individual predictors forecasts and consensus values of algorithms.
     '''
     end = (list(df.columns).index('Real Value'))
     start = (list(df.columns).index('Real Value')) + 1
@@ -294,29 +294,37 @@ def mse_score(df: DataFrame) -> DataFrame:
 
     return result
 
-def mae_score(df: DataFrame) -> [(list, list)]:
-    '''Calculates the mean absolute error for the individual predictors and consensus algorithms.
+def mae_score(df: DataFrame) -> DataFrame:
+    '''Calculates the mean absolute error for the individual predictors and consensus algorithms. Plots MAE performences in descending order.
 
         Parameters:
             df (DataFrame): DataFrame containing individual predictors forecasts and consensus values of algorithms.
 
         Returns:
-            [(list, list)]: Lists containing mean absolute error of individual predictors forecasts and consensus values of algorithms.
+            (DataFrame): DataFrame containing mean absolute error of individual predictors forecasts and consensus values of algorithms.
     '''
     end = (list(df.columns).index('Real Value'))
     start = (list(df.columns).index('Real Value')) + 1
 
     y_true = df['Real Value']
 
-    mae1 = []
-    mae2 = []
+    name = []
+    mae = []
     for i in range(0, end):
-        mae1.append((df.columns[i], mean_absolute_error(y_true, df.iloc[:,i])))
+        name.append(df.columns[i])
+        mae.append(mean_absolute_error(y_true, df.iloc[:,i]))
     
     for i in range(start, df.shape[1]):
-        mae2.append((df.columns[i], mean_absolute_error(y_true, df.iloc[:,i])))
+        name.append(df.columns[i])
+        mae.append(mean_absolute_error(y_true, df.iloc[:,i]))
 
-    return mae1, mae2
+    data = {'Algorithms': name, 'MAE': mae}
+    result = pd.DataFrame(data)
+
+    to_plot = result.sort_values(by = 'MAE')
+    to_plot.plot.bar(x='Algorithms', y='MAE', figsize=(15, 6))
+
+    return result
 
 def mse_log_score(df: DataFrame) -> [(list, list)]:
     '''Calculates the mean squared log error for the individual predictors and consensus algorithms.
