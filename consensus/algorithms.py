@@ -53,6 +53,8 @@ def predictor_score(data: DataFrame) -> DataFrame:
 
     result = pd.DataFrame(individual_score_collection) 
     result.columns = data.columns
+    result = result.add_suffix(' disagreement score')
+
 
     return result
 

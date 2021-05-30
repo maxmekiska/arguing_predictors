@@ -32,7 +32,7 @@ solution_0_2 = {'System Disagreement': [3.375, 0.500, 0.750, 1.125]}
 solution_disagreement_1 = pd.DataFrame(data=solution_0_2)
 
 
-solution_1 = {'Predictor I': [3.666667, 0.666667, 0.666667, 1.000000], 'Predictor II': [2.666667, 0.333333, 0.666667, 1.333333], 'Predictor III': [4.333333, 0.333333, 1.333333, 1.666667]}
+solution_1 = {'Predictor I disagreement score': [3.666667, 0.666667, 0.666667, 1.000000], 'Predictor II disagreement score': [2.666667, 0.333333, 0.666667, 1.333333], 'Predictor III disagreement score': [4.333333, 0.333333, 1.333333, 1.666667]}
 solution_predictor = pd.DataFrame(data=solution_1)
 
 list_0 = [1, 3, 4, 100, [1, "test"], 23, [23, "test2"]]
