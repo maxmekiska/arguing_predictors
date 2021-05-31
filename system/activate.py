@@ -315,7 +315,25 @@ def combined_frame(df1: DataFrame, df2:DataFrame, real: DataFrame) -> DataFrame:
     
     return combined_frame
 
+def all_stats_frame(combined: DataFrame, predictor_forecasts: DataFrame) -> DataFrame:
+    '''Combining the combined DataFrame with disagreement statistics to build a DataFrame containing all system statistics.
 
+        Parameters:
+            combined (DataFrame): First DataFrame, containing algorithms, consensus and real value.
+            predictor_forecasts (DataFrame): DataFrame containing predictor forecasts.
+
+        Returns:
+            (DataFrame): DataFrame containing all system statistics.
+    '''
+    dis = disagreement(predictor_forecasts)
+    score = predictor_score(predictor_forecasts)
+
+    adjusted_dis = set_same_index(dis, combined)
+    adjusted_score = set_same_index(score, combined)
+
+    result = pd.concat([combined, adjusted_dis, adjusted_score], axis=1)
+
+    return result
 
 def mse_score(df: DataFrame) -> DataFrame:
     '''Calculates the mean squared error for the individual predictors and consensus algorithms. Plots MSE performences in descending order.
