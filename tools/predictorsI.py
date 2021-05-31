@@ -16,6 +16,8 @@ import pandas as pd
 from pandas import DataFrame
 import os
 
+from tensorflow import keras
+
 from keras.models import Sequential
 from keras.layers import LSTM
 from keras.layers import Dense
@@ -226,5 +228,5 @@ class BasicUnivariatePredictor:
             Parameters:
                 location (str): Path of keras model location
         '''
-        self.model = keras.models.load_model(path)
+        self.model = keras.models.load_model(location)
 
