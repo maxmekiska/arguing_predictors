@@ -31,7 +31,6 @@ def data_prep(df: DataFrame, input_batch_size: int, future_horizon: int) -> [(Da
     
     return input_b, real_value
 
-
 def individual_predictors1(training_df: DataFrame, input_batch: DataFrame, future_horizon: int) -> DataFrame:
     '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented here:
 
@@ -70,7 +69,6 @@ def individual_predictors1(training_df: DataFrame, input_batch: DataFrame, futur
     final_df = pd.concat([prediction_one, prediction_two, prediction_three], axis=1) 
 
     return final_df
-
 
 def individual_predictors2(training_df: DataFrame, input_batch: DataFrame, future_horizon: int) -> DataFrame:
     '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented here:
@@ -116,7 +114,6 @@ def individual_predictors2(training_df: DataFrame, input_batch: DataFrame, futur
     final_df = pd.concat([prediction_one, prediction_two, prediction_three, prediction_four], axis=1) 
 
     return final_df
-
 
 def individual_predictors3(training_df: DataFrame, input_batch: DataFrame, future_horizon: int) -> DataFrame:
     '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented here:
@@ -170,6 +167,66 @@ def individual_predictors3(training_df: DataFrame, input_batch: DataFrame, futur
 
     return final_df
 
+def individual_predictors4(training_df: DataFrame, input_batch: DataFrame, future_horizon: int) -> DataFrame:
+    '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented here:
+
+    1. CNN
+    2. LSTM
+
+        Parameters:
+            training_df (DataFrame): Data on which the predictors are trained on.
+            input_batch (DataFrame): Data which is fed to predictors to predict future values.
+            future_horizon (int): Length of how far into the future the predictors will predict.
+
+        Returns:
+            (DataFrame): Containing all predictions from all individual predictors.
+    '''    
+    one = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    one.create_cnn()
+    one.fit_model(10)
+    one.show_performance()
+
+    two = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    two.create_lstm()
+    two.fit_model(10)
+    two.show_performance()
+    
+    prediction_one = one.predict(input_batch)
+    prediction_two = two.predict(input_batch)
+
+
+    final_df = pd.concat([prediction_one, prediction_two], axis=1) 
+
+    return final_df
+
+def individual_predictors5(training_df: DataFrame, future_horizon: int) -> DataFrame:
+    '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented here:
+
+    1. Facebook Prophet
+    2. Facebook Neural Prophet
+
+        Parameters:
+            training_df (DataFrame): Data on which the predictors are trained on.
+            future_horizon (int): Length of how far into the future the predictors will predict.
+
+        Returns:
+            (DataFrame): Containing all predictions from all individual predictors.
+    '''    
+    one = UnivariatePredictorII(training_df, future_horizon)
+    one.fit_neural_model(50, 'D')
+    one.show_performance_neural()
+
+    two = UnivariatePredictorII(training_df, future_horizon)
+    two.fit_prophet_model()
+    two.show_performance_prophet()
+
+    prediction_one = one.predict_neural()
+    prediction_two = two.predict_prophet()
+
+    final_df = pd.concat([prediction_one, prediction_two], axis=1) 
+
+    return final_df
+
 def system_disagreement(df: DataFrame):
     '''Plots the overall system disagreement and the individual disagreement scores of the algorithms.
         
@@ -178,8 +235,6 @@ def system_disagreement(df: DataFrame):
     '''
     disagreement(df).plot()
     predictor_score(df).plot()
-
-
 
 def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
     '''Applies the following consensus algorithm to provide the final system forecast:
