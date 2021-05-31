@@ -46,7 +46,7 @@ def individual_predictors1(training_df: DataFrame, input_batch: DataFrame, futur
         Returns:
             (DataFrame): Containing all predictions from all individual predictors.
     '''
-    one = HybridUnivariatePredictor(training_df,2, len(input_batch), future_horizon)
+    one = HybridUnivariatePredictor(2, len(input_batch), future_horizon, training_df)
     one.create_cnnlstm()
     one.fit_model(10)
     one.show_performance()
@@ -86,7 +86,7 @@ def individual_predictors2(training_df: DataFrame, input_batch: DataFrame, futur
         Returns:
             (DataFrame): Containing all predictions from all individual predictors.
     '''
-    one = HybridUnivariatePredictor(training_df,2, len(input_batch), future_horizon)
+    one = HybridUnivariatePredictor(2, len(input_batch), future_horizon, training_df)
     one.create_cnnlstm()
     one.fit_model(10)
     one.show_performance()
@@ -132,7 +132,7 @@ def individual_predictors3(training_df: DataFrame, input_batch: DataFrame, futur
         Returns:
             (DataFrame): Containing all predictions from all individual predictors.
     '''
-    one = HybridUnivariatePredictor(training_df,2, len(input_batch), future_horizon)
+    one = HybridUnivariatePredictor(2, len(input_batch), future_horizon, training_df)
     one.create_cnnlstm()
     one.fit_model(10)
     one.show_performance()
@@ -222,6 +222,36 @@ def individual_predictors5(training_df: DataFrame, future_horizon: int) -> DataF
 
     prediction_one = one.predict_neural()
     prediction_two = two.predict_prophet()
+
+    final_df = pd.concat([prediction_one, prediction_two], axis=1) 
+
+    return final_df
+
+
+def individual_predictors_pretrained1(input_batch: DataFrame, future_horizon: int) -> DataFrame:
+    '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented here:
+
+    1. 
+    2. 
+
+        Parameters:
+            input_batch (DataFrame): Data which is fed to predictors to predict future values.
+            future_horizon (int): Length of how far into the future the predictors will predict.
+
+        Returns:
+            (DataFrame): Containing all predictions from all individual predictors.
+    '''    
+    one = HybridUnivariatePredictor(sub_seq = 2, steps_past = len(input_batch), steps_future = future_horizon)
+    one.load_model('../pretrained/model')
+
+    
+    two = HybridUnivariatePredictor(sub_seq = 2, steps_past = len(input_batch), steps_future = future_horizon)
+    two.load_model('../pretrained/model')
+
+
+    prediction_one = one.predict(input_batch)
+    prediction_two = two.predict(input_batch)
+
 
     final_df = pd.concat([prediction_one, prediction_two], axis=1) 
 

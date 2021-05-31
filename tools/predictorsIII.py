@@ -53,18 +53,18 @@ class HybridUnivariatePredictor:
             Load model from location specified.
     '''
 
-    def __init__(self, data, sub_seq: int, steps_past: int, steps_future: int) -> object:
+    def __init__(self, sub_seq: int, steps_past: int, steps_future: int, data = pd.DataFrame()) -> object:
         '''
             Parameters:
-                data (array): Input data for model training.
                 sub_seq (int): Further division of given steps a predictor will look backward.
                 steps_past (int): Steps predictor will look backward.
                 steps_future (int): Steps predictor will look forward.
+                data (array): Input data for model training. Default is empty to enable loading modles.
         '''
-        self.data = array(data)
+        self.data = array(data) 
         self.sub_seq = sub_seq
         self.input_x, self.input_y, self.modified_back = self.__sequence_prep(data, sub_seq, steps_past, steps_future)
-        
+
         
 
 
@@ -83,6 +83,8 @@ class HybridUnivariatePredictor:
                 modified_back (int): Modified looking back sequence length
         '''
         length = len(input_sequence)
+        if length == 0:
+            return (0, 0, steps_past // sub_seq)
         X = []
         y = []
         if length <= steps_past:
