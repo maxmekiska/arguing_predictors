@@ -11,7 +11,7 @@ def main(): # experimental main TODO: build loop to verify statistically predict
     predict_req, real = data_prep(predict, 24, 30)
     
     # individual predictors forecasting
-    final_df = individual_predictors(training, predict_req, 30)
+    final_df = individual_predictors1(training, predict_req, 30)
 
     # system disagreement calculation
     system_disagreement(final_df)
