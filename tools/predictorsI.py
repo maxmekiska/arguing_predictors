@@ -64,9 +64,9 @@ class BasicUnivariatePredictor:
     def __init__(self, steps_past: int, steps_future: int, data = pd.DataFrame()) -> object:
         '''
             Parameters:
-                data (DataFrame): Input data for model training.
                 steps_past (int): Steps predictor will look backward.
                 steps_future (int): Steps predictor will look forward.
+                data (DataFrame): Input data for model training.
         '''
         self.data = array(data)
         self.input_x, self.input_y = self.__sequence_prep(data, steps_past, steps_future)
