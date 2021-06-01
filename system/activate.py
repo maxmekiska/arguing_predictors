@@ -424,11 +424,12 @@ def mse_score(df: DataFrame, plot: bool = False) -> DataFrame:
 
     return result
 
-def mae_score(df: DataFrame) -> DataFrame:
-    '''Calculates the mean absolute error for the individual predictors and consensus algorithms. Plots MAE performences in descending order.
+def mae_score(df: DataFrame, plot: bool = False) -> DataFrame:
+    '''Calculates the mean absolute error for the individual predictors and consensus algorithms. Option to plot MAE performences in descending order.
 
         Parameters:
             df (DataFrame): DataFrame containing individual predictors forecasts and consensus values of algorithms.
+            plot (bool): Option to plot MAE performance chart.
 
         Returns:
             (DataFrame): DataFrame containing mean absolute error of individual predictors forecasts and consensus values of algorithms.
@@ -450,9 +451,10 @@ def mae_score(df: DataFrame) -> DataFrame:
 
     data = {'Algorithms': name, 'MAE': mae}
     result = pd.DataFrame(data)
-
-    to_plot = result.sort_values(by = 'MAE')
-    to_plot.plot.bar(x='Algorithms', y='MAE', figsize=(15, 6))
+    
+    if plot == True:
+        to_plot = result.sort_values(by = 'MAE')
+        to_plot.plot.bar(x='Algorithms', y='MAE', figsize=(15, 6))
 
     return result
 
