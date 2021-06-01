@@ -233,6 +233,7 @@ def individual_predictors_pretrained1(input_batch: DataFrame, future_horizon: in
 
     1. CNN-LSTM
     2. MLP
+    3. CNN
 
         Parameters:
             input_batch (DataFrame): Data which is fed to predictors to predict future values.
@@ -249,11 +250,17 @@ def individual_predictors_pretrained1(input_batch: DataFrame, future_horizon: in
     two.set_model_id('MLP')
     two.load_model('../pretrained/model2')
 
+
+    three = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    three.set_model_id('CNN')
+    three.load_model('../pretrained/model3')
+
     prediction_one = one.predict(input_batch)
     prediction_two = two.predict(input_batch)
+    prediction_three = three.predict(input_batch)
 
 
-    final_df = pd.concat([prediction_one, prediction_two], axis=1) 
+    final_df = pd.concat([prediction_one, prediction_two, prediction_three], axis=1) 
 
     return final_df
 
