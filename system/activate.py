@@ -1,5 +1,7 @@
 import pandas as pd
 from pandas import DataFrame
+import seaborn as sns
+
 
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
@@ -371,6 +373,21 @@ def all_stats_frame(combined: DataFrame, predictor_forecasts: DataFrame) -> Data
     result = pd.concat([combined, adjusted_dis, adjusted_score], axis=1)
 
     return result
+
+def correlation(df: DataFrame, plot: bool = False) -> DataFrame:
+    '''Computation of correlation matrix with Pandas Library corr() function.
+        Parameters:
+            df (DataFrame): DataFrame to supply data for the correlation matrix.
+        Returns:
+            (DataFrame): Correlation matrix of supplied DataFrame.
+    '''
+    corr_matrix = df.corr()
+
+    if plot == True:
+        sns.heatmap(corr_matrix)
+
+
+    return corr_matrix
 
 def mse_score(df: DataFrame) -> DataFrame:
     '''Calculates the mean squared error for the individual predictors and consensus algorithms. Plots MSE performences in descending order.
