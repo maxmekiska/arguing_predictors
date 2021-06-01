@@ -458,11 +458,12 @@ def mae_score(df: DataFrame, plot: bool = False) -> DataFrame:
 
     return result
 
-def mse_log_score(df: DataFrame) -> DataFrame:
-    '''Calculates the mean squared log error for the individual predictors and consensus algorithms. Plots MSE log performences in descending order.
+def mse_log_score(df: DataFrame, plot: bool = False) -> DataFrame:
+    '''Calculates the mean squared log error for the individual predictors and consensus algorithms. Option to plot MSE log performences in descending order.
 
         Parameters:
             df (DataFrame): DataFrame containing individual predictors forecasts and consensus values of algorithms.
+            plot (bool): Option to plot MSE log performance chart.
 
         Returns:
             (DataFrame): DataFrame containing mean squared log error of individual predictors forecasts and consensus values of algorithms.
@@ -485,8 +486,9 @@ def mse_log_score(df: DataFrame) -> DataFrame:
     data = {'Algorithms': name, 'MSE Log': mse_log}
     result = pd.DataFrame(data)
 
-    to_plot = result.sort_values(by = 'MSE Log')
-    to_plot.plot.bar(x='Algorithms', y='MSE Log', figsize=(15, 6))
+    if plot == True:
+        to_plot = result.sort_values(by = 'MSE Log')
+        to_plot.plot.bar(x='Algorithms', y='MSE Log', figsize=(15, 6))
 
     return result
 
