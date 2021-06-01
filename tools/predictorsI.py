@@ -12,6 +12,7 @@ Code insperations have been taken from:
 import matplotlib.pyplot as plt
 from numpy import array
 from numpy import reshape
+from numpy import empty
 import pandas as pd
 from pandas import DataFrame
 import os
@@ -58,10 +59,10 @@ class BasicUnivariatePredictor:
             Load model from location specified.
     '''
 
-    def __init__(self, data, steps_past: int, steps_future: int) -> object:
+    def __init__(self, steps_past: int, steps_future: int, data = pd.DataFrame()) -> object:
         '''
             Parameters:
-                data (array): Input data for model training.
+                data (DataFrame): Input data for model training.
                 steps_past (int): Steps predictor will look backward.
                 steps_future (int): Steps predictor will look forward.
         '''
@@ -84,6 +85,8 @@ class BasicUnivariatePredictor:
                 y (array): Array containing all looking forward sequences
         '''
         length = len(input_sequence)
+        if length == 0:
+            return (empty(shape=[steps_past, steps_past]), 0)
         X = []
         y = []
         if length <= steps_past:
@@ -101,6 +104,9 @@ class BasicUnivariatePredictor:
         X = array(X)
         X = X.reshape((X.shape[0], X.shape[1], 1))
         return X, y
+    
+    def set_model_id(name: str):
+        self.model_id = name
 
     def create_mlp(self):
         '''Creates MLP model by defining all layers with activation functions, optimizer, loss function and evaluation metrics. 

@@ -229,10 +229,10 @@ def individual_predictors5(training_df: DataFrame, future_horizon: int) -> DataF
 
 
 def individual_predictors_pretrained1(input_batch: DataFrame, future_horizon: int) -> DataFrame:
-    '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented here:
+    '''Loades pretrained models and predicts based on the given input batch. The following individual predictors are implemented here:
 
-    1. 
-    2. 
+    1. CNN-LSTM
+    2. MLP
 
         Parameters:
             input_batch (DataFrame): Data which is fed to predictors to predict future values.
@@ -245,13 +245,14 @@ def individual_predictors_pretrained1(input_batch: DataFrame, future_horizon: in
     one.load_model('../pretrained/model')
 
     
-    two = HybridUnivariatePredictor(sub_seq = 2, steps_past = len(input_batch), steps_future = future_horizon)
-    two.load_model('../pretrained/model')
+    two = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    two.set_model_id = 'MLP'
+    two.load_model('../pretrained/model2')
 
 
     prediction_one = one.predict(input_batch)
     prediction_two = two.predict(input_batch)
-
+    prediction_two = prediction_two.rename(columns={'': 'MLP'}) 
 
     final_df = pd.concat([prediction_one, prediction_two], axis=1) 
 
