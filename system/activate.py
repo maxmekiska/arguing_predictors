@@ -378,6 +378,7 @@ def correlation(df: DataFrame, plot: bool = False) -> DataFrame:
     '''Computation of correlation matrix with Pandas Library corr() function.
         Parameters:
             df (DataFrame): DataFrame to supply data for the correlation matrix.
+            plot (bool): Option to plot correlation heatmap when True is passed in.
         Returns:
             (DataFrame): Correlation matrix of supplied DataFrame.
     '''
@@ -389,11 +390,12 @@ def correlation(df: DataFrame, plot: bool = False) -> DataFrame:
 
     return corr_matrix
 
-def mse_score(df: DataFrame) -> DataFrame:
-    '''Calculates the mean squared error for the individual predictors and consensus algorithms. Plots MSE performences in descending order.
+def mse_score(df: DataFrame, plot: bool = False) -> DataFrame:
+    '''Calculates the mean squared error for the individual predictors and consensus algorithms. Option to plot MSE performences in descending order.
 
         Parameters:
             df (DataFrame): DataFrame containing individual predictors forecasts and consensus values of algorithms.
+            plot (bool): Option to plot MSE performance chart.
 
         Returns:
             (DataFrame): DataFrame containing mean squared error of individual predictors forecasts and consensus values of algorithms.
@@ -415,9 +417,10 @@ def mse_score(df: DataFrame) -> DataFrame:
 
     data = {'Algorithms': name, 'MSE': mse}
     result = pd.DataFrame(data)
-    
-    to_plot = result.sort_values(by = 'MSE')
-    to_plot.plot.bar(x='Algorithms', y='MSE', figsize=(15, 6))
+
+    if plot == True: 
+        to_plot = result.sort_values(by = 'MSE')
+        to_plot.plot.bar(x='Algorithms', y='MSE', figsize=(15, 6))
 
     return result
 
