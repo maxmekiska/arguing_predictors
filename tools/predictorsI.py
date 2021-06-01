@@ -108,12 +108,15 @@ class BasicUnivariatePredictor:
         return X, y
     
     def set_model_id(self, name: str):
+        '''Setter method to change model id field.
+        '''
         self.model_id = name
 
     def create_mlp(self):
         '''Creates MLP model by defining all layers with activation functions, optimizer, loss function and evaluation metrics. 
         '''
-        self.model_id  = 'MLP'
+        self.set_model_id('MLP')
+        #self.model_id  = 'MLP'
 
         self.input_x = self.input_x.reshape((self.input_x.shape[0], self.input_x.shape[1])) # necessary to account for different shape input for MLP compared to the other models.
 
@@ -127,7 +130,8 @@ class BasicUnivariatePredictor:
     def create_lstm(self):
         '''Creates LSTM model by defining all layers with activation functions, optimizer, loss function and evaluation metrics.
         '''
-        self.model_id = 'LSTM'
+        self.set_model_id('LSTM')
+        #self.model_id = 'LSTM'
 
         self.model = Sequential()
         self.model.add(LSTM(40, activation='relu', return_sequences=True, input_shape=(self.input_x.shape[1], 1)))
@@ -139,7 +143,8 @@ class BasicUnivariatePredictor:
     def create_cnn(self):
         '''Creates the CNN model by defining all layers with activation functions, optimizer, loss function and evaluation metrics.
         '''
-        self.model_id = 'CNN'
+        self.set_model_id('CNN')
+        #self.model_id = 'CNN'
 
         self.model = Sequential()
         self.model.add(Conv1D(filters=64, kernel_size=2, activation='relu', input_shape=(self.input_x.shape[1], 1)))
@@ -153,7 +158,8 @@ class BasicUnivariatePredictor:
     def create_bilstm(self):
         '''Creates a bidirectional LSTM model by defining all layers with activation functions, optimizer, loss function and evaluation matrics.
         '''
-        self.model_id = 'Bidirectional LSTM'
+        self.set_model_id('Bidirectional LSTM')
+        #self.model_id = 'Bidirectional LSTM'
 
         self.model = Sequential()
         self.model.add(Bidirectional(LSTM(50, activation='relu', return_sequences=True), input_shape=(self.input_x.shape[1], 1)))
