@@ -51,13 +51,13 @@ def individual_predictors1(training_df: DataFrame, input_batch: DataFrame, futur
     one.fit_model(10)
     one.show_performance()
     
-    two = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    two = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
     two.create_bilstm()
     two.fit_model(10)
     two.show_performance()
     
     
-    three = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    three = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
     three.create_cnn()
     three.fit_model(10)
     three.show_performance()
@@ -91,17 +91,17 @@ def individual_predictors2(training_df: DataFrame, input_batch: DataFrame, futur
     one.fit_model(10)
     one.show_performance()
     
-    two = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    two = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
     two.create_bilstm()
     two.fit_model(10)
     two.show_performance()
      
-    three = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    three = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
     three.create_cnn()
     three.fit_model(10)
     three.show_performance()
 
-    four = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    four = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
     four.create_mlp()
     four.fit_model(10)
     four.show_performance()
@@ -137,22 +137,22 @@ def individual_predictors3(training_df: DataFrame, input_batch: DataFrame, futur
     one.fit_model(10)
     one.show_performance()
     
-    two = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    two = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
     two.create_bilstm()
     two.fit_model(10)
     two.show_performance()
      
-    three = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    three = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
     three.create_cnn()
     three.fit_model(10)
     three.show_performance()
 
-    four = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    four = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
     four.create_mlp()
     four.fit_model(10)
     four.show_performance()
 
-    five = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    five = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
     five.create_lstm()
     five.fit_model(10)
     five.show_performance()
@@ -181,12 +181,12 @@ def individual_predictors4(training_df: DataFrame, input_batch: DataFrame, futur
         Returns:
             (DataFrame): Containing all predictions from all individual predictors.
     '''    
-    one = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    one = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
     one.create_cnn()
     one.fit_model(10)
     one.show_performance()
 
-    two = BasicUnivariatePredictor(training_df, len(input_batch), future_horizon)
+    two = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
     two.create_lstm()
     two.fit_model(10)
     two.show_performance()
@@ -246,13 +246,12 @@ def individual_predictors_pretrained1(input_batch: DataFrame, future_horizon: in
 
     
     two = BasicUnivariatePredictor(len(input_batch), future_horizon)
-    two.set_model_id = 'MLP'
+    two.set_model_id('MLP')
     two.load_model('../pretrained/model2')
-
 
     prediction_one = one.predict(input_batch)
     prediction_two = two.predict(input_batch)
-    prediction_two = prediction_two.rename(columns={'': 'MLP'}) 
+
 
     final_df = pd.concat([prediction_one, prediction_two], axis=1) 
 

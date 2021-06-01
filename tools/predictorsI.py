@@ -39,6 +39,8 @@ class BasicUnivariatePredictor:
         -------
         sequence_prep(input_sequence: array, steps_past: int, steps_future: int) -> array:
             Private method to prepare data for predictor ingestion.
+        set_model_id(self, name: str)
+            Setter method to change model id name.
         create_lstm(self):
             Builds LSTM structure.
         create_cnn(self):
@@ -105,7 +107,7 @@ class BasicUnivariatePredictor:
         X = X.reshape((X.shape[0], X.shape[1], 1))
         return X, y
     
-    def set_model_id(name: str):
+    def set_model_id(self, name: str):
         self.model_id = name
 
     def create_mlp(self):
