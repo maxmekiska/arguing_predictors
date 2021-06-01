@@ -100,16 +100,10 @@ def new_weights(preds: list, real_value: float) -> list:
     
     total_error = sum(individual_error)
     for j in range(len(individual_error)):
-        try:
-            if sum(total_error) == 0:
-                new_weights.append(1)
-            else:
-                new_weights.append(1-(individual_error[j]/total_error))
-        except:
-            if total_error == 0:
-                new_weights.append(1)
-            else:
-                new_weights.append(1-(individual_error[j]/total_error))
+        if sum([total_error]) == 0:
+            new_weights.append(1)
+        else:
+            new_weights.append(1-(individual_error[j]/total_error))
         
     for k in range(len(new_weights)):
         final_weights.append((new_weights[k]/sum(new_weights)) * len(preds))
@@ -139,7 +133,7 @@ def new_weights_focused(preds: list, real_value: float) -> list:
     
     total_error = sum(individual_error)
     for j in range(len(individual_error)):
-        if sum([total_error]) == 0: # new approach, substitutes try except clauses. Needs testing
+        if sum([total_error]) == 0:
             new_weights.append(1)
         else:
             new_weights.append(1-(individual_error[j]/total_error))
@@ -174,7 +168,7 @@ def consolidated_predictions(data: DataFrame, real: DataFrame) -> list:
             
         final_predictions.append(sum(temp)/data.shape[1])
         weight_history.append(weights)
-        weights = new_weights(data.iloc[j], real.iloc[j])
+        weights = new_weights(data.iloc[j], real.iloc[j][0])
 
     
     return final_predictions
@@ -204,7 +198,7 @@ def consolidated_predictions_memory(data: DataFrame, real: DataFrame) -> list:
             temp.append(data.iloc[j, i]*([sum(z) for z in zip(*weight_history)][i]/(j+1))) # j number of rows, total value to take average
         
         final_predictions.append(sum(temp)/data.shape[1])
-        weights = new_weights(data.iloc[j], real.iloc[j])
+        weights = new_weights(data.iloc[j], real.iloc[j][0])
         weight_history.append(weights)
         
 
@@ -273,7 +267,7 @@ def consolidated_predictions_anchor(data: DataFrame, real: DataFrame, anchor: in
             
         final_predictions.append(sum(temp)/data.shape[1])
         weight_history.append(weights)
-        weights = new_weights(data.iloc[j], real.iloc[j])
+        weights = new_weights(data.iloc[j], real.iloc[j][0])
         del data['Max Anchor']
         del data['Min Anchor']
 
