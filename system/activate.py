@@ -390,6 +390,42 @@ def correlation(df: DataFrame, plot: bool = False) -> DataFrame:
 
     return corr_matrix
 
+def absolute_error_analytics(predictors: DataFrame, algorithms: DataFrame, real: DataFrame) -> DataFrame:
+    '''Computes the absolute error values of all individual predictors and consensus algorithms. Additionally adds system disagreement and individual predictors disagreement scores.
+    
+        Parameters
+        ----------
+            predictors (DataFrame): DataFrame containing individual predictors forecasts.
+            algorithms (DataFrame): DataFrame containing consensus algorithm forecasts.
+            real (DataFrame): DataFrame containing actual future values.
+        
+        Returns
+        -------
+            (DataFrame): DataFrame containing all absolute error values of individual predictors and consenus algorithms togehter with system disagreement and individual disagreement scores.
+    '''
+    data = evaluation_frame(predictors,real)
+    
+    data2 = evaluation_frame(algorithms, real)
+    
+    individual_disagreements = predictor_score(predictors)
+    individual_disagreements = set_same_index(individual_disagreements, real)
+    
+    system_disagreement = disagreement(predictors)
+    system_disagreement = set_same_index(system_disagreement, real)
+
+    result = pd.DataFrame() 
+    for i in range(len(data.columns)-1): # do not include Real value column
+        current_column = data.columns[i]
+        result[current_column + ' absolute error'] = abs(data[current_column] - data['Real Value'])
+        
+    for i in range(len(data2.columns)-1):
+        current_column = data2.columns[i]
+        result[current_column + ' absolute error'] = abs(data2[current_column] - data2['Real Value'])
+    
+    result = pd.concat([result, individual_disagreements, system_disagreement], axis=1)
+    
+    return result
+
 def mse_score(df: DataFrame, plot: bool = False) -> DataFrame:
     '''Calculates the mean squared error for the individual predictors and consensus algorithms. Option to plot MSE performences in descending order.
 
