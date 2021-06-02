@@ -1,7 +1,7 @@
 import pandas as pd
 from pandas import DataFrame
 import seaborn as sns
-
+import matplotlib.pyplot as plt
 
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
@@ -385,7 +385,8 @@ def correlation(df: DataFrame, plot: bool = False) -> DataFrame:
     corr_matrix = df.corr()
 
     if plot == True:
-        sns.heatmap(corr_matrix)
+        plt.figure(figsize = (10,10))
+        sns.heatmap(corr_matrix, annot=True)
 
 
     return corr_matrix
@@ -393,14 +394,12 @@ def correlation(df: DataFrame, plot: bool = False) -> DataFrame:
 def absolute_error_analytics(predictors: DataFrame, algorithms: DataFrame, real: DataFrame) -> DataFrame:
     '''Computes the absolute error values of all individual predictors and consensus algorithms. Additionally adds system disagreement and individual predictors disagreement scores.
     
-        Parameters
-        ----------
+        Parameters:
             predictors (DataFrame): DataFrame containing individual predictors forecasts.
             algorithms (DataFrame): DataFrame containing consensus algorithm forecasts.
             real (DataFrame): DataFrame containing actual future values.
         
-        Returns
-        -------
+        Returns:
             (DataFrame): DataFrame containing all absolute error values of individual predictors and consenus algorithms togehter with system disagreement and individual disagreement scores.
     '''
     data = evaluation_frame(predictors,real)
