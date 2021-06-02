@@ -297,7 +297,7 @@ def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
     nomemory = consolidated_predictions(df, real)
     memory = consolidated_predictions_memory(df, real)
     focus = consolidated_predictions_focused(df, real)
-    anchor = consolidated_predictions_anchor(df, real, 1.5)
+    anchor = consolidated_predictions_anchor(df, real, 6.5)
     
     consensus['Average'] = average
     consensus['NoMemory'] = nomemory
