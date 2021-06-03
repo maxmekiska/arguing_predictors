@@ -47,7 +47,7 @@ class BasicUnivariatePredictor:
             Builds CNN structure.
         create_bilstm(self):
             Builds bidirectional LSTM structure.
-        fit_model(self, epochs: int):
+        fit_model(self, epochs: int, show_progress: int = 1):
             Training the in the prior defined model. Count of epochs need to be defined.
         model_blueprint(self):
             Print blueprint of layer structure.
@@ -167,12 +167,13 @@ class BasicUnivariatePredictor:
         self.model.add(Dense(self.input_y.shape[1]))
         self.model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_squared_error'])
 
-    def fit_model(self, epochs: int):
+    def fit_model(self, epochs: int, show_progress: int = 1):
         '''Trains the model on data provided. Perfroms validation. 
             Parameters:
                 epochs (int): Number of epochs to train the model. 
+                show_progress (int): Prints training progress.
         '''
-        self.details = self.model.fit(self.input_x, self.input_y, validation_split=0.20, batch_size = 10, epochs = epochs, verbose=1)
+        self.details = self.model.fit(self.input_x, self.input_y, validation_split=0.20, batch_size = 10, epochs = epochs, verbose=show_progress)
         return self.details
 
     def model_blueprint(self):
