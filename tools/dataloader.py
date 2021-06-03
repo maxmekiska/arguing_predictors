@@ -151,6 +151,7 @@ class DataLoader:
     def plotting_grid(self):
         '''Plots graphs representing data loaded in one grid.
         '''
+        plt.figure(figsize = (8,10))
         plt.subplot(3, 2, 1)
         self.stockdata['High'].plot(title = 'Daily highest values')
 
