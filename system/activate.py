@@ -7,7 +7,6 @@ from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_squared_log_error
 
-
 import sys
 sys.path.append('../')
 
@@ -15,7 +14,6 @@ from consensus.algorithms import *
 from tools.predictorsI import *
 from tools.predictorsII import *
 from tools.predictorsIII import *
-
 
 def data_prep(df: DataFrame, input_batch_size: int, future_horizon: int) -> [(DataFrame, DataFrame)]:
     '''Takes in data and splits it into an input batch for the individual predictors to perform a prediction on and the the real values observed.
@@ -128,10 +126,6 @@ def individual_predictors_pretrained_Ford_5_2(input_batch: DataFrame, future_hor
         Returns:
             (DataFrame): Containing all predictions from all individual predictors.
     '''    
-#    one = HybridUnivariatePredictor(sub_seq = 2, steps_past = len(input_batch), steps_future = future_horizon)
-#    one.load_model('../pretrained/model')
-
-
     one = BasicUnivariatePredictor(len(input_batch), future_horizon)
     one.set_model_id('LSTM')
     one.load_model('../pretrained/LSTM_Ford_5')
@@ -161,10 +155,6 @@ def individual_predictors_pretrained_Ford_5_3(input_batch: DataFrame, future_hor
         Returns:
             (DataFrame): Containing all predictions from all individual predictors.
     '''    
-#    one = HybridUnivariatePredictor(sub_seq = 2, steps_past = len(input_batch), steps_future = future_horizon)
-#    one.load_model('../pretrained/model')
-
-
     one = BasicUnivariatePredictor(len(input_batch), future_horizon)
     one.set_model_id('LSTM')
     one.load_model('../pretrained/LSTM_Ford_5')
@@ -185,9 +175,94 @@ def individual_predictors_pretrained_Ford_5_3(input_batch: DataFrame, future_hor
 
     return final_df
 
+def individual_predictors_pretrained_Ford_5_4(input_batch: DataFrame, future_horizon: int) -> DataFrame:
+    '''Loades pretrained models and predicts based on the given input batch. The following individual predictors are implemented here:
+
+    1. LSTM
+    2. CNN
+    3. MLP
+    4. Bidirectional-LSTM
+
+        Parameters:
+            input_batch (DataFrame): Data which is fed to predictors to predict future values.
+            future_horizon (int): Length of how far into the future the predictors will predict.
+
+        Returns:
+            (DataFrame): Containing all predictions from all individual predictors.
+    '''    
+    one = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    one.set_model_id('LSTM')
+    one.load_model('../pretrained/LSTM_Ford_5')
+ 
+    two = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    two.set_model_id('CNN')
+    two.load_model('../pretrained/CNN_Ford_5')
+
+    three = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    three.set_model_id('MLP')
+    three.load_model('../pretrained/MLP_Ford_5')
+
+    four = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    four.set_model_id('BI-LSTM')
+    four.load_model('../pretrained/BI-LSTM_Ford_5')
+
+    prediction_one = one.predict(input_batch)
+    prediction_two = two.predict(input_batch)
+    prediction_three = three.predict(input_batch)
+    prediction_four = four.predict(input_batch)
+
+    final_df = pd.concat([prediction_one, prediction_two, prediction_three, prediction_four], axis=1) 
+
+    return final_df
+
+def individual_predictors_pretrained_Ford_5_5(input_batch: DataFrame, future_horizon: int) -> DataFrame:
+    '''Loades pretrained models and predicts based on the given input batch. The following individual predictors are implemented here:
+
+    1. LSTM
+    2. CNN
+    3. MLP
+    4. Bidirectional-LSTM
+    5. LSTM-CNN
+
+        Parameters:
+            input_batch (DataFrame): Data which is fed to predictors to predict future values.
+            future_horizon (int): Length of how far into the future the predictors will predict.
+
+        Returns:
+            (DataFrame): Containing all predictions from all individual predictors.
+    '''    
+    one = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    one.set_model_id('LSTM')
+    one.load_model('../pretrained/LSTM_Ford_5')
+ 
+    two = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    two.set_model_id('CNN')
+    two.load_model('../pretrained/CNN_Ford_5')
+
+    three = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    three.set_model_id('MLP')
+    three.load_model('../pretrained/MLP_Ford_5')
+
+    four = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    four.set_model_id('BI-LSTM')
+    four.load_model('../pretrained/BI-LSTM_Ford_5')
+
+    five = HybridUnivariatePredictor(sub_seq = 2, steps_past = len(input_batch), steps_future = future_horizon)
+    five.load_model('../pretrained/CNN-LSTM_Ford_5')
+
+    prediction_one = one.predict(input_batch)
+    prediction_two = two.predict(input_batch)
+    prediction_three = three.predict(input_batch)
+    prediction_four = four.predict(input_batch)
+    prediction_five = five.predict(input_batch)
+
+    final_df = pd.concat([prediction_one, prediction_two, prediction_three, prediction_four, prediction_five], axis=1) 
+
+    return final_df
+
 def system_disagreement(df: DataFrame):
     '''Plots the overall system disagreement and the individual disagreement scores of the algorithms.
-        
+       
         Parameters:
             df (DataFrame): Containing all individual predictors forecasts.
     '''
@@ -216,7 +291,7 @@ def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
     nomemory = consolidated_predictions(df, real)
     memory = consolidated_predictions_memory(df, real)
     focus = consolidated_predictions_focused(df, real)
-    anchor = consolidated_predictions_anchor(df, real, 6.5)
+    anchor = consolidated_predictions_anchor(df, real, 3.5)
     
     consensus['Average'] = average
     consensus['NoMemory'] = nomemory
