@@ -115,12 +115,11 @@ def individual_predictors_template2(training_df: DataFrame, future_horizon: int)
     return final_df
 
 
-def individual_predictors_pretrained1(input_batch: DataFrame, future_horizon: int) -> DataFrame:
+def individual_predictors_pretrained_Ford_5_2(input_batch: DataFrame, future_horizon: int) -> DataFrame:
     '''Loades pretrained models and predicts based on the given input batch. The following individual predictors are implemented here:
 
-    1. CNN-LSTM
-    2. MLP
-    3. CNN
+    1. LSTM
+    2. CNN
 
         Parameters:
             input_batch (DataFrame): Data which is fed to predictors to predict future values.
@@ -129,23 +128,58 @@ def individual_predictors_pretrained1(input_batch: DataFrame, future_horizon: in
         Returns:
             (DataFrame): Containing all predictions from all individual predictors.
     '''    
-    one = HybridUnivariatePredictor(sub_seq = 2, steps_past = len(input_batch), steps_future = future_horizon)
-    one.load_model('../pretrained/model')
+#    one = HybridUnivariatePredictor(sub_seq = 2, steps_past = len(input_batch), steps_future = future_horizon)
+#    one.load_model('../pretrained/model')
 
-    
+
+    one = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    one.set_model_id('LSTM')
+    one.load_model('../pretrained/LSTM_Ford_5')
+ 
     two = BasicUnivariatePredictor(len(input_batch), future_horizon)
-    two.set_model_id('MLP')
-    two.load_model('../pretrained/model2')
+    two.set_model_id('CNN')
+    two.load_model('../pretrained/CNN_Ford_5')
 
+    prediction_one = one.predict(input_batch)
+    prediction_two = two.predict(input_batch)
+
+    final_df = pd.concat([prediction_one, prediction_two], axis=1) 
+
+    return final_df
+
+def individual_predictors_pretrained_Ford_5_3(input_batch: DataFrame, future_horizon: int) -> DataFrame:
+    '''Loades pretrained models and predicts based on the given input batch. The following individual predictors are implemented here:
+
+    1. LSTM
+    2. CNN
+    3. MLP
+
+        Parameters:
+            input_batch (DataFrame): Data which is fed to predictors to predict future values.
+            future_horizon (int): Length of how far into the future the predictors will predict.
+
+        Returns:
+            (DataFrame): Containing all predictions from all individual predictors.
+    '''    
+#    one = HybridUnivariatePredictor(sub_seq = 2, steps_past = len(input_batch), steps_future = future_horizon)
+#    one.load_model('../pretrained/model')
+
+
+    one = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    one.set_model_id('LSTM')
+    one.load_model('../pretrained/LSTM_Ford_5')
+ 
+    two = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    two.set_model_id('CNN')
+    two.load_model('../pretrained/CNN_Ford_5')
 
     three = BasicUnivariatePredictor(len(input_batch), future_horizon)
-    three.set_model_id('CNN')
-    three.load_model('../pretrained/model3')
+    three.set_model_id('MLP')
+    three.load_model('../pretrained/MLP_Ford_5')
 
     prediction_one = one.predict(input_batch)
     prediction_two = two.predict(input_batch)
     prediction_three = three.predict(input_batch)
-
 
     final_df = pd.concat([prediction_one, prediction_two, prediction_three], axis=1) 
 
