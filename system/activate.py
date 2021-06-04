@@ -169,6 +169,35 @@ def individual_predictors_pretrained_BP_30_2(input_batch: DataFrame, future_hori
 
     return final_df
 
+def individual_predictors_pretrained_SP500_40_2(input_batch: DataFrame, future_horizon: int) -> DataFrame:
+    '''Loades pretrained models and predicts based on the given input batch. The following individual predictors are implemented here:
+
+    1. LSTM
+    2. CNN
+
+        Parameters:
+            input_batch (DataFrame): Data which is fed to predictors to predict future values.
+            future_horizon (int): Length of how far into the future the predictors will predict.
+
+        Returns:
+            (DataFrame): Containing all predictions from all individual predictors.
+    '''    
+    one = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    one.set_model_id('LSTM')
+    one.load_model('../pretrained/LSTM_SP500_40')
+ 
+    two = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    two.set_model_id('CNN')
+    two.load_model('../pretrained/CNN_SP500_40')
+
+    prediction_one = one.predict(input_batch)
+    prediction_two = two.predict(input_batch)
+
+    final_df = pd.concat([prediction_one, prediction_two], axis=1) 
+
+    return final_df
+
+
 def individual_predictors_pretrained_Ford_5_3(input_batch: DataFrame, future_horizon: int) -> DataFrame:
     '''Loades pretrained models and predicts based on the given input batch. The following individual predictors are implemented here:
 
@@ -228,6 +257,40 @@ def individual_predictors_pretrained_BP_30_3(input_batch: DataFrame, future_hori
     three = BasicUnivariatePredictor(len(input_batch), future_horizon)
     three.set_model_id('MLP')
     three.load_model('../pretrained/MLP_BP_30')
+
+    prediction_one = one.predict(input_batch)
+    prediction_two = two.predict(input_batch)
+    prediction_three = three.predict(input_batch)
+
+    final_df = pd.concat([prediction_one, prediction_two, prediction_three], axis=1) 
+
+    return final_df
+
+def individual_predictors_pretrained_SP500_40_3(input_batch: DataFrame, future_horizon: int) -> DataFrame:
+    '''Loades pretrained models and predicts based on the given input batch. The following individual predictors are implemented here:
+
+    1. LSTM
+    2. CNN
+    3. MLP
+
+        Parameters:
+            input_batch (DataFrame): Data which is fed to predictors to predict future values.
+            future_horizon (int): Length of how far into the future the predictors will predict.
+
+        Returns:
+            (DataFrame): Containing all predictions from all individual predictors.
+    '''    
+    one = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    one.set_model_id('LSTM')
+    one.load_model('../pretrained/LSTM_SP500_40')
+ 
+    two = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    two.set_model_id('CNN')
+    two.load_model('../pretrained/CNN_SP500_40')
+
+    three = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    three.set_model_id('MLP')
+    three.load_model('../pretrained/MLP_SP500_40')
 
     prediction_one = one.predict(input_batch)
     prediction_two = two.predict(input_batch)
@@ -307,6 +370,46 @@ def individual_predictors_pretrained_BP_30_4(input_batch: DataFrame, future_hori
     four = BasicUnivariatePredictor(len(input_batch), future_horizon)
     four.set_model_id('BI-LSTM')
     four.load_model('../pretrained/BI-LSTM_BP_30')
+
+    prediction_one = one.predict(input_batch)
+    prediction_two = two.predict(input_batch)
+    prediction_three = three.predict(input_batch)
+    prediction_four = four.predict(input_batch)
+
+    final_df = pd.concat([prediction_one, prediction_two, prediction_three, prediction_four], axis=1) 
+
+    return final_df
+
+def individual_predictors_pretrained_SP500_40_4(input_batch: DataFrame, future_horizon: int) -> DataFrame:
+    '''Loades pretrained models and predicts based on the given input batch. The following individual predictors are implemented here:
+
+    1. LSTM
+    2. CNN
+    3. MLP
+    4. Bidirectional-LSTM
+
+        Parameters:
+            input_batch (DataFrame): Data which is fed to predictors to predict future values.
+            future_horizon (int): Length of how far into the future the predictors will predict.
+
+        Returns:
+            (DataFrame): Containing all predictions from all individual predictors.
+    '''    
+    one = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    one.set_model_id('LSTM')
+    one.load_model('../pretrained/LSTM_SP500_40')
+ 
+    two = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    two.set_model_id('CNN')
+    two.load_model('../pretrained/CNN_SP500_40')
+
+    three = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    three.set_model_id('MLP')
+    three.load_model('../pretrained/MLP_SP500_40')
+
+    four = BasicUnivariatePredictor(len(input_batch), future_horizon)
+    four.set_model_id('BI-LSTM')
+    four.load_model('../pretrained/BI-LSTM_SP500_40')
 
     prediction_one = one.predict(input_batch)
     prediction_two = two.predict(input_batch)
