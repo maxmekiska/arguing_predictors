@@ -64,6 +64,10 @@ solution_consolidation_focused = [4.75, 5.0, 7.0, 5.666666666666667]  # four
 solution_consolidation_focused_1 = [5.666666666666667, 5.0, 7.0, 5.5]  # three
 solution_consolidation_focused_2 = [3.5, 5.0, 6.0, 5.5]  
 
+solution_consolidation_correcting = [4.75, 8.25, 7.25, 5.75]   # four
+solution_consolidation_correcting_1 = [5.666666666666667, 7.0, 7.166666666666667, 5.666666666666667] # three
+solution_consolidation_correcting_2 = [3.5, 9.0, 6.75, 5.5] 
+
 solution_consolidation_anchor = [6.12, 4.626288659793814, 7.005263157894737, 6.114705882352942]
 solution_consolidation_anchor_1 = [3.65, 4.822695035460993, 6.08421052631579, 5.533333333333333] 
 solution_consolidation_anchor_2 = [5.433333333333334, 4.524786324786326, 6.82, 6.091764705882354] 
@@ -130,6 +134,15 @@ class Testing(unittest.TestCase):
 
     def test_consolidation_focused_fourPredictors(self):
         self.assertEqual(consolidated_predictions_focused(dftwo, df1), solution_consolidation_focused, 'Does not match solution')
+
+    def test_consolidation_correcting(self):
+        self.assertEqual(consolidated_predictions_correcting(df, df1), solution_consolidation_correcting_1, 'Does not match solution')
+
+    def test_consolidation_correcting_twoPredictors(self):
+        self.assertEqual(consolidated_predictions_correcting(dfthree, df1), solution_consolidation_correcting_2, 'Does not match solution')
+
+    def test_consolidation_correcting_fourPredictors(self):
+        self.assertEqual(consolidated_predictions_correcting(dftwo, df1), solution_consolidation_correcting, 'Does not match solution')
 
     def test_consolidation_anchor(self):
         self.assertEqual(consolidated_predictions_anchor(df, df1, 1.2), solution_consolidation_anchor, 'Does not match solution')
