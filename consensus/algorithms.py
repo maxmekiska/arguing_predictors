@@ -143,6 +143,27 @@ def new_weights_focused(preds: list, real_value: float) -> list:
     
     return formatting(final_weights)
 
+# experimental new weight calculation -- needs testing and experimenting
+def new_weights_correcting(preds: list, real_value: float) -> list:
+    '''Helper function to calculated forced correction weights based on t - 1 error.
+    
+        Parameters:
+            preds (list): t-1 predictions of each predictor
+            real_value (float): real value at t
+         
+        Returns:
+            (list): list containing the new weight values for each predictor
+    '''
+    if type(preds) != type(list):
+        preds = list(preds)
+        
+    final_weights = []
+    
+    for i in range(len(preds)):
+        final_weights.append(real_value/preds[i])
+    
+    return formatting(final_weights)
+
 
 def consolidated_predictions(data: DataFrame, real: DataFrame) -> list:
     '''Function to calculate the consolidated prediction value of all individual predictors.
@@ -195,9 +216,7 @@ def consolidated_predictions_memory(data: DataFrame, real: DataFrame) -> list:
         final_predictions.append(sum(temp)/data.shape[1])
         weights = new_weights(data.iloc[j], real.iloc[j][0])
         weight_history.append(weights)
-        
-
-    
+            
     return final_predictions
 
 def consolidated_predictions_focused(data: DataFrame, real: DataFrame) -> list:
@@ -225,7 +244,32 @@ def consolidated_predictions_focused(data: DataFrame, real: DataFrame) -> list:
     
     return final_predictions
 
+# experimental weight assignment to brue force correcting error of algorithms
+def consolidated_predictions_correcting(data: DataFrame, real: DataFrame) -> list:
+    '''Function to calculate the consolidated prediction value of all individual predictors.
+    
+        Parameters:
+            data (DataFrame): Predictions values from each individual predictor.
+            real (DataFrame): Actual values.
+         
+        Returns:
+            (list): List containing consolidated prediction value considering new weight assignments for each predictor.
+    '''
+    final_predictions = []
+    weight_history = []
+    weights = [1] * data.shape[1]
 
+    for j in range(data.shape[0]):
+        temp = []
+        for i in range(data.shape[1]):
+            temp.append(data.iloc[j, i]*weights[i])
+            
+        final_predictions.append(sum(temp)/data.shape[1])
+        weight_history.append(weights)
+        weights = new_weights(data.iloc[j], real.iloc[j][0])
+
+    
+    return final_predictions
 
 
 def consolidated_predictions_anchor(data: DataFrame, real: DataFrame, anchor: int) -> list:
