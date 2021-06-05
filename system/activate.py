@@ -579,7 +579,7 @@ def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
     consensus['Focus'] = focus
     consensus['Anchor'] = anchor
     consensus['Correcting'] = correcting
-    consensus['Correcting Memory'] = correting_mem
+    consensus['Correcting Memory'] = correcting_mem
     
     return consensus
 
