@@ -60,6 +60,10 @@ solution_consolidation_memory = [5.666666666666667, 4.694444444444445, 6.7407407
 solution_consolidation_memory_1 = [3.5, 4.65, 6.0, 5.3] 
 solution_consolidation_memory_2 = [4.75, 4.519230769230769, 6.542735042735042, 6.100961538461537]
 
+solution_consolidation_memory_correcting = [5.666666666666667, 5.833333333333333, 7.944444444444444, 7.108333333333333]
+solution_consolidation_memory_correcting_1 = [3.5, 6.75, 8.45, 7.3125] 
+solution_consolidation_memory_correcting_2 = [4.75, 6.375, 8.583333333333332, 7.675]
+
 solution_consolidation_focused = [4.75, 5.0, 7.0, 5.666666666666667]  # four
 solution_consolidation_focused_1 = [5.666666666666667, 5.0, 7.0, 5.5]  # three
 solution_consolidation_focused_2 = [3.5, 5.0, 6.0, 5.5]  
@@ -126,6 +130,14 @@ class Testing(unittest.TestCase):
     def test_consolidation_memory_fourPredictors(self):
         self.assertEqual(consolidated_predictions_memory(dftwo, df1), solution_consolidation_memory_2, 'Does not match solution')
     
+    def test_consolidation_memory_correcting(self):
+        self.assertEqual(consolidated_predictions_memory_correcting(df, df1), solution_consolidation_memory_correcting, 'Does not match solution')
+
+    def test_consolidation_memory_correcting_twoPredictors(self):
+        self.assertEqual(consolidated_predictions_memory_correcting(dfthree, df1), solution_consolidation_memory_correcting_1, 'Does not match solution')
+
+    def test_consolidation_memory_correcting_fourPredictors(self):
+        self.assertEqual(consolidated_predictions_memory_correcting(dftwo, df1), solution_consolidation_memory_correcting_2, 'Does not match solution')
     def test_consolidation_focused(self):
         self.assertEqual(consolidated_predictions_focused(df, df1), solution_consolidation_focused_1, 'Does not match solution')
 
