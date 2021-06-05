@@ -272,7 +272,7 @@ def consolidated_predictions_correcting(data: DataFrame, real: DataFrame) -> lis
     return final_predictions
 
 # experimental brute-force weight assignment
-def consolidated_predictions_memory(data: DataFrame, real: DataFrame) -> list:
+def consolidated_predictions_memory_correcting(data: DataFrame, real: DataFrame) -> list:
     '''Function to calculate the consolidated prediction value of all individual predictors. This function furthermore extends consolidated_predictions by keeping a memory of prior assigned weights. An average of all prior assigned weights is calculated and applied to calculate the final consolidation value.
     
         Parameters:

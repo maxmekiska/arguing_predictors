@@ -571,6 +571,7 @@ def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
     focus = consolidated_predictions_focused(df, real)
     anchor = consolidated_predictions_anchor(df, real, 3.5)
     correcting = consolidated_predictions_correcting(df, real)
+    correcting_mem = consolidated_predictions_memory_correcting(df, real)
     
     consensus['Average'] = average
     consensus['NoMemory'] = nomemory
@@ -578,6 +579,7 @@ def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
     consensus['Focus'] = focus
     consensus['Anchor'] = anchor
     consensus['Correcting'] = correcting
+    consensus['Correcting Memory'] = correting_mem
     
     return consensus
 
