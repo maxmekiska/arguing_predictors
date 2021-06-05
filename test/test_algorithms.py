@@ -49,6 +49,9 @@ solution_list_weights_2 = [0.0, 1.5, 1.5]
 solution_list_weights_focused = [0, 1, 0]
 solution_list_weights_focused_2 = [0, 1, 1] 
 
+solution_list_weights_correcting = [3.0, 1.2, 0.6] 
+solution_list_weights_correcting_2 = [3.0, 1.0, 1.0] 
+
 solution_consolidation = [5.666666666666667, 4.722222222222222, 7.0, 5.5]
 solution_consolidation_1 = [3.5, 4.8, 6.0, 5.5] # dfthree
 solution_consolidation_2 = [4.75, 4.538461538461538, 6.666666666666666, 5.666666666666666]  # dftwo
@@ -96,7 +99,11 @@ class Testing(unittest.TestCase):
 
     def test_weights_focused_2(self):
         self.assertEqual(new_weights_focused(list_2, value_2), solution_list_weights_focused_2, 'Does not match solution')
+    def test_weights_correcting_1(self):
+        self.assertEqual(new_weights_correcting(list_1, value_2), solution_list_weights_correcting, 'Does not match solution')
 
+    def test_weights_correcting_2(self):
+        self.assertEqual(new_weights_correcting(list_2, value_2), solution_list_weights_correcting_2, 'Does not match solution')
     def test_consolidation(self):
         self.assertEqual(consolidated_predictions(df, df1), solution_consolidation, 'Does not match solution')
 
