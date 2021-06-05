@@ -244,7 +244,7 @@ def consolidated_predictions_focused(data: DataFrame, real: DataFrame) -> list:
     
     return final_predictions
 
-# experimental weight assignment to brue force correcting error of algorithms
+# experimental weight assignment to brute-force correcting error of algorithms
 def consolidated_predictions_correcting(data: DataFrame, real: DataFrame) -> list:
     '''Function to calculate the consolidated prediction value of all individual predictors.
     
@@ -266,11 +266,38 @@ def consolidated_predictions_correcting(data: DataFrame, real: DataFrame) -> lis
             
         final_predictions.append(sum(temp)/data.shape[1])
         weight_history.append(weights)
-        weights = new_weights(data.iloc[j], real.iloc[j][0])
+        weights = new_weights_correcting(data.iloc[j], real.iloc[j][0])
 
     
     return final_predictions
 
+# experimental brute-force weight assignment
+def consolidated_predictions_memory(data: DataFrame, real: DataFrame) -> list:
+    '''Function to calculate the consolidated prediction value of all individual predictors. This function furthermore extends consolidated_predictions by keeping a memory of prior assigned weights. An average of all prior assigned weights is calculated and applied to calculate the final consolidation value.
+    
+        Parameters:
+            data (DataFrame): Predictions values from each individual predictor.
+            real (DataFrame): Actual value.
+         
+        Returns:
+            (list): List containing consolidated prediction value considering new weight assignments for each predictor.
+    '''
+    final_predictions = []
+    
+    initialize = [1] * data.shape[1]
+    weight_history = [initialize]
+    weights = []
+
+    for j in range(data.shape[0]):
+        temp = []
+        for i in range(data.shape[1]):
+            temp.append(data.iloc[j, i]*([sum(z) for z in zip(*weight_history)][i]/(j+1))) # j number of rows, total value to take average
+        
+        final_predictions.append(sum(temp)/data.shape[1])
+        weights = new_weights_correcting(data.iloc[j], real.iloc[j][0])
+        weight_history.append(weights)
+            
+    return final_predictions
 
 def consolidated_predictions_anchor(data: DataFrame, real: DataFrame, anchor: int) -> list:
     '''Function to calculate the consolidated prediction value of all individual predictors. To prevent the algorithm from being limited to produce consolidation values within the min and max value predicted by the individual predictors, min and max anchors are launched that extend above the biggest and smallest value estimated.
