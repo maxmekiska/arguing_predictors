@@ -814,12 +814,11 @@ def plot_performance(data: DataFrame):
     for i in range(len(columns)):
         if columns[i] == 'Real Value':
             continue
-        fig, ax = plt.subplots(figsize=(15, 6))
-        ax.plot(data['Real Value'])
-        ax.plot(data[columns[i]])
-        ax.title.set_text(columns[i] + ' Algorithm Error')
-        ax.set_ylabel('Stock Price')
-        ax.set_xlabel('Time')
-        ax.legend(['Real Value', 'Prediction', 'Error'], loc='upper right')
-        
-        return fig
+        plt.figure(figsize=(15,6))
+        plt.plot(data['Real Value'])
+        plt.plot(data[columns[i]])
+        plt.title(columns[i] + ' Algorithm Error')
+        plt.ylabel('Absolute Error')
+        plt.xlabel('Time')
+        plt.legend(['Real Value', 'Prediction', 'Error'], loc='upper right')
+        plt.show() 
