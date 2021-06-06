@@ -1,33 +1,35 @@
 from tools.dataloader import *
 from system.activate import *
 
-def main(): # experimental main TODO: build loop to verify statistically prediction performance of the system
+def main(): # experimental main.
 
     # data extraction/preparation phase
-    #training = DataLoader('aapl', '2009-01-01', '2010-05-01')
-    #training = training.get_close()
-    predict = DataLoader('aapl', '2010-06-01', '2010-09-01')
-    predict = predict.get_close()
-    predict_req, real = data_prep(predict, 24, 30)
-    
-    # individual predictors forecasting
-    final_df = individual_predictors_pretrained1(predict_req, 30)
 
-    # system disagreement calculation
-    system_disagreement(final_df)
-
-    # building of consensus values
-    algos = consensus(final_df, real)
-    ui = combined_frame(final_df, algos, real)
-    yu = all_stats_frame(ui, final_df)
-
-    correlation(yu, True)
-    mse_score(ui, True)
-    mse_log_score(ui, True)
-    mae_score(ui, True)
+    predict = DataLoader('BP', '2018-02-01', '2018-05-01')
+    predict = predict.get_adjclose()
+   
+    predict_req, real = data_prep(predict, 20, 30) # dividing data into predictor input and real data
 
 
-    plot_performance(ui)
+    individual_predictors_forecasts = individual_predictors_pretrained_BP_30_5(predict_req, 30)
+
+    system_disagreement(individual_predictors_forecasts)
+
+    consensus_forecasts = consensus(individual_predictors_forecasts, real)
+
+    all_forecasts = combined_frame(individual_predictors_forecasts, consensus_forecasts, real)
+
+    prediction_error = absolute_error_analytics(individual_predictors_forecasts, consensus_forecasts, real)
+
+    correlation(prediction_error, True)
+
+    mse_score(all_forecasts, True)
+
+    mse_log_score(all_forecasts, True)
+
+    mae = mae_score(all_forecasts, True)
+
+    plot_performance(all_forecasts)
 
 if __name__ == "__main__":
     main()
