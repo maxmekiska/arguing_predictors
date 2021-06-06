@@ -661,7 +661,7 @@ def correlation(df: DataFrame, plot: bool = False) -> DataFrame:
     corr_matrix = df.corr()
 
     if plot == True:
-        plt.figure(figsize = (10,10))
+        plt.figure(figsize = (15,15))
         sns.heatmap(corr_matrix, annot=True)
 
 
