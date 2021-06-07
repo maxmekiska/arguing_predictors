@@ -231,11 +231,9 @@ def consolidated_predictions_focused(data: DataFrame, real: DataFrame) -> list:
         final_predictions.append(sum(temp)/sum(weights))
         weight_history.append(weights)
         weights = new_weights_focused(data.iloc[j], real.iloc[j][0])
-
     
     return final_predictions
 
-# experimental weight assignment to brute-force correcting error of algorithms
 def consolidated_predictions_correcting(data: DataFrame, real: DataFrame) -> list:
     '''Function to calculate the consolidated prediction value of all individual predictors.
     

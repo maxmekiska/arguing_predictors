@@ -83,7 +83,7 @@ def individual_predictors_template2(training_df: DataFrame, future_horizon: int)
             (DataFrame): Containing all predictions from all individual predictors.
     '''    
     one = UnivariatePredictorII(training_df, future_horizon)
-    one.fit_neural_model(50, 'D')
+    one.fit_neural_model(150, 'D')
     one.show_performance_neural()
 
     two = UnivariatePredictorII(training_df, future_horizon)

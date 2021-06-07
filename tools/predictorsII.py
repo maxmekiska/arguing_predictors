@@ -61,7 +61,7 @@ class UnivariatePredictorII:
                 epochs (int): Number of epochs to train the model.
                 frequency (str): Time series data frequency. For example: Daily = 'D'
         '''
-        self.model = NeuralProphet()
+        self.model = NeuralProphet(yearly_seasonality=True, weekly_seasonality=False, daily_seasonality=False)
         self.details = self.model.fit(self.data, epochs = epochs, validate_each_epoch=True, freq = frequency)
     
     def fit_prophet_model(self):
