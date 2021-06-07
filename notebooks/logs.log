@@ -1,6 +1,2 @@
-2021-06-07 21:16:12,956; INFO; nprophet.config; set_auto_batch_epoch; Auto-set batch_size to 32
-2021-06-07 21:16:13,942; INFO; nprophet; _lr_range_test; learning rate range test found optimal lr: 3.51E-01
-2021-06-07 21:18:41,902; INFO; nprophet.config; set_auto_batch_epoch; Auto-set batch_size to 32
-2021-06-07 21:18:42,115; INFO; nprophet; _lr_range_test; learning rate range test found optimal lr: 2.85E-01
-2021-06-07 21:21:04,684; INFO; nprophet.config; set_auto_batch_epoch; Auto-set batch_size to 32
-2021-06-07 21:21:04,866; INFO; nprophet; _lr_range_test; learning rate range test found optimal lr: 1.87E-01
+2021-06-07 21:27:38,634; INFO; nprophet.config; set_auto_batch_epoch; Auto-set batch_size to 32
+2021-06-07 21:27:39,630; INFO; nprophet; _lr_range_test; learning rate range test found optimal lr: 1.87E-01
