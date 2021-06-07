@@ -814,11 +814,20 @@ def plot_performance(data: DataFrame):
     for i in range(len(columns)):
         if columns[i] == 'Real Value':
             continue
-        plt.figure(figsize=(15,6))
-        plt.plot(data['Real Value'])
-        plt.plot(data[columns[i]])
-        plt.title(columns[i] + ' Algorithm Error')
-        plt.ylabel('Absolute Error')
-        plt.xlabel('Time')
-        plt.legend(['Real Value', 'Prediction', 'Error'], loc='upper right')
-        plt.show() 
+        abs_error = abs(data[columns[i]] - data['Real Value'])
+
+        fig, ax = plt.subplots(2, 1, figsize=(15, 6))
+        ax[0].plot(data['Real Value'])
+        ax[0].plot(data[columns[i]])
+        ax[0].title.set_text(columns[i] + ' Algorithm Error')
+        ax[0].set_ylabel('Stock Price')
+        ax[0].set_xlabel('Time')
+        ax[0].legend(['Real Value', 'Prediction'], loc='upper right')
+
+        ax[1].plot(abs_error, 'r')
+        ax[1].title.set_text(columns[i] + ' Absolute Error')
+        ax[1].set_ylabel('Error')
+        ax[1].set_xlabel('Time')
+        ax[1].legend(['Error'], loc='upper right')
+
+        plt.tight_layout()
