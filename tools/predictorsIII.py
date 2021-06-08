@@ -1,10 +1,7 @@
-'''
-References:
-----------
-Code insperations have been taken from:
-https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/
-'''
+# References:
+# Code insperations have been taken from:
 
+# Brwonlee, J., 2018b. How to develop lstm models for time series forecasting [Online]. Available from: https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/.
 
 import matplotlib.pyplot as plt
 from numpy import array
@@ -23,8 +20,6 @@ from keras.layers import Flatten
 from keras.layers.convolutional import Conv1D
 from keras.layers.convolutional import MaxPooling1D
 from keras.layers import TimeDistributed
-
-
 
 class HybridUnivariatePredictor:
     '''Implements neural network based univariate multipstep hybrid predictors.
