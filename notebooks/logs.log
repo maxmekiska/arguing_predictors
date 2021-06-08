@@ -1,2 +1,0 @@
-2021-06-07 21:27:38,634; INFO; nprophet.config; set_auto_batch_epoch; Auto-set batch_size to 32
-2021-06-07 21:27:39,630; INFO; nprophet; _lr_range_test; learning rate range test found optimal lr: 1.87E-01
