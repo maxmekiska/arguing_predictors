@@ -10,7 +10,7 @@ First download the program repository.
 
 The proof of concept program uses a Jupyter notebook as UI. The program can also be used without a Jupyter notebook by executing the main.py file. However, it is recommended to use it together with a Jupyter notebook.
 
-I recommend to use Anaconda to use Jupyter notebook and manage the necessary python libraries for this program. Anaconda can be downloaded here: https://www.anaconda.com/products/individual#Downloads.
+I recommend to use Anaconda to use Jupyter notebook and manage the necessary python libraries for this program. Anaconda can be downloaded ![here](https://www.anaconda.com/products/individual#Downloads).
 
 After Anaconda has been downloaded and successfully installed, open the anaconda terminal/command line and create a virtual enviornment with the following command:
 
@@ -18,15 +18,34 @@ After Anaconda has been downloaded and successfully installed, open the anaconda
 conda create -n yourenvname python=3.8. 
 ```
 
-After the enviornment is installed, activate it by typing: conda activate yourenvname. Please proceed by installing Jupyter notebook by executing: conda install jupyter notebook.
+After the enviornment is installed, activate it by typing: 
 
-Now, all dependiencies for the program need to be installed. First, pip install torch v.1.6 from: https://pytorch.org/get-started/previous-versions/. I recommend to use the CPU only version.
+```shell
+conda activate yourenvname
+```
 
-Finally cd into the program directory and execute: pip install -r requierements.txt. This will install all other necessary dependencies.
+Please proceed by installing Jupyter notebook by executing:
 
+```shell
+conda install jupyter notebook
+```
+
+Now, all dependiencies for the program need to be installed. First, pip install torch v.1.6 from ![here](https://pytorch.org/get-started/previous-versions/). I recommend to use the CPU only version.
+
+Finally, cd into the program directory and execute:
+
+```shell
+pip install -r requierements.txt
+```
+
+This will install all other necessary dependencies.
 
 ## Starting the program
 
-Open up an anaconda terminal/command line and activate your enviorment. Now open a Jupyter notebook by executing: jupyter notebook in the anaconda terminal/command line. Now locate the downloaded repository and open up the System jupyter notebook contained in the notebook folder. 
+Open up an anaconda terminal/command line and activate your enviorment. Now open a Jupyter notebook by executing: 
+```shell
+jupyter notebook
+```
+Finally, locate the downloaded repository and open up the System.ipynb contained in the notebook folder. 
 
 
