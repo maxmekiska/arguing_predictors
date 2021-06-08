@@ -47,6 +47,3 @@ Open up an anaconda terminal/command line and activate your enviorment. Now open
 jupyter notebook
 ```
 Finally, locate the downloaded repository and open up the System.ipynb contained in the notebook folder. 
-
-
-![](resources/SP500_4predictors.pdf)
