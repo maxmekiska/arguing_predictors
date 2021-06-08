@@ -1,13 +1,13 @@
-'''
-References
-----------
-Code insperations have been taken from:
-- https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/
-- https://machinelearningmastery.com/display-deep-learning-model-training-history-in-keras/#:~:text=Visualize%20Model%20Training%20History%20in,from%20the%20collected%20history%20data.&text=A%20plot%20of%20loss%20on,validation%20datasets%20over%20training%20epochs.
-- https://machinelearningmastery.com/how-to-develop-convolutional-neural-network-models-for-time-series-forecasting/
-- https://machinelearningmastery.com/how-to-develop-multilayer-perceptron-models-for-time-series-forecasting/ 
-'''
+# References:
+# Code insperations have been taken from:
 
+# Brwonlee, J., 2016. Display deep learning model training history in keras [Online]. Available from: https://machinelearningmastery.com/display-deep-learning-model-training-history-in-keras/.
+
+# Brwonlee, J., 2018a. How to develop convolutional neural network models for time series forecasting [Online]. Available from: https://machinelearningmastery.com/how-to-develop-convolutional-neural-network-models-for-time-series-forecasting/.
+
+# Brwonlee, J., 2018b. How to develop lstm models for time series forecasting [Online]. Available from: https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/.
+
+# Brwonlee, J., 2018c. How to develop multilayer perceptron models for time series forecasting [Online]. Available from: https://machinelearningmastery.com/how-to-develop-multilayer-perceptron-models-for-time-series-forecasting/.
 
 import matplotlib.pyplot as plt
 from numpy import array
