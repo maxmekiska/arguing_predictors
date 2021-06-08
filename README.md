@@ -49,3 +49,4 @@ jupyter notebook
 Finally, locate the downloaded repository and open up the System.ipynb contained in the notebook folder. 
 
 
+![](resources/SP500_4predictors.pdf)
