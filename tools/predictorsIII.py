@@ -1,8 +1,10 @@
-# References:
-# Code insperations have been taken from:
+''' References:
+Code insperations have been taken from:
 
-# Brwonlee, J., 2018b. How to develop lstm models for time series forecasting [Online]. Available from: https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/.
-
+Brwonlee, J., 2018b. How to develop lstm models for time series forecasting [Online]. Available from: 
+https://machinelearningmastery.com/how-to-develop-
+lstm-models-for-time-series-forecasting/.
+'''
 import matplotlib.pyplot as plt
 from numpy import array
 from numpy import reshape
