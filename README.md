@@ -10,7 +10,7 @@ First download the program repository.
 
 The proof of concept program uses a Jupyter notebook as UI. The program can also be used without a Jupyter notebook by executing the main.py file. However, it is recommended to use it together with a Jupyter notebook.
 
-I recommend to use Anaconda to use Jupyter notebook and manage the necessary python libraries for this program. Anaconda can be downloaded ![here](https://www.anaconda.com/products/individual#Downloads).
+I recommend to use Anaconda to use Jupyter notebook and manage the necessary python libraries for this program. Anaconda can be downloaded [here](https://www.anaconda.com/products/individual#Downloads).
 
 After Anaconda has been downloaded and successfully installed, open the anaconda terminal/command line and create a virtual enviornment with the following command:
 
@@ -30,7 +30,7 @@ Please proceed by installing Jupyter notebook by executing:
 conda install jupyter notebook
 ```
 
-Now, all dependiencies for the program need to be installed. First, pip install torch v.1.6 from ![here](https://pytorch.org/get-started/previous-versions/). I recommend to use the CPU only version.
+Now, all dependiencies for the program need to be installed. First, pip install torch v.1.6 from [here](https://pytorch.org/get-started/previous-versions/). I recommend to use the CPU only version.
 
 Finally, cd into the program directory and execute:
 
