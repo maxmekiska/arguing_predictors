@@ -4,8 +4,8 @@ double consensus(double old_pred[], double new_pred[], double real, int len);
 
 int main () {
   int size;
-  double old_[] = {10, 22, 30, 23};
-  double new_[] = {13, 20, 30, 4};
+  double old_[] = {3, 7, 5, 10};
+  double new_[] = {4, 5, 7, 7};
   double real = 10;
   double result;
 
@@ -17,7 +17,25 @@ int main () {
 
   return 0;
 }
- 
+
+/*
+ * Function:  consensus 
+ * --------------------
+ * computes the consensus value by using the following correction algorithm:
+ * - look at past individual predictor forecasts (t-1)
+ * - compare them with the real value
+ * - compute correction weight by: (real value) / (past individual predictor forecast)
+ * - apply these correction weights to current individual predictor forecasts (t) for real value at (t+1)
+ * - take the average of all current correction weigth adjusted individual predictor forecasts 
+ *
+ *  old_pred[] (double) : individual predictor forecasts at time (t-1)
+ *  new_pred[] (double) : current individual predictor forecasts (t) 
+ *  real       (double) : real value known at time t
+ *  len	       (int)    : number of individual predictors in system
+ *
+ *  returns: the consensus value of the system prediction for (t+1) which represents the average of all
+ *           correction-weight adjusted individual predictor forecasts.           
+ */
 double consensus(double old_pred[], double new_pred[], double real, int len){
   double con;
   double weights[len];
