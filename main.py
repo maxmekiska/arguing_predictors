@@ -1,7 +1,9 @@
 from tools.dataloader import *
 from system.activate import *
 
-def main(): # experimental main.
+def main():
+    '''Example main function to execute the system without a jupyter notebook as UI.
+    '''
 
     # data extraction/preparation phase
 
@@ -9,7 +11,6 @@ def main(): # experimental main.
     predict = predict.get_adjclose()
    
     predict_req, real = data_prep(predict, 20, 30) # dividing data into predictor input and real data
-
 
     individual_predictors_forecasts = individual_predictors_pretrained_BP_30_5(predict_req, 30)
 
@@ -33,4 +34,3 @@ def main(): # experimental main.
 
 if __name__ == "__main__":
     main()
-
