@@ -17,28 +17,19 @@ def data_prep(data):
     data = data.rename(columns={'Date': 'ds'}, inplace = False)
     return data
 
-
-
 d = {'Date': ['2010-02-01','2010-02-02', '2010-02-03', '2010-02-04', '2010-02-05', '2010-02-08', '2010-02-09', '2010-02-10'],'Close': [6.954642773, 6.994999886, 7.115356922, 6.858929157, 6.980713844, 6.932857037, 7.00678587, 6.968571186]}
 data = pd.DataFrame(data=d)
 data['Date'] = pd.to_datetime(data['Date'])
 data.set_index('Date', inplace=True)
 
-
 d2 = {'ds': ['2010-02-01','2010-02-02', '2010-02-03', '2010-02-04', '2010-02-05', '2010-02-08', '2010-02-09', '2010-02-10'],'y': [6.954642773, 6.994999886, 7.115356922, 6.858929157, 6.980713844, 6.932857037, 7.00678587, 6.968571186]}
 data_solution = pd.DataFrame(data=d2)
 data_solution['ds'] = pd.to_datetime(data_solution['ds'])
-
 
 class Testing(unittest.TestCase):
 
     def test_data_prep(self):
         assert_frame_equal(data_prep(data), data_solution)
 
-
-
 if __name__ == '__main__':
     unittest.main()
-    
-
-

@@ -6,8 +6,7 @@ from pandas.testing import assert_frame_equal
 import unittest
 from consensus.algorithms import *
 
-
-
+# Testing inputs and outputs:
 d = {'Predictor I': [2, 4, 6, 6], 'Predictor II': [5, 5, 6, 5], 'Predictor III': [10, 5, 8, 8]}
 df = pd.DataFrame(data=d)
 
@@ -20,9 +19,6 @@ dfthree = pd.DataFrame(data=dthree)
 d1 = {'Real Value': [6, 5, 6, 7]}
 df1 = pd.DataFrame(data=d1)
 
-
-
-
 solution_0 = {'System Disagreement': [3.555556, 0.444444, 0.888889, 1.3333333]}
 solution_disagreement = pd.DataFrame(data=solution_0)
 
@@ -31,7 +27,6 @@ solution_disagreement_0 = pd.DataFrame(data=solution_0_1)
 
 solution_0_2 = {'System Disagreement': [3.375, 0.500, 0.750, 1.125]}
 solution_disagreement_1 = pd.DataFrame(data=solution_0_2)
-
 
 solution_1 = {'Predictor I disagreement score': [3.666667, 0.666667, 0.666667, 1.000000], 'Predictor II disagreement score': [2.666667, 0.333333, 0.666667, 1.333333], 'Predictor III disagreement score': [4.333333, 0.333333, 1.333333, 1.666667]}
 solution_predictor = pd.DataFrame(data=solution_1)
@@ -76,7 +71,6 @@ solution_consolidation_correcting_2 = [3.5, 9.0, 6.75, 5.5]
 solution_consolidation_anchor = [6.12, 4.626288659793814, 7.005263157894737, 6.114705882352942]
 solution_consolidation_anchor_1 = [3.65, 4.822695035460993, 6.08421052631579, 5.533333333333333] 
 solution_consolidation_anchor_2 = [5.433333333333334, 4.524786324786326, 6.82, 6.091764705882354] 
-
 
 solution_average_consolidation = [5.666666666666667, 4.666666666666667, 6.666666666666667, 6.333333333333333]
 
@@ -168,7 +162,6 @@ class Testing(unittest.TestCase):
 
     def test_average_consolidation(self):
         self.assertEqual(average_consolidation(df), solution_average_consolidation, 'Does not match solution')
-
 
 if __name__ == '__main__':
     unittest.main()

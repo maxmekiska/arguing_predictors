@@ -664,7 +664,6 @@ def correlation(df: DataFrame, plot: bool = False) -> DataFrame:
         plt.figure(figsize = (15,15))
         sns.heatmap(corr_matrix, annot=True)
 
-
     return corr_matrix
 
 def absolute_error_analytics(predictors: DataFrame, algorithms: DataFrame, real: DataFrame) -> DataFrame:

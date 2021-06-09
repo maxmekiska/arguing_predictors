@@ -6,8 +6,7 @@ from pandas.testing import assert_frame_equal
 import unittest
 from system.activate import *
 
-
-
+# Testing inputs and outputs:
 d = {'Date': ['2010-02-01','2010-02-02', '2010-02-03', '2010-02-04', '2010-02-05', '2010-02-08', '2010-02-09', '2010-02-10'], 'High': [7, 7.011428833, 7.150000095, 7.084642887, 7, 7.067142963, 7.053571224, 7.021429062]}
 data = pd.DataFrame(data=d)
 data['Date'] = pd.to_datetime(data['Date'])
@@ -36,10 +35,6 @@ class Testing(unittest.TestCase):
 
     def test_set_same_index(self):
         assert_frame_equal(set_same_index(data2, solution), solution)
-    
-
-
 
 if __name__ == '__main__':
     unittest.main()
-
