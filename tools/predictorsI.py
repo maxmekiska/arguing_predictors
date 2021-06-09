@@ -17,7 +17,6 @@ Brwonlee, J., 2018c. How to develop multilayer perceptron models for time series
 https://machinelearningmastery.com/how-to-develop-multilayer-
 perceptron-models-for-time-series-forecasting/.
 '''
-
 import matplotlib.pyplot as plt
 from numpy import array
 from numpy import reshape
@@ -37,9 +36,7 @@ from keras.layers.convolutional import Conv1D
 from keras.layers.convolutional import MaxPooling1D
 from keras.layers import Dropout
 
-
 from keras.layers import Bidirectional
-
 
 class BasicUnivariatePredictor:
     '''Implements neural network based univariate multipstep predictors.
@@ -69,7 +66,6 @@ class BasicUnivariatePredictor:
         load_model(self, location: str):
             Load model from location specified.
     '''
-
     def __init__(self, steps_past: int, steps_future: int, data = pd.DataFrame()) -> object:
         '''
             Parameters:
@@ -81,7 +77,6 @@ class BasicUnivariatePredictor:
         self.input_x, self.input_y = self.__sequence_prep(data, steps_past, steps_future)
         
         self.model_id = ''
-
 
     def __sequence_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
         '''Prepares data input into X and y sequences. Lenght of the X sequence is dertermined by steps_past while the length of y is determined by steps_future. In detail, the predictor looks at sequence X and predicts sequence y.
@@ -125,7 +120,6 @@ class BasicUnivariatePredictor:
         '''Creates MLP model by defining all layers with activation functions, optimizer, loss function and evaluation metrics. 
         '''
         self.set_model_id('MLP')
-        #self.model_id  = 'MLP'
 
         self.input_x = self.input_x.reshape((self.input_x.shape[0], self.input_x.shape[1])) # necessary to account for different shape input for MLP compared to the other models.
 
@@ -140,7 +134,6 @@ class BasicUnivariatePredictor:
         '''Creates LSTM model by defining all layers with activation functions, optimizer, loss function and evaluation metrics.
         '''
         self.set_model_id('LSTM')
-        #self.model_id = 'LSTM'
 
         self.model = Sequential()
         self.model.add(LSTM(40, activation='relu', return_sequences=True, input_shape=(self.input_x.shape[1], 1)))
@@ -153,7 +146,6 @@ class BasicUnivariatePredictor:
         '''Creates the CNN model by defining all layers with activation functions, optimizer, loss function and evaluation metrics.
         '''
         self.set_model_id('CNN')
-        #self.model_id = 'CNN'
 
         self.model = Sequential()
         self.model.add(Conv1D(filters=64, kernel_size=2, activation='relu', input_shape=(self.input_x.shape[1], 1)))
@@ -168,7 +160,6 @@ class BasicUnivariatePredictor:
         '''Creates a bidirectional LSTM model by defining all layers with activation functions, optimizer, loss function and evaluation matrics.
         '''
         self.set_model_id('Bidirectional LSTM')
-        #self.model_id = 'Bidirectional LSTM'
 
         self.model = Sequential()
         self.model.add(Bidirectional(LSTM(50, activation='relu', return_sequences=True), input_shape=(self.input_x.shape[1], 1)))
@@ -195,9 +186,7 @@ class BasicUnivariatePredictor:
         1. Models mean squared error of trainings and validation data.
         2. Models loss of trainings and validation data.
         '''
-
         information = self.details
-
 
         plt.subplot(1, 2, 1)
         plt.plot(information.history['mean_squared_error'])
@@ -206,7 +195,6 @@ class BasicUnivariatePredictor:
         plt.ylabel('MSE')
         plt.xlabel('Epoch')
         plt.legend(['Train', 'Test'], loc='upper right')
-
 
         plt.subplot(1, 2, 2)
         plt.plot(information.history['loss'])
@@ -235,11 +223,9 @@ class BasicUnivariatePredictor:
             data = data.reshape((1, self.input_x.shape[1]))
             y_pred = self.model.predict(data, verbose=0)
 
-
         y_pred = y_pred.reshape(y_pred.shape[1], y_pred.shape[0])
             
         return pd.DataFrame(y_pred, columns=[f'{self.model_id}'])
-
 
     def save_model(self):
         '''Save the current model to the current directory.
@@ -253,4 +239,3 @@ class BasicUnivariatePredictor:
                 location (str): Path of keras model location
         '''
         self.model = keras.models.load_model(location)
-

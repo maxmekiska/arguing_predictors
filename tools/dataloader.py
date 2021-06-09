@@ -40,7 +40,6 @@ class DataLoader:
     save_frame(self, name: str):
         Takes stock data loaded and saves it as a csv in current directory.
     '''
-
     def __init__(self, ticker: str, start_date: str, end_date: str) -> object:
         '''
             Parameters:
@@ -196,12 +195,10 @@ class DataLoader:
        
         plt.show()
 
-
     def statistics(self) -> DataFrame:
         '''Calculates and returns basic statistics of data loaded. Statistics include: count, mean, std, min, 25%, 50%, 75%, max.
             Returns:
                 (DataFrame): Dataframe containing statistics.
-
         '''
         return self.stockdata.describe()
     
@@ -212,9 +209,6 @@ class DataLoader:
                 name (str): Name of file to be saved as .csv
         '''
         return self.stockdata.to_csv(name + '.csv')
-
-
-    
 
 class AlternativeDataLoader:
     '''Alternative class to download financial data from the investpy library.
@@ -246,7 +240,6 @@ class AlternativeDataLoader:
     save_frame(self, name: str):
         Takes stock data loaded and saves it as a csv in current directory.
     '''
-
     def __init__(self, ticker: str, country: str, start_date: str, end_date: str, category: str) -> object:
         '''
             Parameters:
@@ -329,7 +322,6 @@ class AlternativeDataLoader:
         '''
         return pd.DataFrame(self.stockdata['Volume'])
 
-
     def calculate_returns_open(self) -> DataFrame:
         '''Calculates return values of daily opening values. return = ((price today - price yesterday)/price yesterday)
 
@@ -391,12 +383,10 @@ class AlternativeDataLoader:
        
         plt.show()
 
-
     def statistics(self) -> DataFrame:
         '''Calculates and returns basic statistics of data loaded. Statistics include: count, mean, std, min, 25%, 50%, 75%, max.
             Returns:
                 (DataFrame): Data frame containing statistics.
-
         '''
         return self.stockdata.describe()
     
@@ -407,5 +397,3 @@ class AlternativeDataLoader:
                 name (str): Name of file to be saved as .csv
         '''
         return self.stockdata.to_csv(name + '.csv')
-
-
