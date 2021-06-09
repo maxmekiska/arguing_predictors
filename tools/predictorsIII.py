@@ -49,7 +49,6 @@ class HybridUnivariatePredictor:
         load_model(self, location: str):
             Load model from location specified.
     '''
-
     def __init__(self, sub_seq: int, steps_past: int, steps_future: int, data = pd.DataFrame()) -> object:
         '''
             Parameters:
@@ -61,9 +60,6 @@ class HybridUnivariatePredictor:
         self.data = array(data) 
         self.sub_seq = sub_seq
         self.input_x, self.input_y, self.modified_back = self.__sequence_prep(data, sub_seq, steps_past, steps_future)
-
-        
-
 
     def __sequence_prep(self, input_sequence: array, sub_seq: int, steps_past: int, steps_future: int) -> array:
         '''Prepares data input into X and y sequences. Lenght of the X sequence is dertermined by steps_past while the length of y is determined by steps_future. In detail, the predictor looks at sequence X and predicts sequence y.
@@ -133,9 +129,7 @@ class HybridUnivariatePredictor:
         1. Models mean squared error of trainings and validation data.
         2. Models loss of trainings and validation data.
         '''
-
         information = self.details
-
 
         plt.subplot(1, 2, 1)
         plt.plot(information.history['mean_squared_error'])
@@ -144,7 +138,6 @@ class HybridUnivariatePredictor:
         plt.ylabel('MSE')
         plt.xlabel('Epoch')
         plt.legend(['Train', 'Test'], loc='upper right')
-
 
         plt.subplot(1, 2, 2)
         plt.plot(information.history['loss'])
