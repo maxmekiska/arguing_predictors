@@ -7,6 +7,7 @@ import unittest
 from consensus.algorithms import *
 
 
+
 d = {'Predictor I': [2, 4, 6, 6], 'Predictor II': [5, 5, 6, 5], 'Predictor III': [10, 5, 8, 8]}
 df = pd.DataFrame(data=d)
 
