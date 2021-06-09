@@ -50,7 +50,6 @@ def predictor_score(data: DataFrame) -> DataFrame:
     result.columns = data.columns
     result = result.add_suffix(' disagreement score')
 
-
     return result
 
 def formatting(target: list) -> list:
@@ -179,7 +178,6 @@ def consolidated_predictions(data: DataFrame, real: DataFrame) -> list:
         final_predictions.append(sum(temp)/data.shape[1])
         weight_history.append(weights)
         weights = new_weights(data.iloc[j], real.iloc[j][0])
-
     
     return final_predictions
 
@@ -256,7 +254,6 @@ def consolidated_predictions_correcting(data: DataFrame, real: DataFrame) -> lis
         final_predictions.append(sum(temp)/data.shape[1])
         weight_history.append(weights)
         weights = new_weights_correcting(data.iloc[j], real.iloc[j][0])
-
     
     return final_predictions
 
@@ -320,7 +317,6 @@ def consolidated_predictions_anchor(data: DataFrame, real: DataFrame, anchor: in
         weights = new_weights(data.iloc[j], real.iloc[j][0])
         del data['Max Anchor']
         del data['Min Anchor']
-
     
     return final_predictions
 
