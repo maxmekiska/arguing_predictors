@@ -7,7 +7,6 @@ from neuralprophet import NeuralProphet
 
 from fbprophet import Prophet
 
-
 from fbprophet.diagnostics import performance_metrics
 from fbprophet.diagnostics import cross_validation
 
@@ -31,7 +30,6 @@ class UnivariatePredictorII:
         predict_prophet(self):
             Outputs prediction values.
     '''
-
     def __init__(self, data: DataFrame, future: int) -> object:
         '''
             Parameters:
@@ -85,7 +83,6 @@ class UnivariatePredictorII:
         plt.xlabel('Epoch')
         plt.legend(['Train', 'Test'], loc='upper right')
 
-
         plt.subplot(1, 2, 2)
         plt.plot(information['SmoothL1Loss'])
         plt.plot(information['SmoothL1Loss_val'])
@@ -105,15 +102,12 @@ class UnivariatePredictorII:
         cross_val = cross_validation(self.model, initial = f'{(round(0.8*len(self.data)))} days', horizon = f'{self.future} days')
         performance = performance_metrics(cross_val)
         
-
         plt.plot(performance['mse'])
         plt.title('Model Mean Average Error')
         plt.ylabel('MSE')
         plt.xlabel('Horizon')
         
         return performance
-
-
 
     def predict_neural(self) -> DataFrame:
         '''Returns the forecasted values starting from the next data point from the very last data point of data provided.
@@ -126,7 +120,6 @@ class UnivariatePredictorII:
         output = output.rename(columns={'yhat1': 'Neural Prophet'})
 
         return output
-
 
     def predict_prophet(self) -> DataFrame:
         '''Returns the forecasted values starting from teh next data point from teh very last data point of data provided.
@@ -142,6 +135,3 @@ class UnivariatePredictorII:
         output = output.reset_index(drop=True)
 
         return output
-        
-
-
