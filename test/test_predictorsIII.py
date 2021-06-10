@@ -50,10 +50,11 @@ solution_X = np.array([[[[28.12999916]],
        [[[27.80999947]],
         [[27.48999977]]]])
 
-solution_y = np.array([[27.79999924, 27.80999947],
-       [27.80999947, 27.48999977],
-       [27.48999977, 27.70999908],
-       [27.70999908, 27.11000061]])
+solution_X1 = np.array([[[[28.12999916]], [[27.79999924]]]])
+
+solution_y = np.array([[27.79999924, 27.80999947], [27.80999947, 27.48999977], [27.48999977, 27.70999908], [27.70999908, 27.11000061]])
+
+solution_y1 = np.array([[27.79999924, 27.80999947, 27.48999977, 27.70999908, 27.11000061]])
 
 solution_modified_back = 1
 
@@ -69,6 +70,18 @@ class Testing(unittest.TestCase):
 
     def test_sequence_pred_m(self):
         _, _, m = sequence_prep(test_price, 2, 2, 2)
+        np.testing.assert_array_equal(m, solution_modified_back, 'not equal')
+
+    def test_sequence_pred_X_1(self):
+        X, _, _ = sequence_prep(test_price, 2, 2, 5)
+        np.testing.assert_array_equal(X, solution_X1, 'not eaqual')
+
+    def test_sequence_pred_y1(self):
+        _, y, _ = sequence_prep(test_price, 2, 2, 5)
+        np.testing.assert_array_equal(y, solution_y1, 'not equal')
+
+    def test_sequence_pred_m1(self):
+        _, _, m = sequence_prep(test_price, 2, 2, 5)
         np.testing.assert_array_equal(m, solution_modified_back, 'not equal')
 
 if __name__ == '__main__':
