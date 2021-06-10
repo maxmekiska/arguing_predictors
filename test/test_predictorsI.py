@@ -33,25 +33,11 @@ def sequence_prep(input_sequence, steps_past: int, steps_future: int):
     X = X.reshape((X.shape[0], X.shape[1], 1))
     return X, y
 
-test_price = np.array([28.12999916, 27.79999924, 27.79999924, 27.80999947, 27.48999977,
-       27.70999908, 27.11000061])
+test_price = np.array([28.12999916, 27.79999924, 27.79999924, 27.80999947, 27.48999977, 27.70999908, 27.11000061])
 
-solution_X = np.array([[[28.12999916],
-        [27.79999924]],
-       [[27.79999924],
-        [27.79999924]],
-       [[27.79999924],
-        [27.80999947]],
-       [[27.80999947],
-        [27.48999977]],
-       [[27.48999977],
-        [27.70999908]]])
+solution_X = np.array([[[28.12999916], [27.79999924]], [[27.79999924], [27.79999924]], [[27.79999924], [27.80999947]], [[27.80999947], [27.48999977]], [[27.48999977], [27.70999908]]])
 
-solution_y = np.array([[27.79999924],
-       [27.80999947],
-       [27.48999977],
-       [27.70999908],
-       [27.11000061]])
+solution_y = np.array([[27.79999924], [27.80999947], [27.48999977], [27.70999908], [27.11000061]])
 
 class Testing(unittest.TestCase):
 
@@ -59,7 +45,7 @@ class Testing(unittest.TestCase):
         X, _ = sequence_prep(test_price, 2, 1)
         np.testing.assert_array_equal(X, solution_X, 'not eaqual')
 
-    def test_seuence_pred_y(self):
+    def test_sequence_pred_y(self):
         _, y = sequence_prep(test_price, 2, 1)
         np.testing.assert_array_equal(y, solution_y, 'not equal')
 
