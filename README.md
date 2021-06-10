@@ -7,27 +7,27 @@ The program is build to be easily extended. New consensus algorithms or individu
 ```shell
 +---arguing_predictors
     +---c 
-    ¦   +---correcting_algorithm.c
+    |   +---correcting_algorithm.c
     +---consensus
-    ¦   +---algorithms.py
+    |   +---algorithms.py
     +---notebooks
-    ¦   +---System.ipynb
-    ¦   +---TestingEnviornment.ipynb
+    |   +---System.ipynb
+    |   +---TestingEnviornment.ipynb
     +---pretrained
-    ¦   +---...
+    |   +---...
     +---system
-    ¦   +---activate.py
+    |   +---activate.py
     +---test
-    ¦   +---test_activate.py
-    ¦   +---test_algorithms.py
-    ¦   +---test_dataloader.py
-    ¦   +---test_predictorsI.py
-    ¦   +---test_predictorsII.py
+    |   +---test_activate.py
+    |   +---test_algorithms.py
+    |   +---test_dataloader.py
+    |   +---test_predictorsI.py
+    |   +---test_predictorsII.py
     +---tools
-    ¦   +---dataloader.py
-    ¦   +---predictorsI.py
-    ¦   +---predictorsII.py
-    ¦   +---predictorsIII.py
+    |   +---dataloader.py
+    |   +---predictorsI.py
+    |   +---predictorsII.py
+    |   +---predictorsIII.py 
 ```
 
 ## Installation
