@@ -1,5 +1,6 @@
 from numpy import array
 import unittest
+import numpy as np
 
 def sequence_prep(input_sequence: array, sub_seq: int, steps_past: int, steps_future: int) -> array:
     '''Prepares data input into X and y sequences. Lenght of the X sequence is dertermined by steps_past while the length of y is determined by steps_future. In detail, the predictor looks at sequence X and predicts sequence y.
@@ -40,26 +41,35 @@ def sequence_prep(input_sequence: array, sub_seq: int, steps_past: int, steps_fu
 test_price = np.array([28.12999916, 27.79999924, 27.79999924, 27.80999947, 27.48999977,
        27.70999908, 27.11000061])
 
-solution_X = np.array([[[28.12999916],
-        [27.79999924]],
-       [[27.79999924],
-        [27.79999924]],
-       [[27.79999924],
-        [27.80999947]],
-       [[27.80999947],
-        [27.48999977]],
-       [[27.48999977],
-        [27.70999908]]])
+solution_X = np.array([[[[28.12999916]],
+        [[27.79999924]]],
+       [[[27.79999924]],
+        [[27.79999924]]],
+       [[[27.79999924]],
+        [[27.80999947]]],
+       [[[27.80999947]],
+        [[27.48999977]]]])
+
+solution_y = np.array([[27.79999924, 27.80999947],
+       [27.80999947, 27.48999977],
+       [27.48999977, 27.70999908],
+       [27.70999908, 27.11000061]])
+
+solution_modified_back = 1
 
 class Testing(unittest.TestCase):
 
     def test_sequence_pred_X(self):
-        X, _ = sequence_prep(test_price, 2, 1)
+        X, _, _ = sequence_prep(test_price, 2, 2, 2)
         np.testing.assert_array_equal(X, solution_X, 'not eaqual')
 
-    def test_seuence_pred_y(self):
-        _, y = sequence_prep(test_price, 2, 1)
+    def test_sequence_pred_y(self):
+        _, y, _ = sequence_prep(test_price, 2, 2, 2)
         np.testing.assert_array_equal(y, solution_y, 'not equal')
+
+    def test_sequence_pred_m(self):
+        _, _, m = sequence_prep(test_price, 2, 2, 2)
+        np.testing.assert_array_equal(m, solution_modified_back, 'not equal')
 
 if __name__ == '__main__':
     unittest.main()
