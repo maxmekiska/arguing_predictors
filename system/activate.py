@@ -31,7 +31,7 @@ def data_prep(df: DataFrame, input_batch_size: int, future_horizon: int) -> [(Da
     
     return input_b, real_value
 
-def individual_predictors_template(training_df: DataFrame, input_batch: DataFrame, future_horizon: int) -> DataFrame:
+def individual_predictors_template(training_df: DataFrame, input_batch: DataFrame, future_horizon: int, epochs: int) -> DataFrame:
     '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented:
 
     1. CNN-LSTM
@@ -42,23 +42,24 @@ def individual_predictors_template(training_df: DataFrame, input_batch: DataFram
             training_df (DataFrame): Data on which the predictors are trained on.
             input_batch (DataFrame): Data which is fed to predictors to predict future values.
             future_horizon (int): Length of how far into the future the predictors will predict.
+            epochs (int): Determines for how many epochs each model is trained. 
 
         Returns:
             (DataFrame): Containing all predictions from all individual predictors.
     '''
     one = HybridUnivariatePredictor(2, len(input_batch), future_horizon, training_df)
     one.create_cnnlstm()
-    one.fit_model(10)
+    one.fit_model(epochs)
     one.show_performance()
     
     two = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
     two.create_bilstm()
-    two.fit_model(10)
+    two.fit_model(epochs)
     two.show_performance()
      
     three = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
     three.create_cnn()
-    three.fit_model(10)
+    three.fit_model(epochs)
     three.show_performance()
     
     prediction_one = one.predict(input_batch)
