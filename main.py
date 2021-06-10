@@ -7,34 +7,45 @@ from system.activate import *
 def main():
     '''Example main function to execute the system without a jupyter notebook as UI.
     '''
-    # data extraction/preparation phase
+    layout_training = [[sg.Button('Start'), sg.Button('Plot Correlation'), sg.Cancel('Continue')]]
 
-    predict = DataLoader('BP', '2018-02-01', '2018-05-01')
-    predict = predict.get_adjclose()
+    window_training = sg.Window('Train individual predictors', layout_training)
 
-    training = DataLoader('BP', '2015-01-01', '2018-01-01')
-    training = training.get_adjclose()
-   
-    predict_req, real = data_prep(predict, 20, 30) # dividing data into predictor input and real data
 
-    #individual_predictors_forecasts = individual_predictors_pretrained_BP_30_5(predict_req, 30)
+    while True:
+        event, values = window_training.read()
+        if event in (sg.WIN_CLOSED, 'Continue'):
+            break
+        elif event == 'Start':            
+            predict = DataLoader('BP', '2018-02-01', '2018-05-01')
+            predict = predict.get_adjclose()
 
-    individual_predictors_forecasts = individual_predictors_template(training, predict_req, 30)
+            training = DataLoader('BP', '2015-01-01', '2018-01-01')
+            training = training.get_adjclose()
+           
+            predict_req, real = data_prep(predict, 20, 30) # dividing data into predictor input and real data
 
-    consensus_forecasts = consensus(individual_predictors_forecasts, real)
+            #individual_predictors_forecasts = individual_predictors_pretrained_BP_30_5(predict_req, 30)
 
-    all_forecasts = combined_frame(individual_predictors_forecasts, consensus_forecasts, real)
+            individual_predictors_forecasts = individual_predictors_template(training, predict_req, 30)
 
-    prediction_error = absolute_error_analytics(individual_predictors_forecasts, consensus_forecasts, real)
+            consensus_forecasts = consensus(individual_predictors_forecasts, real)
 
-    layout = [[sg.Button('Plot Disagreement'), sg.Button('Plot Correlation'), sg.Cancel()], 
+            all_forecasts = combined_frame(individual_predictors_forecasts, consensus_forecasts, real)
+
+            prediction_error = absolute_error_analytics(individual_predictors_forecasts, consensus_forecasts, real)
+
+
+    window_training.close()
+
+    layout_result = [[sg.Button('Plot Disagreement'), sg.Button('Plot Correlation'), sg.Cancel()], 
               [sg.Button('Plot MSE'), sg.Button('Plot MSE Log'), sg.Button('Plot MAE')],
               [sg.Button('Plot Performance')]]
 
-    window = sg.Window('Arguing Predictors', layout)
+    window_result = sg.Window('Arguing Predictors', layout_result)
 
     while True:
-        event, values = window.read()
+        event, values = window_result.read()
         if event in (sg.WIN_CLOSED, 'Cancel'):
             break
         elif event == 'Plot Disagreement':            
@@ -56,7 +67,7 @@ def main():
             plot_performance(all_forecasts)
             plt.show(block=False)
 
-    window.close()
+    window_result.close()
 
 if __name__ == "__main__":
     main()
