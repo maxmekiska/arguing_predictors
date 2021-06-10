@@ -4,6 +4,32 @@ The aim of this proof-of-concept program is to let multiple individual predictor
 
 The program is build to be easily extended. New consensus algorithms or individual predictors can be added. 
 
+```shell
++---arguing_predictors
+    +---c 
+    ¦   +---correcting_algorithm.c
+    +---consensus
+    ¦   +---algorithms.py
+    +---notebooks
+    ¦   +---System.ipynb
+    ¦   +---TestingEnviornment.ipynb
+    +---pretrained
+    ¦   +---...
+    +---system
+    ¦   +---activate.py
+    +---test
+    ¦   +---test_activate.py
+    ¦   +---test_algorithms.py
+    ¦   +---test_dataloader.py
+    ¦   +---test_predictorsI.py
+    ¦   +---test_predictorsII.py
+    +---tools
+    ¦   +---dataloader.py
+    ¦   +---predictorsI.py
+    ¦   +---predictorsII.py
+    ¦   +---predictorsIII.py
+```
+
 ## Installation
 
 First download the program repository.
