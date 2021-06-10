@@ -7,10 +7,9 @@ from system.activate import *
 def main():
     '''Example main function to execute the system without a jupyter notebook as UI.
     '''
-    layout_training = [[sg.Button('Start'), sg.Button('Plot Correlation'), sg.Cancel('Continue')]]
+    layout_training = [[sg.Text('Epochs'), sg.InputText(), sg.Button('Start'), sg.Button('Plot Correlation'), sg.Cancel('Continue')]]
 
-    window_training = sg.Window('Train individual predictors', layout_training)
-
+    window_training = sg.Window('Train individual predictors', layout_training, resizable=True)
 
     while True:
         event, values = window_training.read()
@@ -24,17 +23,11 @@ def main():
             training = training.get_adjclose()
            
             predict_req, real = data_prep(predict, 20, 30) # dividing data into predictor input and real data
-
-            #individual_predictors_forecasts = individual_predictors_pretrained_BP_30_5(predict_req, 30)
-
-            individual_predictors_forecasts = individual_predictors_template(training, predict_req, 30)
-
+            individual_predictors_forecasts = individual_predictors_template(training, predict_req, 30, int(values[0]))
             consensus_forecasts = consensus(individual_predictors_forecasts, real)
-
             all_forecasts = combined_frame(individual_predictors_forecasts, consensus_forecasts, real)
-
-            prediction_error = absolute_error_analytics(individual_predictors_forecasts, consensus_forecasts, real)
-
+            prediction_error = absolute_error_analytics(individual_predictors_forecasts, consensus_forecasts, real) 
+            break
 
     window_training.close()
 
@@ -42,7 +35,7 @@ def main():
               [sg.Button('Plot MSE'), sg.Button('Plot MSE Log'), sg.Button('Plot MAE')],
               [sg.Button('Plot Performance')]]
 
-    window_result = sg.Window('Arguing Predictors', layout_result)
+    window_result = sg.Window('Arguing Predictors', layout_result, resizable=True)
 
     while True:
         event, values = window_result.read()
