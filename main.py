@@ -28,10 +28,10 @@ def main():
     prediction_error = absolute_error_analytics(individual_predictors_forecasts, consensus_forecasts, real)
 
     layout = [[sg.Button('Plot Disagreement'), sg.Button('Plot Correlation'), sg.Cancel()], 
-              [sg.Button('Plot MSE'), sg.Button('Plot MSE Log'), sg.Button('Plot MAE'],
-              [sg.Button('Plot Performance']]
+              [sg.Button('Plot MSE'), sg.Button('Plot MSE Log'), sg.Button('Plot MAE')],
+              [sg.Button('Plot Performance')]]
 
-    window = sg.Window('System demo', layout)
+    window = sg.Window('Arguing Predictors', layout)
 
     while True:
         event, values = window.read()
@@ -49,7 +49,7 @@ def main():
         elif event == 'Plot MSE Log':
             mse_log_score(all_forecasts, True)
             plt.show(block=False)
-        elif event == 'MAE':
+        elif event == 'Plot MAE':
             mae_score(all_forecasts, True)
             plt.show(block=False)
         elif event == 'Plot Performance':
