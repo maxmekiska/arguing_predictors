@@ -23,6 +23,7 @@ The program is build to be easily extended. New consensus algorithms or individu
     |   +---test_dataloader.py
     |   +---test_predictorsI.py
     |   +---test_predictorsII.py
+    |   +---test_predictorsIII.py
     +---tools
     |   +---dataloader.py
     |   +---predictorsI.py
@@ -34,7 +35,7 @@ The program is build to be easily extended. New consensus algorithms or individu
 
 First download the program repository.
 
-The proof of concept program uses a Jupyter notebook as UI. The program can also be used without a Jupyter notebook by executing the main.py file. However, it is recommended to use it together with a Jupyter notebook.
+The proof of concept program uses a Jupyter notebook as UI. The program can also be used without a Jupyter notebook by executing the main.py file. In case of executing the main.py file, a small GUI will appear after the model set-up in the file has been successfully trained. The GUI is a window containing buttons to display different statistics about the systems overall performance. However, it is recommended to use the system with a Jupyter notebook and the main.py file to demo the system.
 
 I recommend to use Anaconda to use Jupyter notebook and manage the necessary python libraries for this program. Anaconda can be downloaded [here](https://www.anaconda.com/products/individual#Downloads).
 
