@@ -1,14 +1,7 @@
 import PySimpleGUI as sg
-#import matplotlib.pyplot as plt
 
 from tools.dataloader import *
 from system.activate import *
-
-
-
-
-
-
 
 def main():
     '''Example main function to execute the system without a jupyter notebook as UI.
