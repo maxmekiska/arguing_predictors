@@ -4,11 +4,15 @@ import PySimpleGUI as sg
 from tools.dataloader import *
 from system.activate import *
 
+
+
+
+
+
+
 def main():
     '''Example main function to execute the system without a jupyter notebook as UI.
     '''
-
-
     predict = DataLoader('BP', '2018-02-01', '2018-05-01')
     predict = predict.get_adjclose()
 
@@ -22,33 +26,51 @@ def main():
     prediction_error = absolute_error_analytics(individual_predictors_forecasts, consensus_forecasts, real) 
 
     sg.ChangeLookAndFeel('Dark')      
-    sg.SetOptions(element_padding=(1, 1))
+    sg.SetOptions(element_padding=(2, 2))
 
-    layout = [[sg.Button('Plot Disagreement')], [sg.Button('Plot Correlation')], 
-              [sg.Button('Plot MSE'), sg.Button('Plot MSE Log'), sg.Button('Plot MAE')],
-              [sg.Button('Plot Performance'), sg.Cancel()]]
+    layout = [
 
-    window = sg.Window('Arguing Predictors', layout)
+              [sg.Frame('Overall System',[[ 
+              sg.Button('System Disagreement', button_color=('black')),
+              sg.Button('Correlation', button_color=('black'))]])], 
+
+              [sg.Text(''  * 70)],      
+
+              [sg.Frame('Evaluation metrics',[[ 
+              sg.Button('MSE', button_color=('black')), 
+              sg.Button('MSE Log', button_color=('black')), 
+              sg.Button('MAE', button_color=('black'))]])],
+
+              [sg.Text(''  * 70)],      
+
+              [sg.Frame('Summary',[[ 
+              sg.Button('Plot Performance', button_color=('black'))]])],
+
+              [sg.Text('_'  * 70)],      
+
+              [sg.Cancel()]]
+
+    window = sg.Window('Arguing Predictors', layout, default_element_size=(40, 1))
 
     while True:
         event, values = window.read()
         if event in (sg.WIN_CLOSED, 'Cancel'):
             break
-        elif event == 'Plot Disagreement':            
+        elif event == 'System Disagreement':            
             system_disagreement(individual_predictors_forecasts)
             plt.tight_layout()
             plt.show(block=False)
-        elif event == 'Plot Correlation':
+        elif event == 'Correlation':
             correlation(prediction_error, True)
             plt.tight_layout()
             plt.show(block=False)
-        elif event == 'Plot MSE':
+        elif event == 'MSE':
             mse_score(all_forecasts, True)
             plt.show(block=False)
-        elif event == 'Plot MSE Log':
+        elif event == 'MSE Log':
             mse_log_score(all_forecasts, True)
             plt.show(block=False)
-        elif event == 'Plot MAE':
+        elif event == 'MAE':
             mae_score(all_forecasts, True)
             plt.show(block=False)
         elif event == 'Plot Performance':
