@@ -26,9 +26,13 @@ def main():
     prediction_error = absolute_error_analytics(individual_predictors_forecasts, consensus_forecasts, real) 
 
     sg.ChangeLookAndFeel('Dark')      
-    sg.SetOptions(element_padding=(2, 2))
+    sg.SetOptions(element_padding=(5, 5))
 
     layout = [
+
+              [sg.Text('Arguing Predictors', font=('Consolas', 10))],
+
+              [sg.Text(''  * 50)],      
 
               [sg.Frame('Overall System',[[ 
               sg.Button('System Disagreement', button_color=('black')),
