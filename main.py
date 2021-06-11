@@ -48,7 +48,7 @@ def main():
 
               [sg.Text('_'  * 70)],      
 
-              [sg.Cancel()]]
+              [sg.Cancel(button_color=('red'))]]
 
     window = sg.Window('Arguing Predictors', layout, default_element_size=(40, 1))
 
