@@ -6,18 +6,19 @@ from system.activate import *
 def main():
     '''Example main function to execute the system without a jupyter notebook as UI.
     '''
-    predict = DataLoader('BP', '2018-02-01', '2018-05-01')
+    predict = DataLoader('BP', '2018-02-01', '2018-05-01') # loading DataFrame of time-frame to be predicted
     predict = predict.get_adjclose()
 
-    training = DataLoader('BP', '2015-01-01', '2018-01-01')
+    training = DataLoader('BP', '2015-01-01', '2018-01-01') # loading training DataFrame to train model on
     training = training.get_adjclose()
 
     predict_req, real = data_prep(predict, 20, 30) # dividing data into predictor input and real data
-    individual_predictors_forecasts = individual_predictors_template(training, predict_req, 30, 5)
-    consensus_forecasts = consensus(individual_predictors_forecasts, real)
-    all_forecasts = combined_frame(individual_predictors_forecasts, consensus_forecasts, real)
-    prediction_error = absolute_error_analytics(individual_predictors_forecasts, consensus_forecasts, real) 
+    individual_predictors_forecasts = individual_predictors_template(training, predict_req, 30, 5) # make forecast
+    consensus_forecasts = consensus(individual_predictors_forecasts, real) # create consolidation values
+    all_forecasts = combined_frame(individual_predictors_forecasts, consensus_forecasts, real) 
+    prediction_error = absolute_error_analytics(individual_predictors_forecasts, consensus_forecasts, real) # create absolute error DataFrame
 
+    # build GUI for data visualization
     sg.ChangeLookAndFeel('Dark')      
     sg.SetOptions(element_padding=(5, 5))
 
