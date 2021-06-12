@@ -8,6 +8,7 @@ The program is build to be easily extended. New consensus algorithms or individu
 +---arguing_predictors
     +---c 
     |   +---correcting_algorithm.c
+    |   +---disagreement_algorithm.c
     +---consensus
     |   +---algorithms.py
     +---notebooks
