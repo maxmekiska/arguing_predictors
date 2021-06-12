@@ -18,7 +18,7 @@ class DataLoader:
     get_low(self):
         Returns Data Frame containing daily lowest value of stock.
     get_open(self):
-        Returns Data Frame containing daily opeing value of stock.
+        Returns Data Frame containing daily opening value of stock.
     get_close(self):
         Returns Data Frame containing daily closing value of stock.
     get_volume(self):
@@ -222,7 +222,7 @@ class AlternativeDataLoader:
     get_low(self):
         Returns Data Frame containing daily lowest value of stock.
     get_open(self):
-        Returns Data Frame containing daily opeing value of stock.
+        Returns Data Frame containing daily opening value of stock.
     get_close(self):
         Returns Data Frame containing daily closing value of stock.
     get_volume(self):
