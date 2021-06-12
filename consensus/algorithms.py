@@ -15,9 +15,9 @@ def disagreement(data: DataFrame) -> DataFrame:
         individual_scores = []
         for i in range(data.shape[1]):
             for j in range(data.shape[1]):
-                individual_scores.append(abs(data.iloc[k,i] - data.iloc[k,j]))
+                individual_scores.append(abs(data.iloc[k,i] - data.iloc[k,j])) # absolute difference between each possible individual predictor pair
             
-        system_disagreement.append(sum(individual_scores) / len(individual_scores))
+        system_disagreement.append(sum(individual_scores) / len(individual_scores)) # average of all individual scores
         individual_scores.clear()
     
     output = pd.DataFrame()
@@ -35,9 +35,9 @@ def predictor_score(data: DataFrame) -> DataFrame:
     '''
     individual_score_collection = []
     for k in range(data.shape[0]):
-        average_values = []
+        average_values = [] # collecting each individual predictors average disagreement value with other predictors
         for j in range(data.shape[1]):
-            individual_scores = []
+            individual_scores = [] # collecting each individual predictors disagreement value with other predictors
             for i in range(data.shape[1]):
                 individual_scores.append(abs(data.iloc[k, j] - data.iloc[k, i]))
         
@@ -47,7 +47,7 @@ def predictor_score(data: DataFrame) -> DataFrame:
         individual_score_collection.append(average_values)
 
     result = pd.DataFrame(individual_score_collection) 
-    result.columns = data.columns
+    result.columns = data.columns # custom made columns for each predictor disagreement
     result = result.add_suffix(' disagreement score')
 
     return result
@@ -63,9 +63,9 @@ def formatting(target: list) -> list:
     '''
     for i in range(len(target)):
         try:
-            target[i] = target[i][0]
+            target[i] = target[i][0] # unpacking numerical values
         except:
-            target[i] = target[i]
+            target[i] = target[i] # if nothing to unpack
     
     return target
 
@@ -80,7 +80,7 @@ def new_weights(preds: list, real_value: float) -> list:
             (list): List containing the new weight values for each predictor.
     '''
     if type(preds) != type(list):
-        preds = list(preds)
+        preds = list(preds) # if input not a list, transformation into list
         
     individual_error = []
     new_weights = []
@@ -91,7 +91,7 @@ def new_weights(preds: list, real_value: float) -> list:
     
     total_error = sum(individual_error)
     for j in range(len(individual_error)):
-        if sum([total_error]) == 0:
+        if sum([total_error]) == 0: # no error, assign full weight
             new_weights.append(1)
         else:
             new_weights.append(1-(individual_error[j]/total_error))
@@ -130,9 +130,9 @@ def new_weights_focused(preds: list, real_value: float) -> list:
 
     for k in range(len(new_weights)):
         if new_weights[k] == max(new_weights):
-            final_weights.append(1)
+            final_weights.append(1) # assign weight of 1 to best predictor
         else:
-            final_weights.append(0)
+            final_weights.append(0) # assign weight of 0 to worst predictors
     
     return formatting(final_weights)
 
@@ -152,7 +152,7 @@ def new_weights_correcting(preds: list, real_value: float) -> list:
     final_weights = []
     
     for i in range(len(preds)):
-        final_weights.append(real_value/preds[i])
+        final_weights.append(real_value/preds[i]) # weight = prediction error correction value
     
     return formatting(final_weights)
 
@@ -175,9 +175,9 @@ def consolidated_predictions(data: DataFrame, real: DataFrame) -> list:
         for i in range(data.shape[1]):
             temp.append(data.iloc[j, i]*weights[i])
             
-        final_predictions.append(sum(temp)/data.shape[1])
-        weight_history.append(weights)
-        weights = new_weights(data.iloc[j], real.iloc[j][0])
+        final_predictions.append(sum(temp)/data.shape[1]) # take average of all weight corrected predictor forecasts
+        weight_history.append(weights) # collecting all weights assigned in the past, mostly for debugging
+        weights = new_weights(data.iloc[j], real.iloc[j][0]) # calculate new weights
     
     return final_predictions
 
@@ -194,13 +194,13 @@ def consolidated_predictions_memory(data: DataFrame, real: DataFrame) -> list:
     final_predictions = []
     
     initialize = [1] * data.shape[1]
-    weight_history = [initialize]
+    weight_history = [initialize] # initialize weight history with 1 values
     weights = []
 
     for j in range(data.shape[0]):
         temp = []
         for i in range(data.shape[1]):
-            temp.append(data.iloc[j, i]*([sum(z) for z in zip(*weight_history)][i]/(j+1))) # j number of rows, total value to take average
+            temp.append(data.iloc[j, i]*([sum(z) for z in zip(*weight_history)][i]/(j+1))) # j number of rows, total value to take average; using weight history to compute average values of weights
         
         final_predictions.append(sum(temp)/data.shape[1])
         weights = new_weights(data.iloc[j], real.iloc[j][0])
@@ -220,7 +220,7 @@ def consolidated_predictions_focused(data: DataFrame, real: DataFrame) -> list:
     '''
     final_predictions = []
     weight_history = []
-    weights = [1] * data.shape[1]
+    weights = [1] * data.shape[1] # initial weights are set to 1
 
     for j in range(data.shape[0]):
         temp = []
@@ -306,8 +306,8 @@ def consolidated_predictions_anchor(data: DataFrame, real: DataFrame, anchor: in
     weights.append(1)
 
     for j in range(data.shape[0]):
-        data['Max Anchor'] = anchor * max(data.iloc[j])
-        data['Min Anchor'] = (1- (anchor - 1)) * min(data.iloc[j])
+        data['Max Anchor'] = anchor * max(data.iloc[j]) # creating maximum anchor
+        data['Min Anchor'] = (1- (anchor - 1)) * min(data.iloc[j]) # creating minimum anchor
         temp = []
         for i in range(data.shape[1]):
             temp.append(data.iloc[j, i]*weights[i])
@@ -315,8 +315,8 @@ def consolidated_predictions_anchor(data: DataFrame, real: DataFrame, anchor: in
         final_predictions.append(sum(temp)/data.shape[1])
         weight_history.append(weights)
         weights = new_weights(data.iloc[j], real.iloc[j][0])
-        del data['Max Anchor']
-        del data['Min Anchor']
+        del data['Max Anchor'] # delete maximum anchor
+        del data['Min Anchor'] # delete minimum anchor
     
     return final_predictions
 
@@ -331,6 +331,6 @@ def average_consolidation(data: DataFrame) -> list:
     '''
     result = []
     for i in range(data.shape[0]):
-        result.append(sum(data.iloc[i])/data.shape[1])
+        result.append(sum(data.iloc[i])/data.shape[1]) # simple average of all individual predictors forecasts
     
     return result
