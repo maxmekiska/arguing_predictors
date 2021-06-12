@@ -112,7 +112,7 @@ def individual_predictors_pretrained_Ford_5_2(input_batch: DataFrame, future_hor
             (DataFrame): Containing all predictions from all individual predictors.
     '''    
     one = BasicUnivariatePredictor(len(input_batch), future_horizon)
-    one.set_model_id('LSTM')
+    one.set_model_id('LSTM') # manual model ID/name setting, necessary since model is pretrained and loaded from a file
     one.load_model('../pretrained/LSTM_Ford_5')
  
     two = BasicUnivariatePredictor(len(input_batch), future_horizon)
@@ -556,6 +556,8 @@ def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
     3. Memory
     4. Focus
     5. Anchor
+    6. Correcting
+    7. Correcting Memory
 
         Parameters:
             df (DataFrame): Forecasts of all individual predictors.
@@ -564,7 +566,7 @@ def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
         Returns:
             (DataFrame): Containing all final consensus values from all algorithms.
     '''
-    consensus = pd.DataFrame()
+    consensus = pd.DataFrame() # DataFrame that will hold all consensus values
     
     average = average_consolidation(df)
     nomemory = consolidated_predictions(df, real)
@@ -711,6 +713,7 @@ def mse_score(df: DataFrame, plot: bool = False) -> DataFrame:
         Returns:
             (DataFrame): DataFrame containing mean squared error of individual predictors forecasts and consensus values of algorithms.
     '''
+    # finding start and end index since Real Value column is in the middle
     end = (list(df.columns).index('Real Value'))
     start = (list(df.columns).index('Real Value')) + 1
 
@@ -729,7 +732,7 @@ def mse_score(df: DataFrame, plot: bool = False) -> DataFrame:
     data = {'Algorithms': name, 'MSE': mse}
     result = pd.DataFrame(data)
 
-    if plot == True: 
+    if plot == True: # plotting results if set to True 
         to_plot = result.sort_values(by = 'MSE')
         to_plot.plot.bar(x='Algorithms', y='MSE', figsize=(15, 6))
 
@@ -814,7 +817,7 @@ def plot_performance(data: DataFrame):
     for i in range(len(columns)):
         if columns[i] == 'Real Value':
             continue
-        abs_error = abs(data[columns[i]] - data['Real Value'])
+        abs_error = abs(data[columns[i]] - data['Real Value']) # absolute error between real and predicted values (subplot)
 
         fig, ax = plt.subplots(2, 1, figsize=(15, 6))
         ax[0].plot(data['Real Value'])
