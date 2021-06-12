@@ -76,7 +76,7 @@ class BasicUnivariatePredictor:
         self.data = array(data)
         self.input_x, self.input_y = self.__sequence_prep(data, steps_past, steps_future)
         
-        self.model_id = ''
+        self.model_id = '' # to identify model (example: name)
 
     def __sequence_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
         '''Prepares data input into X and y sequences. Lenght of the X sequence is dertermined by steps_past while the length of y is determined by steps_future. In detail, the predictor looks at sequence X and predicts sequence y.
@@ -216,7 +216,7 @@ class BasicUnivariatePredictor:
                 (DataFrame): Forecast for sequence provided.
         '''
         data = array(data)
-        try:
+        try: # necessary to handle MLP case
             data = data.reshape((1, self.input_x.shape[1], 1))
             y_pred = self.model.predict(data, verbose=0)
         except:
