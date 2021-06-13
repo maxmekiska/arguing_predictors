@@ -42,7 +42,6 @@ double disagreement(double predictions[], int len){
       k++;
     }
    }
-
   for(int i = 0; i< mod_len; i++){
     sum = disagreement_scores[i] + sum;
   }
