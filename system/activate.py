@@ -31,7 +31,7 @@ def data_prep(df: DataFrame, input_batch_size: int, future_horizon: int) -> [(Da
     
     return input_b, real_value
 
-def individual_predictors_template(training_df: DataFrame, input_batch: DataFrame, future_horizon: int, epochs: int) -> DataFrame:
+def individual_predictors_template0(training_df: DataFrame, input_batch: DataFrame, future_horizon: int, epochs: int) -> DataFrame:
     '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented:
 
     1. CNN-LSTM
@@ -70,7 +70,60 @@ def individual_predictors_template(training_df: DataFrame, input_batch: DataFram
 
     return final_df
 
-def individual_predictors_template2(training_df: DataFrame, future_horizon: int) -> DataFrame:
+def individual_predictors_template1(training_df: DataFrame, input_batch: DataFrame, future_horizon: int, epochs: int) -> DataFrame:
+    '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented:
+
+    1. CNN-LSTM
+    2. Bidirectional LSTM
+    3. CNN
+    4. MLP
+    5. LSTM
+
+        Parameters:
+            training_df (DataFrame): Data on which the predictors are trained on.
+            input_batch (DataFrame): Data which is fed to predictors to predict future values.
+            future_horizon (int): Length of how far into the future the predictors will predict.
+            epochs (int): Determines for how many epochs each model is trained. 
+
+        Returns:
+            (DataFrame): Containing all predictions from all individual predictors.
+    '''
+    one = HybridUnivariatePredictor(2, len(input_batch), future_horizon, training_df)
+    one.create_cnnlstm()
+    one.fit_model(epochs)
+    one.show_performance()
+    
+    two = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
+    two.create_bilstm()
+    two.fit_model(epochs)
+    two.show_performance()
+     
+    three = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
+    three.create_cnn()
+    three.fit_model(epochs)
+    three.show_performance()
+    
+    four = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
+    four.create_mlp()
+    four.fit_model(epochs)
+    four.show_performance()
+
+    five = BasicUnivariatePredictor(len(input_batch), future_horizon, training_df)
+    five.create_lstm()
+    five.fit_model(epochs)
+    five.show_performance()
+
+    prediction_one = one.predict(input_batch)
+    prediction_two = two.predict(input_batch)
+    prediction_three = three.predict(input_batch)
+    prediction_four = four.predict(input_batch)
+    prediction_five = five.predict(input_batch)
+
+    final_df = pd.concat([prediction_one, prediction_two, prediction_three, prediction_four, prediction_five], axis=1) 
+
+    return final_df
+
+def individual_predictors_template3(training_df: DataFrame, future_horizon: int) -> DataFrame:
     '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented:
 
     1. Facebook Prophet
