@@ -13,7 +13,7 @@ def main():
     training = training.get_adjclose()
 
     predict_req, real = data_prep(predict, 20, 30) # dividing data into predictor input and real data
-    individual_predictors_forecasts = individual_predictors_template(training, predict_req, 30, 5) # make forecast
+    individual_predictors_forecasts = individual_predictors_template1(training, predict_req, 30, 5) # make forecast
     consensus_forecasts = consensus(individual_predictors_forecasts, real) # create consolidation values
     all_forecasts = combined_frame(individual_predictors_forecasts, consensus_forecasts, real) 
     prediction_error = absolute_error_analytics(individual_predictors_forecasts, consensus_forecasts, real) # create absolute error DataFrame
