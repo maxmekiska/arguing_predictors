@@ -18,18 +18,18 @@ The program is build to be easily extended. New consensus algorithms or individu
     |	+---BI-LSTM_BP_30
     |	+---BI-LSTM_Ford_5
     |   +---BI-LSTM_SP500_40
-	+---CNN-LSTM_BP_30
-	+---CNN-LSTM_Ford_5
-	+---CNN-LSTM_SP500_40
-	+---CNN_BP_30
-	+---CNN_Ford_5
-	+---CNN_SP500_40
-	+---LSTM_BP_30
-	+---LSTM_Ford_5
-	+---LSTM_SP500_40
-	+---MLP_BP_30
-	+---MLP_Ford_5
-	+---MLP_SP500_40
+    |	+---CNN-LSTM_BP_30
+    |	+---CNN-LSTM_Ford_5
+    |	+---CNN-LSTM_SP500_40
+    |	+---CNN_BP_30
+    |	+---CNN_Ford_5
+    |	+---CNN_SP500_40
+    |	+---LSTM_BP_30
+    |	+---LSTM_Ford_5
+    |	+---LSTM_SP500_40
+    |	+---MLP_BP_30
+    |	+---MLP_Ford_5
+    |	+---MLP_SP500_40
     +---system
     |   +---activate.py
     +---test
