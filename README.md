@@ -50,9 +50,7 @@ The program is build to be easily extended. New consensus algorithms or individu
 
 First download the program repository.
 
-The proof of concept program uses a Jupyter notebook as UI. The program can also be used without a Jupyter notebook by executing the main.py file. In case of executing the main.py file, a small GUI will appear after the model set-up in the file has been successfully trained. The GUI is a window containing buttons to display different statistics about the systems overall performance. However, it is recommended to use the system with a Jupyter notebook and the main.py file to demo the system. Please find below a GUI menu example of the main.py file:
-
-![GUI menu main.py](resources/gui.png)
+The proof of concept program uses a Jupyter notebook as UI. The program can also be used without a Jupyter notebook by executing the main.py file. In case of executing the main.py file, a small GUI will appear after the model set-up in the file has been successfully trained. The GUI is a window containing buttons to display different statistics about the systems overall performance. However, it is recommended to use the system with a Jupyter notebook and the main.py file to demo the system.
 
 I recommend to use Anaconda to use Jupyter notebook and manage the necessary python libraries for this program. Anaconda can be downloaded [here](https://www.anaconda.com/products/individual#Downloads).
 
@@ -91,3 +89,13 @@ Open up an anaconda terminal/command line and activate your enviorment. Now open
 jupyter notebook
 ```
 Finally, locate the downloaded repository and open up the System.ipynb contained in the notebook folder. 
+
+Alternatively, to run the program via the main.py file:
+```shell
+python main.py
+```
+Depending on what individual predictor configuration is used, training of the model begins and after each completed model training cycle test and validation metrices are graphically shown. After all models in the configuration have been trained, the follwing GUI will appear:
+
+![GUI menu main.py](resources/gui.png)
+
+This GUI enables the user to explore the systems consensus predictions and performances in detail.
