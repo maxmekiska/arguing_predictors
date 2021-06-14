@@ -90,7 +90,7 @@ jupyter notebook
 ```
 Finally, locate the downloaded repository and open up the System.ipynb contained in the notebook folder. 
 
-Alternatively, to run the program via the main.py file:
+Alternatively, to run the program via the main.py file (make sure to be in the directory where the main.py file is located):
 ```shell
 python main.py
 ```
