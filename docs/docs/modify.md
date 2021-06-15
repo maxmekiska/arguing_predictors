@@ -56,7 +56,7 @@ def data_prep(df: DataFrame, input_batch_size: int, future_horizon: int) -> [(Da
     
     return input_b, real_value
 ```
-The following configurations are examples of how the system can be used full-cycle. In detail, these templates train the models in real time instead of loading a pre-trained model. This variation is also used in the demo version of the system in the main.py file. 
+The following configurations are examples of how the system can be used with live model training. In detail, these templates train the models in real time instead of loading a pre-trained model. This variation is also used in the demo version of the system in the main.py file. 
 ```python3
 def individual_predictors_template0(training_df: DataFrame, input_batch: DataFrame, future_horizon: int, epochs: int) -> DataFrame:
     '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented:
