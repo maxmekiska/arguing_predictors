@@ -1,1 +1,8 @@
-site_name: My Docs
+site_name: Arguing Predictors
+
+nav:
+    - Home: index.md
+    - Installation: installation.md
+    - Usage: usage.md
+
+
