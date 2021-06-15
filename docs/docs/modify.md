@@ -18,6 +18,7 @@ Third, the directory "system" contains the activate.py file which brings all of 
 
 ## activate.py
 
+## Imports
 First, all necessary libraries and other parts of the program are imported. More metrices for evaluating the performance of the system can be found [here](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics).
 
 ```python3
@@ -150,7 +151,7 @@ def individual_predictors_template1(training_df: DataFrame, input_batch: DataFra
 
     return final_df
 ```
-The following template is a special version of the prior two. This template enables the use of the Facebook prophet and Facebook neural prophet python libraries. These models do not requiere a specific size batch input but rather a whole training data set input.
+The following template is a special version of the prior two. This template enables the use of the Facebook prophet and Facebook neural prophet python libraries. These models do not requiere a specific batch input to forecast.
 ```python3
 def individual_predictors_template3(training_df: DataFrame, future_horizon: int) -> DataFrame:
     '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented:
@@ -184,6 +185,7 @@ Please find in the follwoing an example run of this predictor template:
 
 <embed src="/resources/Facebook.pdf" type="application/pdf" width="100%" height="500px">
 
+The next templates are configured so that a pre-trained Keras model can be used to forecast. These examples use the pre-trained models saved in the "pretrained" directory.
 ```python3
 def individual_predictors_pretrained_Ford_5_2(input_batch: DataFrame, future_horizon: int) -> DataFrame:
     '''Loades pretrained Ford stock model (horizon=5) and predicts based on the given input batch. The following individual predictors are implemented:
