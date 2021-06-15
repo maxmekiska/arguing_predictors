@@ -18,6 +18,8 @@ Third, the directory "system" contains the activate.py file which brings all of 
 
 ## activate.py
 
+First, all necessary libraries and other parts of the program are imported. More metrices for evaluating the performance of the system can be found [here](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics).
+
 ```python3
 import pandas as pd
 from pandas import DataFrame
@@ -36,7 +38,7 @@ from tools.predictorsI import *
 from tools.predictorsII import *
 from tools.predictorsIII import *
 ```
-
+The follwoing function is used to prepare the data into an input batch and real value batch. This function might need adjustments depending on what format other possible predictors may requiere. In this version, the function is able to deal with all predictors contained in predictorsI.py, predictorsII.py and predictorsIII.py.
 ```python3
 def data_prep(df: DataFrame, input_batch_size: int, future_horizon: int) -> [(DataFrame, DataFrame)]:
     '''Takes in data and splits it into an input batch for the individual predictors to perform a prediction on and the the real values observed.
@@ -54,7 +56,7 @@ def data_prep(df: DataFrame, input_batch_size: int, future_horizon: int) -> [(Da
     
     return input_b, real_value
 ```
-
+The following configurations are examples of how the system can be used full-cycle. In detail, these templates train the models in real time instead of loading a pre-trained model. This variation is also used in the demo version of the system in the main.py file. 
 ```python3
 def individual_predictors_template0(training_df: DataFrame, input_batch: DataFrame, future_horizon: int, epochs: int) -> DataFrame:
     '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented:
@@ -147,7 +149,9 @@ def individual_predictors_template1(training_df: DataFrame, input_batch: DataFra
     final_df = pd.concat([prediction_one, prediction_two, prediction_three, prediction_four, prediction_five], axis=1) 
 
     return final_df
-
+```
+The following template is a special version of the prior two. This template enables the use of the Facebook prophet and Facebook neural prophet python libraries. These models do not requiere a specific size batch input but rather a whole training data set input.
+```python3
 def individual_predictors_template3(training_df: DataFrame, future_horizon: int) -> DataFrame:
     '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented:
 
@@ -176,6 +180,9 @@ def individual_predictors_template3(training_df: DataFrame, future_horizon: int)
 
     return final_df
 ```
+Please find in the follwoing an example run of this predictor template:
+
+<embed src="/resources/Facebook.pdf" type="application/pdf" width="100%" height="500px">
 
 ```python3
 def individual_predictors_pretrained_Ford_5_2(input_batch: DataFrame, future_horizon: int) -> DataFrame:
