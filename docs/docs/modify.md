@@ -39,6 +39,7 @@ from tools.predictorsI import *
 from tools.predictorsII import *
 from tools.predictorsIII import *
 ```
+## Data preparation
 The follwoing function is used to prepare the data into an input batch and real value batch. This function might need adjustments depending on what format other possible predictors may requiere. In this version, the function is able to deal with all predictors contained in predictorsI.py, predictorsII.py and predictorsIII.py.
 ```python3
 def data_prep(df: DataFrame, input_batch_size: int, future_horizon: int) -> [(DataFrame, DataFrame)]:
@@ -185,7 +186,7 @@ Please find in the follwoing an example run of this predictor template:
 
 <embed src="/resources/Facebook.pdf" type="application/pdf" width="100%" height="500px">
 
-The next templates are configured so that a pre-trained Keras model can be used to forecast. These examples use the pre-trained models saved in the "pretrained" directory.
+The next templates are configured so that a pre-trained Keras model can be used to forecast. These examples use the pre-trained models saved in the "pretrained" directory. It is important to manually set the model id via the set_model_id() setter function.
 ```python3
 def individual_predictors_pretrained_Ford_5_2(input_batch: DataFrame, future_horizon: int) -> DataFrame:
     '''Loades pretrained Ford stock model (horizon=5) and predicts based on the given input batch. The following individual predictors are implemented:
@@ -628,7 +629,7 @@ def individual_predictors_pretrained_SP500_40_5(input_batch: DataFrame, future_h
 
     return final_df
 ```
-
+This function wrapps around the system disagreement functions contained in the algorithms.py and plots the results.
 ```python3
 def system_disagreement(df: DataFrame):
     '''Plots the overall system disagreement and the individual disagreement scores of the algorithms.
@@ -639,7 +640,7 @@ def system_disagreement(df: DataFrame):
     disagreement(df).plot()
     predictor_score(df).plot()
 ```
-
+This function wrapps around the consensus value creation functions contained in the algorithms.py.
 ```python3
 def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
     '''Applies the following consensus algorithm to provide the final system forecast:
@@ -679,7 +680,7 @@ def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
     
     return consensus
 ```
-
+The following functions are used to collect all in the prior generated data and summarize them into one DataFrame. It also supports the functionality of generating a correlation matrix of the summarized data.
 ```python3
 def set_same_index(to_df: DataFrame, from_df: DataFrame) -> DataFrame:
     '''Helper function to transfer the dates of a date-time indexed dataframe to another.
@@ -798,7 +799,7 @@ def absolute_error_analytics(predictors: DataFrame, algorithms: DataFrame, real:
     
     return result
 ```
-
+The following functions apply different regression metrices onto the forecasted data. More, metrices can be added using the same template. Further regression metrices can be important from the Scikit-learn python library [here](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics).
 ```python3
 def mse_score(df: DataFrame, plot: bool = False) -> DataFrame:
     '''Calculates the mean squared error for the individual predictors and consensus algorithms. Option to plot MSE performences in descending order.
@@ -820,11 +821,11 @@ def mse_score(df: DataFrame, plot: bool = False) -> DataFrame:
     mse = []
     for i in range(0, end):
         name.append(df.columns[i])
-        mse.append(mean_squared_error(y_true, df.iloc[:, i]))
+        mse.append(mean_squared_error(y_true, df.iloc[:, i])) # mean_squared_error() can be substituted by another metric from the scikit-learn library
     
     for i in range(start, df.shape[1]):
         name.append(df.columns[i])
-        mse.append(mean_squared_error(y_true, df.iloc[:, i]))
+        mse.append(mean_squared_error(y_true, df.iloc[:, i])) # mean_squared_error() needs to be substituted here as well if in the prior substituted by another metric
 
     data = {'Algorithms': name, 'MSE': mse}
     result = pd.DataFrame(data)
@@ -903,7 +904,7 @@ def mse_log_score(df: DataFrame, plot: bool = False) -> DataFrame:
 
     return result
 ```
-
+The last part of the activate.py file plots all predictions vs the real values:
 ```python3
 def plot_performance(data: DataFrame):
     '''Plots individual predictors forecasts and consensus values of algorithms against the real values.
