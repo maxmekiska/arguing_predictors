@@ -58,6 +58,7 @@ def data_prep(df: DataFrame, input_batch_size: int, future_horizon: int) -> [(Da
     
     return input_b, real_value
 ```
+## Individual predictor live-training templates
 The following configurations are examples of how the system can be used with live model training. In detail, these templates train the models in real time instead of loading a pre-trained model. This variation is also used in the demo version of the system in the main.py file. 
 ```python3
 def individual_predictors_template0(training_df: DataFrame, input_batch: DataFrame, future_horizon: int, epochs: int) -> DataFrame:
@@ -186,6 +187,7 @@ Please find in the follwoing an example run of this predictor template:
 
 <embed src="/resources/Facebook.pdf" type="application/pdf" width="100%" height="500px">
 
+## Individual predictor pre-trained templates
 The next templates are configured so that a pre-trained Keras model can be used to forecast. These examples use the pre-trained models saved in the "pretrained" directory. It is important to manually set the model id via the set_model_id() setter function.
 ```python3
 def individual_predictors_pretrained_Ford_5_2(input_batch: DataFrame, future_horizon: int) -> DataFrame:
@@ -629,6 +631,7 @@ def individual_predictors_pretrained_SP500_40_5(input_batch: DataFrame, future_h
 
     return final_df
 ```
+## System disagreement
 This function wrapps around the system disagreement functions contained in the algorithms.py and plots the results.
 ```python3
 def system_disagreement(df: DataFrame):
@@ -640,6 +643,7 @@ def system_disagreement(df: DataFrame):
     disagreement(df).plot()
     predictor_score(df).plot()
 ```
+## System consensus value
 This function wrapps around the consensus value creation functions contained in the algorithms.py.
 ```python3
 def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
@@ -680,6 +684,7 @@ def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
     
     return consensus
 ```
+## Data summary generation
 The following functions are used to collect all in the prior generated data and summarize them into one DataFrame. It also supports the functionality of generating a correlation matrix of the summarized data.
 ```python3
 def set_same_index(to_df: DataFrame, from_df: DataFrame) -> DataFrame:
@@ -799,7 +804,8 @@ def absolute_error_analytics(predictors: DataFrame, algorithms: DataFrame, real:
     
     return result
 ```
-The following functions apply different regression metrices onto the forecasted data. More, metrices can be added using the same template. Further regression metrices can be important from the Scikit-learn python library [here](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics).
+## Evaluation metrics
+The following functions apply different regression metrices onto the forecasted data. More, metrics can be added using the same template. Further regression metrices can be important from the Scikit-learn python library [here](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics).
 ```python3
 def mse_score(df: DataFrame, plot: bool = False) -> DataFrame:
     '''Calculates the mean squared error for the individual predictors and consensus algorithms. Option to plot MSE performences in descending order.
@@ -904,6 +910,7 @@ def mse_log_score(df: DataFrame, plot: bool = False) -> DataFrame:
 
     return result
 ```
+## Plotting
 The last part of the activate.py file plots all predictions vs the real values:
 ```python3
 def plot_performance(data: DataFrame):
