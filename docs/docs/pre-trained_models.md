@@ -3,11 +3,22 @@
 In the following you can find the training processes of all pre-trained individual predictors.
 
 ## Horizon 5
-<embed src="/resources/ModelTrainingHorizon5.pdf" type="application/pdf" width="100%" height="1000px">
+
+The first dataset used is the stock price of Ford Motor Company (F). Prices are in USD and listed on NYSE - Nasdaq. The data is extracted via the Yahoo Finance API accessed via the pandas data reader function. The
+adjusting closing price was used to train the following predictors. [Link](https://uk.finance.yahoo.com/quote/F/history?p=F) to the data.
+<embed src="/resources/ModelTrainingHorizon5.pdf" type="application/pdf" width="100%" height="620px">
 
 ## Horizon 30
-<embed src="/resources/ModelTraining2Horizon30.pdf" type="application/pdf" width="100%" height="1000px">
+
+The second dataset used is the stock price of BP p.l.c. (BP). Prices are in USD and listed on NYSE - Nasdaq. The data is extracted via the Yahoo Finance API accessed via the pandas data reader function. The
+adjusting closing price was used to train the following predictors. [Link](https://uk.finance.yahoo.com/quote/BP/history?p=BP) to the data.
+
+<embed src="/resources/ModelTraining2Horizon30.pdf" type="application/pdf" width="100%" height="620px">
 
 ## Horizon 40
-<embed src="/resources/ModelTraining3Horizon40.pdf" type="application/pdf" width="100%" height="1000px">
+
+The third dataset used is the S&P 500 (^GSPC). Prices are in USD and listed on SNP. The data is extracted via the Yahoo Finance API accessed via the pandas data reader function. The adjusting closing price was
+used to train the following predictors. [Link](https://uk.finance.yahoo.com/quote/%5EGSPC/history?p=%5EGSPC) to the data.
+
+<embed src="/resources/ModelTraining3Horizon40.pdf" type="application/pdf" width="100%" height="620px">
 
