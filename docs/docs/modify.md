@@ -15,6 +15,7 @@ The "tools" directory furthermore contains the dataloader which serves to import
 Third, the directory "system" contains the activate.py file which brings all of the individual parts together and enables the system to run. This file furthermore contains evaluation and plotting capabilities. Multiple adjustments can be made here to tailor the systems output.
 
 ## activate.py
+The follwoing section will break down the activate.py file in detail and suggests how possible modifications might be implemented.
 
 ## Imports
 First, all necessary libraries and other parts of the program are imported. More metrices for evaluating the performance of the system can be found [here](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics).
