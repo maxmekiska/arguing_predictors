@@ -16,7 +16,7 @@ Finally, locate the downloaded repository and open up the System.ipynb contained
 The follwoning is an example of a successful System.ipynb run:
 
 
-<embed src="/resources/ExampleSystem.pdf" type="application/pdf" width="100%" height="1000px">
+<embed src="/resources/ExampleSystem.pdf" type="application/pdf" width="100%" height="1200px">
 
 
 ## main.py script
