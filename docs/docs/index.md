@@ -18,6 +18,8 @@ The program is build to be easily extended. New consensus algorithms or individu
     |   +---disagreement_algorithm.c
     +---consensus
     |   +---algorithms.py
+    +---docs
+    |   +---...
     +---notebooks
     |   +---System.ipynb
     |   +---TestingEnviornment.ipynb

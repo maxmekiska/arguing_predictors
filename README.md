@@ -13,6 +13,8 @@ For more detailed information visit the mkdocs build documentation of this progr
     |   +---disagreement_algorithm.c
     +---consensus
     |   +---algorithms.py
+    +---docs
+    |   +---...
     +---notebooks
     |   +---System.ipynb
     |   +---TestingEnviornment.ipynb
