@@ -1,3 +1,9 @@
+<style>
+	div {
+		text-align: justify;
+	    }
+</style>
+
 # Starting the program
 
 ## Jupyter Notebook

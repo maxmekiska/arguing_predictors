@@ -1,3 +1,9 @@
+<style>
+	div {
+		text-align: justify;
+	    }
+</style>
+
 # Installation
 
 First download the program repository.
