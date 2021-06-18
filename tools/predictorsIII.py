@@ -30,12 +30,8 @@ class HybridUnivariatePredictor:
         -------
         sequence_prep(input_sequence: array, steps_past: int, steps_future: int) -> array:
             Private method to prepare data for predictor ingestion.
-        create_lstm(self):
-            Builds LSTM structure.
-        create_cnn(self):
-            Builds CNN structure.
-        create_bilstm(self):
-            Builds bidirectional LSTM structure.
+        create_cnnlstm(self):
+            Builds CNN-LSTM structure.
         fit_model(self, epochs: int, show_progress: int = 1):
             Training the in the prior defined model. Count of epochs need to be defined.
         model_blueprint(self):
