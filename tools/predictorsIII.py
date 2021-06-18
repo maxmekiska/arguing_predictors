@@ -30,6 +30,8 @@ class HybridUnivariatePredictor:
         -------
         sequence_prep(input_sequence: array, steps_past: int, steps_future: int) -> array:
             Private method to prepare data for predictor ingestion.
+        set_model_id(self, name: str):
+            Setter method to change model id name.
         create_cnnlstm(self):
             Builds CNN-LSTM structure.
         fit_model(self, epochs: int, show_progress: int = 1):
@@ -103,6 +105,8 @@ class HybridUnivariatePredictor:
     def create_cnnlstm(self):
         '''Creates CNN-LSTM hybrid model by defining all layers with activation functions, optimizer, loss function and evaluation metrics. 
         '''
+        self.set_model_id('CNN-LSTM')
+
         self.model = Sequential()
         self.model.add(TimeDistributed(Conv1D(filters=64, kernel_size=2, activation='relu'), input_shape=(None,self.modified_back, 1)))
         self.model.add(TimeDistributed(Conv1D(filters=32, kernel_size=2, activation='relu')))
