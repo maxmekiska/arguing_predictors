@@ -57,6 +57,8 @@ class HybridUnivariatePredictor:
         self.sub_seq = sub_seq
         self.input_x, self.input_y, self.modified_back = self.__sequence_prep(data, sub_seq, steps_past, steps_future)
 
+        self.model_id = '' # identify model (example: name)
+
     def __sequence_prep(self, input_sequence: array, sub_seq: int, steps_past: int, steps_future: int) -> array:
         '''Prepares data input into X and y sequences. Lenght of the X sequence is dertermined by steps_past while the length of y is determined by steps_future. In detail, the predictor looks at sequence X and predicts sequence y.
 
@@ -92,6 +94,11 @@ class HybridUnivariatePredictor:
         modified_back = X.shape[1]//sub_seq
         X = X.reshape((X.shape[0], sub_seq, modified_back, 1))
         return X, y, modified_back # special treatment to account for sub sequence division
+
+    def set_model_id(self, name: str):
+        '''Setter method to change model id field.
+        '''
+        self.model_id = name
 
     def create_cnnlstm(self):
         '''Creates CNN-LSTM hybrid model by defining all layers with activation functions, optimizer, loss function and evaluation metrics. 
@@ -161,7 +168,7 @@ class HybridUnivariatePredictor:
 
         y_pred = y_pred.reshape(y_pred.shape[1], y_pred.shape[0])
             
-        return pd.DataFrame(y_pred, columns=['CNN-LSTM'])
+        return pd.DataFrame(y_pred, columns=[f'{self.model_id}'])
 
     def save_model(self):
         '''Save the current model to the current directory.
