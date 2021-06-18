@@ -47,6 +47,8 @@ class BasicUnivariatePredictor:
             Private method to prepare data for predictor ingestion.
         set_model_id(self, name: str)
             Setter method to change model id name.
+        create_mlp(self):
+            Builds MLP structure.
         create_lstm(self):
             Builds LSTM structure.
         create_cnn(self):
