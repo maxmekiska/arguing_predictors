@@ -464,7 +464,7 @@ def individual_predictors_pretrained_Ford_5_5(input_batch: DataFrame, future_hor
     2. CNN
     3. MLP
     4. Bidirectional-LSTM
-    5. LSTM-CNN
+    5. CNN-LSTM
 
         Parameters:
             input_batch (DataFrame): Data which is fed to predictors to predict future values.
@@ -490,6 +490,7 @@ def individual_predictors_pretrained_Ford_5_5(input_batch: DataFrame, future_hor
     four.load_model('../pretrained/BI-LSTM_Ford_5')
 
     five = HybridUnivariatePredictor(sub_seq = 2, steps_past = len(input_batch), steps_future = future_horizon)
+    five.set_model_id('CNN-LSTM')
     five.load_model('../pretrained/CNN-LSTM_Ford_5')
 
     prediction_one = one.predict(input_batch)
@@ -509,7 +510,7 @@ def individual_predictors_pretrained_BP_30_5(input_batch: DataFrame, future_hori
     2. CNN
     3. MLP
     4. Bidirectional-LSTM
-    5. LSTM-CNN
+    5. CNN-LSTM
 
         Parameters:
             input_batch (DataFrame): Data which is fed to predictors to predict future values.
@@ -535,6 +536,7 @@ def individual_predictors_pretrained_BP_30_5(input_batch: DataFrame, future_hori
     four.load_model('../pretrained/BI-LSTM_BP_30')
 
     five = HybridUnivariatePredictor(sub_seq = 2, steps_past = len(input_batch), steps_future = future_horizon)
+    five.set_model_id('CNN-LSTM')
     five.load_model('../pretrained/CNN-LSTM_BP_30')
 
     prediction_one = one.predict(input_batch)
@@ -554,7 +556,7 @@ def individual_predictors_pretrained_SP500_40_5(input_batch: DataFrame, future_h
     2. CNN
     3. MLP
     4. Bidirectional-LSTM
-    5. LSTM-CNN
+    5. CNN-LSTM
 
         Parameters:
             input_batch (DataFrame): Data which is fed to predictors to predict future values.
@@ -580,6 +582,7 @@ def individual_predictors_pretrained_SP500_40_5(input_batch: DataFrame, future_h
     four.load_model('../pretrained/BI-LSTM_SP500_40')
 
     five = HybridUnivariatePredictor(sub_seq = 2, steps_past = len(input_batch), steps_future = future_horizon)
+    five.set_model_id('CNN-LSTM')
     five.load_model('../pretrained/CNN-LSTM_SP500_40')
 
     prediction_one = one.predict(input_batch)
