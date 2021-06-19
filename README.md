@@ -20,6 +20,8 @@ mkdocs serve
 
 Third, after few seconds mkdocs should provide a local address which can be opened in a browser. This address contains the preview of the documentation.
 
+## System structure
+
 ```shell
 +---arguing_predictors
     +---c 
