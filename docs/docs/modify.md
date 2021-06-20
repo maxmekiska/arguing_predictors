@@ -1,11 +1,11 @@
 <style>
-	div {
+	.formatting {
 		text-align: justify;
-	    }
+	 }
 </style>
 
 # Modifications
-
+<div class="formatting">
 The system was designed to be adjusted and modified in multiple ways. First, the "tools" directory contains the individual predictors and supports example predictors based on the Keras python library. This overal framework can be used to add further individual predictor configurations but also offers the liberty to add predictors independent of this format. In the case of diverting from this structure, it is important that the predictor returns a DataFrame containing the future predictions. Lastly, the pre-existing predictors can also be used to pre-train individual predictors.
 
 Please find in the following examples of the pre-training process [here](/../pre-trained_models/).
@@ -964,6 +964,7 @@ def plot_performance(data: DataFrame):
         plt.tight_layout()
 ```
 
+</div>
 
 
 
