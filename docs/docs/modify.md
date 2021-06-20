@@ -990,7 +990,9 @@ def main():
     #consensus_forecasts = consensus_optimal(individual_predictors_forecasts, real) # create consolidation value only with correcting algorithm
     all_forecasts = combined_frame(individual_predictors_forecasts, consensus_forecasts, real) 
     prediction_error = absolute_error_analytics(individual_predictors_forecasts, consensus_forecasts, real) # create absolute error DataFrame
+```
 
+```python3
     # build GUI for data visualization
     sg.ChangeLookAndFeel('Dark')      
     sg.SetOptions(element_padding=(5, 5))
@@ -1022,7 +1024,9 @@ def main():
               [sg.Cancel(button_color=('red'))]]
 
     window = sg.Window('Arguing Predictors', layout, default_element_size=(40, 1))
+```
 
+```python3
     while True:
         event, values = window.read()
         if event in (sg.WIN_CLOSED, 'Cancel'):
