@@ -642,6 +642,23 @@ def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
     
     return consensus
 
+def consensus_optimal(df: DataFrame, real: DataFrame) -> DataFrame:
+    '''Applies the correcting consensus algorithm to provide the final system forecast.
+
+        Parameters:
+            df (DataFrame): Forecasts of all individual predictors.
+            real (DataFrame): The true/actual values.
+
+        Returns:
+            (DataFrame): Containing all final consensus values from all algorithms.
+    '''
+    consensus = pd.DataFrame() # DataFrame that will hold consensus values
+
+    correcting = consolidated_predictions_correcting(df, real)    
+    consensus['Correcting'] = correcting
+ 
+    return consensus
+
 def set_same_index(to_df: DataFrame, from_df: DataFrame) -> DataFrame:
     '''Helper function to transfer the dates of a date-time indexed dataframe to another.
 
