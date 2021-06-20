@@ -685,6 +685,26 @@ def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
     
     return consensus
 ```
+## Correcting consensus algorithm only
+This is an alternative version of the prior consensus function that allows to only apply the correcting consensus value algorithm.
+```python3
+def consensus_optimal(df: DataFrame, real: DataFrame) -> DataFrame:
+    '''Applies the correcting consensus algorithm to provide the final system forecast.
+
+        Parameters:
+            df (DataFrame): Forecasts of all individual predictors.
+            real (DataFrame): The true/actual values.
+
+        Returns:
+            (DataFrame): Containing all final consensus values from all algorithms.
+    '''
+    consensus = pd.DataFrame() # DataFrame that will hold consensus values
+
+    correcting = consolidated_predictions_correcting(df, real)    
+    consensus['Correcting'] = correcting
+ 
+    return consensus
+```
 ## Data summary generation
 The following functions are used to collect all in the prior generated data and summarize them into one DataFrame. It also supports the functionality of generating a correlation matrix of the summarized data.
 ```python3
