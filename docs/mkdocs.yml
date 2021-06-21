@@ -4,7 +4,6 @@ nav:
     - Home: index.md
     - Installation: installation.md
     - Usage: usage.md
-    - Modify: modify.md
+    - Modification Manual: modify.md
     - Pre-trained models: pre-trained_models.md
     - Consensus: consensus.md
-
