@@ -966,14 +966,15 @@ def plot_performance(data: DataFrame):
 # main.py
 
 ## Importing the system
-
+This part of the code imports the python library PySimpleGUI to generate the GUI after the models have completed the training cycle. Moreover, it imports the proof-of-concept system.
 ```python3
 import PySimpleGUI as sg
 
 from tools.dataloader import *
 from system.activate import *
 ```
-
+## System activation - Live training
+The next part initiates the live training process of the models defined and applies all other functions to genereate the consensus value and evaluation metrics. This code should be modified to change the stock, trainings data, prediction horizon data, evaluation function, individual prediction models and consensus algorithms used. It is recommended to set-up other prediction and consensus algorithms and any other new functions within the activate.py file.
 ```python3
 def main():
     '''Example main function to execute the system without a jupyter notebook as UI.
@@ -991,7 +992,8 @@ def main():
     all_forecasts = combined_frame(individual_predictors_forecasts, consensus_forecasts, real) 
     prediction_error = absolute_error_analytics(individual_predictors_forecasts, consensus_forecasts, real) # create absolute error DataFrame
 ```
-
+## GUI layout
+The next part defines the GUI pop-up window layout:
 ```python3
     # build GUI for data visualization
     sg.ChangeLookAndFeel('Dark')      
@@ -1025,7 +1027,8 @@ def main():
 
     window = sg.Window('Arguing Predictors', layout, default_element_size=(40, 1))
 ```
-
+## GUI functionality
+Finally, this while loop adds functionality to the buttons created in the prior part:
 ```python3
     while True:
         event, values = window.read()
