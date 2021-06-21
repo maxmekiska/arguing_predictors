@@ -4,7 +4,7 @@
 	 }
 </style>
 
-# Pretrained models
+# Pre-trained models
 <div class="formatting">
 In the following you can find the training processes of all pre-trained individual predictors.
 
@@ -17,6 +17,14 @@ The data the model was trained on is the historical adjusted close stock price o
 
 <embed src="/resources/ModelTrainingHorizon5.pdf" type="application/pdf" width="100%" height="620px">
 
+The resulting pre-trained models are:
+
+- BI-LSTM_Ford_5
+- CNN-LSTM_Ford_5
+- CNN_Ford_5
+- LSTM_Ford_5
+- MLP_Ford_5
+
 ## Horizon 30
 
 The second dataset used is the stock price of BP p.l.c. (BP). Prices are in USD and listed on NYSE - Nasdaq. The data is extracted via the Yahoo Finance API accessed via the pandas data reader function. The
@@ -27,6 +35,15 @@ The data the model was trained on is the historical adjusted close stock price o
 
 <embed src="/resources/ModelTraining2Horizon30.pdf" type="application/pdf" width="100%" height="620px">
 
+
+The resulting pre-trained models are:
+
+- BI-LSTM_BP_30
+- CNN-LSTM_BP_30
+- CNN_BP_30
+- LSTM_BP_30
+- MLP_BP_30
+
 ## Horizon 40
 
 The third dataset used is the S&P 500 (^GSPC). Prices are in USD and listed on SNP. The data is extracted via the Yahoo Finance API accessed via the pandas data reader function. The adjusting closing price was
@@ -35,5 +52,14 @@ used to train the following predictors. [Link](https://uk.finance.yahoo.com/quot
 The data the model was trained on is the historical adjusted close stock price of the S&P500 index, ranging from 1st of January 2010 to the 1st of January 2018.
 
 <embed src="/resources/ModelTraining3Horizon40.pdf" type="application/pdf" width="100%" height="620px">
+
+The resulting pre-trained models are:
+
+- BI-LSTM_SP500_40
+- CNN-LSTM_SP500_40
+- CNN_SP500_40
+- LSTM_SP500_40
+- MLP_SP500_40
+
 
 </div>
