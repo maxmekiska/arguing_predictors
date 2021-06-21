@@ -10,9 +10,13 @@ The system was designed to be adjusted and modified in multiple ways. First, the
 
 Please find in the following examples of the pre-training process [here](/../pre-trained_models/).
 
-The "tools" directory furthermore contains the dataloader which serves to import stock data. Other data can be added by creating a similar data import solution. Second, the "consensus" directory contains the [algorithms](/../consensus/). that build the systems final consensus/prediction value. Further, consensus algorithm solutions can be added here as well. In general, the algorithm will need to take in a DataFrame containing the different predictors forecasts and another list or DataFrame containing actual real values. 
+The "tools" directory furthermore contains the dataloader which serves to import stock data. Other data can be added by creating a similar data import solution.
+
+Second, the "consensus" directory contains the [algorithms](/../consensus/). that build the systems final consensus/prediction value. Further, consensus algorithm solutions can be added here as well. In general, the algorithm will need to take in a DataFrame containing the different predictors forecasts and another list or DataFrame containing actual real values. 
 
 Third, the directory "system" contains the activate.py file which brings all of the individual parts together and enables the system to run. This file furthermore contains evaluation and plotting capabilities. Multiple adjustments can be made here to tailor the systems output.
+
+Fourth, the main.py file serves to run the system from a command line. It trains all models specified in the template live and offers a GUI to display the results.
 
 # activate.py
 The follwoing section will break down the activate.py file in detail and suggests how possible modifications might be implemented.
@@ -964,7 +968,7 @@ def plot_performance(data: DataFrame):
         plt.tight_layout()
 ```
 # main.py
-
+This file contains the logic of running the system from a command line. Multiple adjustments can be made to further tailr the system.
 ## Importing the system
 This part of the code imports the python library PySimpleGUI to generate the GUI after the models have completed the training cycle. Moreover, it imports the proof-of-concept system.
 ```python3
@@ -992,7 +996,6 @@ def main():
     all_forecasts = combined_frame(individual_predictors_forecasts, consensus_forecasts, real) 
     prediction_error = absolute_error_analytics(individual_predictors_forecasts, consensus_forecasts, real) # create absolute error DataFrame
 ```
-## GUI layout
 The next part defines the GUI pop-up window layout:
 ```python3
     # build GUI for data visualization
@@ -1027,7 +1030,6 @@ The next part defines the GUI pop-up window layout:
 
     window = sg.Window('Arguing Predictors', layout, default_element_size=(40, 1))
 ```
-## GUI functionality
 Finally, this while loop adds functionality to the buttons created in the prior part:
 ```python3
     while True:
