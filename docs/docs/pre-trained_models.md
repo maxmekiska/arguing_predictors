@@ -1,11 +1,11 @@
 <style>
-	div {
+	.formatting {
 		text-align: justify;
-	    }
+	 }
 </style>
 
 # Pretrained models
-
+<div class="formatting">
 In the following you can find the training processes of all pre-trained individual predictors.
 
 ## Horizon 5
@@ -35,3 +35,5 @@ used to train the following predictors. [Link](https://uk.finance.yahoo.com/quot
 The data the model was trained on is the historical adjusted close stock price of the S&P500 index, ranging from 1st of January 2010 to the 1st of January 2018.
 
 <embed src="/resources/ModelTraining3Horizon40.pdf" type="application/pdf" width="100%" height="620px">
+
+</div>

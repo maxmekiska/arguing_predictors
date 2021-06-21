@@ -1,11 +1,11 @@
 <style>
-	div {
+	.formatting {
 		text-align: justify;
-	    }
+	 }
 </style>
 
 # Starting the program
-
+<div class="formatting">
 ## Jupyter Notebook
 Open up an anaconda terminal/command line and activate your enviorment. Now open a Jupyter notebook by executing: 
 ```shell
@@ -34,4 +34,4 @@ The following shows a full test run of the main.py:
 ![Test run main.py](resources/ExampleMain.gif)
 
 This GUI enables the user to explore the systems consensus predictions and performances in detail.
-
+</div>

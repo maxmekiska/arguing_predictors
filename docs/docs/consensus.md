@@ -1,12 +1,11 @@
 <style>
-	div {
+	.formatting {
 		text-align: justify;
-	    }
+	 }
 </style>
 
-
 # Consensus Algorithms
-
+<div class="formatting">
 The algorithms.py file can be located in the consensus directory which houses all algorithms that determine the final systems consensus prediction. The systems current version contains in total the following 7 consensus algorithms and 2 disagreement algorithms:
 
 Disagreement algorithms:
@@ -395,3 +394,4 @@ def average_consolidation(data: DataFrame) -> list:
     
     return result
 ```
+</div>

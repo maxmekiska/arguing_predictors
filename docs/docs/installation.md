@@ -1,11 +1,11 @@
 <style>
-	div {
+	.formatting {
 		text-align: justify;
-	    }
+	 }
 </style>
 
 # Installation
-
+<div class="formatting">
 First download the program repository.
 
 The proof of concept program uses a Jupyter notebook as UI. The program can also be used without a Jupyter notebook by executing the main.py file. In case of executing the main.py file, a small GUI will appear after the model set-up in the file has been successfully trained. The GUI is a window containing buttons to display different statistics about the systems overall performance. However, it is recommended to use the system with a Jupyter notebook and the main.py file to demo the system.
@@ -40,3 +40,4 @@ pip install -r requierements.txt
 
 This will install all other necessary dependencies. For full reference, the full_env_requirements.txt contains all dependencies installed in the anaconda enviornment that was used to build this prototype system.
 
+</div>

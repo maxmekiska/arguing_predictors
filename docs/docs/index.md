@@ -1,11 +1,11 @@
 <style>
-	div {
+	.formatting {
 		text-align: justify;
-	    }
+	 }
 </style>
 
 # Arguing Predictors
-
+<div class="formatting">
 The aim of this proof-of-concept program is to let multiple individual predictors, forecasting chaotic time series data, communicate with each other and output a consensus prediction. This project will use financial data to test the system performance.
 
 The program is build to be easily extended. New consensus algorithms or individual predictors can be added. 
@@ -54,3 +54,4 @@ The program is build to be easily extended. New consensus algorithms or individu
     |   +---predictorsII.py
     |   +---predictorsIII.py 
 ```
+</div>
