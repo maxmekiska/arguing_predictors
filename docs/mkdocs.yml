@@ -1,5 +1,8 @@
 site_name: Arguing Predictors
 
+theme:
+    name: mkdocs
+
 nav:
     - Home: index.md
     - Installation: installation.md
