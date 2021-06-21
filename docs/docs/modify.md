@@ -973,6 +973,7 @@ This file contains the logic of running the system from a command line. Multiple
 This part of the code imports the python library PySimpleGUI to generate the GUI after the models have completed the training cycle. Moreover, it imports the proof-of-concept system.
 ```python3
 import PySimpleGUI as sg
+import pandas as pd
 
 from tools.dataloader import *
 from system.activate import *
@@ -1021,6 +1022,14 @@ The next part defines the GUI pop-up window layout:
 
               [sg.Text(''  * 70)],      
 
+              [sg.Frame('Save to CSV',[[ 
+              sg.Button('All Forecasts', button_color=('green')),
+              sg.Button('MSE values', button_color=('green')),
+              sg.Button('MSE Log values', button_color=('green')),
+              sg.Button('MAE values', button_color=('green'))]])], 
+
+              [sg.Text(''  * 70)],      
+
               [sg.Frame('Summary',[[ 
               sg.Button('Plot Performance', button_color=('black'))]])],
 
@@ -1053,6 +1062,14 @@ Finally, this while loop adds functionality to the buttons created in the prior 
         elif event == 'MAE':
             mae_score(all_forecasts, True)
             plt.show(block=False)
+        elif event == 'All Forecasts':
+            all_forecasts.to_csv('All_Forecasts.csv')
+        elif event == 'MSE values':
+            mse_score(all_forecasts).to_csv('MSE.csv')
+        elif event == 'MSE Log values':
+            mse_log_score(all_forecasts).to_csv('MSE_Log.csv')
+        elif event == 'MAE values':
+            mae_score(all_forecasts).to_csv('MAE.csv')
         elif event == 'Plot Performance':
             plot_performance(all_forecasts)
             plt.show(block=False)
