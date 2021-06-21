@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+import pandas as pd
 
 from tools.dataloader import *
 from system.activate import *
@@ -13,7 +14,7 @@ def main():
     training = training.get_adjclose()
 
     predict_req, real = data_prep(predict, 20, 30) # dividing data into predictor input and real data
-    individual_predictors_forecasts = individual_predictors_template1(training, predict_req, 30, 5) # make forecast
+    individual_predictors_forecasts = individual_predictors_template0(training, predict_req, 30, 5) # make forecast
     consensus_forecasts = consensus(individual_predictors_forecasts, real) # create consolidation values
     #consensus_forecasts = consensus_optimal(individual_predictors_forecasts, real) # create consolidation value only with correcting algorithm
     all_forecasts = combined_frame(individual_predictors_forecasts, consensus_forecasts, real) 
@@ -39,6 +40,14 @@ def main():
               sg.Button('MSE', button_color=('black')), 
               sg.Button('MSE Log', button_color=('black')), 
               sg.Button('MAE', button_color=('black'))]])],
+
+              [sg.Text(''  * 70)],      
+
+              [sg.Frame('Save to CSV',[[ 
+              sg.Button('All Forecasts', button_color=('green')),
+              sg.Button('MSE values', button_color=('green')),
+              sg.Button('MSE Log values', button_color=('green')),
+              sg.Button('MAE values', button_color=('green'))]])], 
 
               [sg.Text(''  * 70)],      
 
@@ -72,6 +81,14 @@ def main():
         elif event == 'MAE':
             mae_score(all_forecasts, True)
             plt.show(block=False)
+        elif event == 'All Forecasts':
+            all_forecasts.to_csv('All_Forecasts.csv')
+        elif event == 'MSE values':
+            mse_score(all_forecasts).to_csv('MSE.csv')
+        elif event == 'MSE Log values':
+            mse_log_score(all_forecasts).to_csv('MSE_Log.csv')
+        elif event == 'MAE values':
+            mae_score(all_forecasts).to_csv('MAE.csv')
         elif event == 'Plot Performance':
             plot_performance(all_forecasts)
             plt.show(block=False)
