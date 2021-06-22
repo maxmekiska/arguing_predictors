@@ -55,8 +55,6 @@ class DataLoader:
 
         self.stockdata = data.DataReader(ticker, 'yahoo', start_date, end_date)
 
-        print(f'{len(self.stockdata)} data points have been selected') # upon object creation, data point count is shown
-
     def __str__(self) -> str:
         '''Returns basic object information on what ticker data, start and end date, and the total count of data points
            are held by the object.
@@ -269,8 +267,6 @@ class AlternativeDataLoader:
             self.stockdata = investpy.get_index_historical_data(index = self.ticker, country = self.country, from_date = self.start_date, to_date = self.end_date)
         else:
             raise 'No data can be found'
-
-        print(f'{len(self.stockdata)} data points have been selected') # upon object creation, data point count is shown
 
     def __str__(self) -> str:
         '''Returns basic object information on what ticker data, start and end date, and the total count of data points
