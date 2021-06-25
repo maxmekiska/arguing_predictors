@@ -30,7 +30,9 @@ Third, after few seconds mkdocs should provide a local address which can be open
     +---consensus
     |   +---algorithms.py
     +---docs
-    |   +---...
+    |   +---docs
+    |       +---...
+    |   +---mkdocs.yml	
     +---notebooks
     |   +---System.ipynb
     |   +---TestingEnviornment.ipynb
@@ -64,6 +66,7 @@ Third, after few seconds mkdocs should provide a local address which can be open
     |   +---predictorsI.py
     |   +---predictorsII.py
     |   +---predictorsIII.py 
+    +---main.py
 ```
 
 ## Installation
