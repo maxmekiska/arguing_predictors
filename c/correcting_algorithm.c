@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+double average(double list[], double len);
 double consensus(double old_pred[], double new_pred[], double real, int len);
 
 int main () {
@@ -16,6 +17,16 @@ int main () {
   printf("%f\n", result);
 
   return 0;
+}
+
+double average(double list[], double len){
+  double result;
+  double sum;
+  for(int i = 0; i < len; i++){
+    sum = list[i] + sum;
+  }
+  result = sum/len;
+  return result;
 }
 
 /*
@@ -50,12 +61,7 @@ double consensus(double old_pred[], double new_pred[], double real, int len){
     adjusted_pred[j] = weights[j] * new_pred[j];
   }
 
-  for(int k = 0; k< len; k++){
-    sum = adjusted_pred[k] + sum;
-  }
-
-  con = sum/len;
+  con = average(adjusted_pred, len);
 
   return con;
 }
-
