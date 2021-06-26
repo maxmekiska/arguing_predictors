@@ -17,6 +17,16 @@ int main () {
   return 0;
 }
 
+double average(double list[], double len){
+  double result;
+  double sum;
+  for(int i = 0; i < len; i++){
+    sum = list[i] + sum;
+  }
+  result = sum/len;
+  return result;
+}
+
 /*
  * Function:  disagreement 
  * -----------------------
@@ -42,9 +52,8 @@ double disagreement(double predictions[], int len){
       k++;
     }
    }
-  for(int i = 0; i< mod_len; i++){
-    sum = disagreement_scores[i] + sum;
-  }
-  return (sum/mod_len);
-}
 
+  result = average(disagreement_scores, mod_len);
+
+  return result;
+}
