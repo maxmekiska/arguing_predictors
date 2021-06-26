@@ -17,6 +17,16 @@ int main () {
   return 0;
 }
 
+/*
+ * Function:  average
+ * --------------------
+ * computes the average value of a given array.
+ *
+ *  list[] (double) : target array
+ *  len    (int)    : total count of elements in target array  
+ *
+ *  returns: average of array.
+ */
 double average(double list[], double len){
   double result;
   double sum;
