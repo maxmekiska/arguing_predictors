@@ -118,7 +118,7 @@ def individual_predictors_template1(training_df: DataFrame, input_batch: DataFra
 
     return final_df
 
-def individual_predictors_template3(training_df: DataFrame, future_horizon: int) -> DataFrame:
+def individual_predictors_template2(training_df: DataFrame, future_horizon: int) -> DataFrame:
     '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented:
 
     1. Facebook Prophet
