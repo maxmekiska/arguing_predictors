@@ -22,9 +22,6 @@ solution2 = pd.DataFrame(data=d2)
 solution2['Date'] = pd.to_datetime(solution2['Date'])
 solution2.set_index('Date', inplace=True)
 
-d3 = {'High': [7, 7.011428833, 7.150000095]}
-data2 = pd.DataFrame(data=d3)
-
 class Testing(unittest.TestCase):
 
     def test_data_prep(self):
@@ -32,9 +29,6 @@ class Testing(unittest.TestCase):
 
     def test_data_prep_1(self):
         assert_frame_equal(data_prep(data, 3, 2)[1], solution2)
-
-    def test_set_same_index(self):
-        assert_frame_equal(set_same_index(data2, solution), solution)
 
 if __name__ == '__main__':
     unittest.main()
