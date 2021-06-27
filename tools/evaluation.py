@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import sys
 sys.path.append('../')
 
-from consensus.algorithms import disagreement, predictor_score  # since disagreement scores are used for evaulation
+from consensus.algorithms import disagreement, predictor_score  # since disagreement scores are used in this evaluation pipeline set-up
 
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
