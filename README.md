@@ -56,6 +56,7 @@ Third, after few seconds mkdocs should provide a local address which can be open
     |   +---activate.py
     +---test
     |   +---test_activate.py
+    |   +---test_evaluation.py
     |   +---test_algorithms.py
     |   +---test_dataloader.py
     |   +---test_predictorsI.py
