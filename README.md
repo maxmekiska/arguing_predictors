@@ -63,6 +63,7 @@ Third, after few seconds mkdocs should provide a local address which can be open
     |   +---test_predictorsIII.py
     +---tools
     |   +---dataloader.py
+    |   +---evaluation.py
     |   +---predictorsI.py
     |   +---predictorsII.py
     |   +---predictorsIII.py 
