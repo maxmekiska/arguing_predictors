@@ -7,7 +7,7 @@ nav:
     - Home: index.md
     - Installation: installation.md
     - Start: usage.md
-    - Modification Manual: modify.md
+    - The System: modify.md
     - Pre-trained models: pre-trained_models.md
     - Data Import: dataloader.md
     - Consensus: consensus.md
