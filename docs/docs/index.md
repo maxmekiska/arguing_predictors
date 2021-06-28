@@ -6,11 +6,12 @@
 
 # Arguing Predictors
 <div class="formatting">
-The aim of this proof-of-concept program is to let multiple individual predictors, forecasting chaotic time series data, communicate with each other and output a consensus prediction. This project will use financial data to test the system performance.
+The aim of this proof-of-concept program is to let multiple individual predictors, forecasting chaotic time series data, communicate with each other and output a consensus prediction. This project will use financial data to test the system's performance.
 
-The program is build to be easily extended. New consensus algorithms or individual predictors can be added. 
+The program is build to be easily extended. New consensus algorithms, individual predictors, evaluation methods and data import methods can be added. 
 
 ## The System
+The proof-of-concept system consists of three main parts: the pre-processing pipeline, the core system and the evaluation pipeline.
 
 ![Overall System Diagram](resources/General_System.png)
 
