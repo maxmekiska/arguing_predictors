@@ -10,7 +10,7 @@ The system was designed to be adjusted and modified in multiple ways. First, the
 
 Please find in the following examples of the pre-training process [here](/../pre-trained_models/).
 
-The "tools" directory furthermore contains the dataloader which serves to import stock data. Other data can be added by creating a similar data import solution.
+The "tools" directory furthermore contains the [dataloader](/../dataloader/) which serves to import stock data. Other data can be added by creating a similar data import solution.
 
 Second, the "consensus" directory contains the [algorithms](/../consensus/). that build the systems final consensus/prediction value. Further, consensus algorithm solutions can be added here as well. In general, the algorithm will need to take in a DataFrame containing the different predictors forecasts and another list or DataFrame containing actual real values. 
 
