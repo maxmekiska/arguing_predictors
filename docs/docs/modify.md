@@ -6,7 +6,7 @@
 
 # Modifications
 <div class="formatting">
-The system was designed to be adjusted and modified in multiple ways. First, the "tools" directory contains the individual predictors and supports example predictors based on the Keras python library. This overal framework can be used to add further individual predictor configurations but also offers the liberty to add predictors independent of this format. In the case of diverting from this structure, it is important that the predictor returns a DataFrame containing the future predictions. Lastly, the pre-existing predictors can also be used to pre-train individual predictors.
+The system was designed to be adjusted and modified in multiple ways. First, the "tools" directory contains the individual predictors and supports example predictors based on the Keras python library. This overal framework can be used to add further individual predictor configurations but also offers the liberty to add predictors independent of this format. In the case of diverting from this structure, it is important that the predictor returns a DataFrame containing the future predictions. Lastly, the Keras models already contained within the system can be trained and used as pre-trained models.
 
 Please find in the following examples of the pre-training process [here](/../pre-trained_models/).
 
@@ -14,9 +14,11 @@ The "tools" directory furthermore contains the dataloader which serves to import
 
 Second, the "consensus" directory contains the [algorithms](/../consensus/). that build the systems final consensus/prediction value. Further, consensus algorithm solutions can be added here as well. In general, the algorithm will need to take in a DataFrame containing the different predictors forecasts and another list or DataFrame containing actual real values. 
 
-Third, the directory "system" contains the activate.py file which brings all of the individual parts together and enables the system to run. This file furthermore contains evaluation and plotting capabilities. Multiple adjustments can be made here to tailor the systems output.
+Third, the directory "system" contains the activate.py file which brings all of the individual parts together and enables the system to run. Multiple adjustments can be made here to tailor the systems output.
 
-Fourth, the main.py file serves to run the system from a command line. It trains all models specified in the template live and offers a GUI to display the results.
+Fourth, the evaluation.py included within the tools directory provides the system with evaluation capabilities. The standard file contains a correlation analysis of the absolute error of all algorithms, MSE metric, MSE Log metric and MAE metric. Moreover, the evaluation.py file includes plotting functionalities. More evaluation metrics can be added if needed. 
+
+Fifth, the main.py file serves to run the system from a command line. It trains all models specified in the template live and offers a GUI to display the results.
 
 # activate.py
 The follwoing section will break down the activate.py file in detail and suggests how possible modifications might be implemented.

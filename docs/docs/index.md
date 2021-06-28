@@ -10,7 +10,11 @@ The aim of this proof-of-concept program is to let multiple individual predictor
 
 The program is build to be easily extended. New consensus algorithms or individual predictors can be added. 
 
-## Structure
+## The System
+
+![Overall System Diagram](resources/General_System.png)
+
+## The Directory Structure
 ```shell
 +---arguing_predictors
     +---c 
@@ -45,13 +49,16 @@ The program is build to be easily extended. New consensus algorithms or individu
     |   +---test_activate.py
     |   +---test_algorithms.py
     |   +---test_dataloader.py
+    |   +---test_evaluate.py
     |   +---test_predictorsI.py
     |   +---test_predictorsII.py
     |   +---test_predictorsIII.py
     +---tools
     |   +---dataloader.py
+    |   +---evaluate.py
     |   +---predictorsI.py
     |   +---predictorsII.py
     |   +---predictorsIII.py 
+    +---main.py
 ```
 </div>
