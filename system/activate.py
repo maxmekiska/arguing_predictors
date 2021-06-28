@@ -147,7 +147,7 @@ def individual_predictors_template2(training_df: DataFrame, future_horizon: int)
     return final_df
 
 def individual_predictors_pretrained_Ford_5_2(input_batch: DataFrame, future_horizon: int) -> DataFrame:
-    '''Loades pretrained Ford stock model (horizon=5) and predicts based on the given input batch. The following individual predictors are implemented:
+    '''Loads pretrained Ford stock model (horizon=5) and predicts based on the given input batch. The following individual predictors are implemented:
 
     1. LSTM
     2. CNN
@@ -175,7 +175,7 @@ def individual_predictors_pretrained_Ford_5_2(input_batch: DataFrame, future_hor
     return final_df
 
 def individual_predictors_pretrained_BP_30_2(input_batch: DataFrame, future_horizon: int) -> DataFrame:
-    '''Loades pretrained BP stock model (horizon=30) and predicts based on the given input batch. The following individual predictors are implemented:
+    '''Loads pretrained BP stock model (horizon=30) and predicts based on the given input batch. The following individual predictors are implemented:
 
     1. LSTM
     2. CNN
@@ -203,7 +203,7 @@ def individual_predictors_pretrained_BP_30_2(input_batch: DataFrame, future_hori
     return final_df
 
 def individual_predictors_pretrained_SP500_40_2(input_batch: DataFrame, future_horizon: int) -> DataFrame:
-    '''Loades pretrained SP500 index model (horizon=40) and predicts based on the given input batch. The following individual predictors are implemented:
+    '''Loads pretrained SP500 index model (horizon=40) and predicts based on the given input batch. The following individual predictors are implemented:
 
     1. LSTM
     2. CNN
@@ -231,7 +231,7 @@ def individual_predictors_pretrained_SP500_40_2(input_batch: DataFrame, future_h
     return final_df
 
 def individual_predictors_pretrained_Ford_5_3(input_batch: DataFrame, future_horizon: int) -> DataFrame:
-    '''Loades pretrained Ford stock model (horizon=5) and predicts based on the given input batch. The following individual predictors are implemented:
+    '''Loads pretrained Ford stock model (horizon=5) and predicts based on the given input batch. The following individual predictors are implemented:
 
     1. LSTM
     2. CNN
@@ -265,7 +265,7 @@ def individual_predictors_pretrained_Ford_5_3(input_batch: DataFrame, future_hor
     return final_df
 
 def individual_predictors_pretrained_BP_30_3(input_batch: DataFrame, future_horizon: int) -> DataFrame:
-    '''Loades pretrained BP stock model (horizon=30) and predicts based on the given input batch. The following individual predictors are implemented:
+    '''Loads pretrained BP stock model (horizon=30) and predicts based on the given input batch. The following individual predictors are implemented:
 
     1. LSTM
     2. CNN
@@ -299,7 +299,7 @@ def individual_predictors_pretrained_BP_30_3(input_batch: DataFrame, future_hori
     return final_df
 
 def individual_predictors_pretrained_SP500_40_3(input_batch: DataFrame, future_horizon: int) -> DataFrame:
-    '''Loades pretrained SP500 index model (horizon=40) and predicts based on the given input batch. The following individual predictors are implemented:
+    '''Loads pretrained SP500 index model (horizon=40) and predicts based on the given input batch. The following individual predictors are implemented:
 
     1. LSTM
     2. CNN
@@ -333,7 +333,7 @@ def individual_predictors_pretrained_SP500_40_3(input_batch: DataFrame, future_h
     return final_df
 
 def individual_predictors_pretrained_Ford_5_4(input_batch: DataFrame, future_horizon: int) -> DataFrame:
-    '''Loades pretrained Ford stock model (horizon=5) and predicts based on the given input batch. The following individual predictors are implemented:
+    '''Loads pretrained Ford stock model (horizon=5) and predicts based on the given input batch. The following individual predictors are implemented:
 
     1. LSTM
     2. CNN
@@ -373,7 +373,7 @@ def individual_predictors_pretrained_Ford_5_4(input_batch: DataFrame, future_hor
     return final_df
 
 def individual_predictors_pretrained_BP_30_4(input_batch: DataFrame, future_horizon: int) -> DataFrame:
-    '''Loades pretrained BP stock model (horizon=30) and predicts based on the given input batch. The following individual predictors are implemented:
+    '''Loads pretrained BP stock model (horizon=30) and predicts based on the given input batch. The following individual predictors are implemented:
 
     1. LSTM
     2. CNN
@@ -413,7 +413,7 @@ def individual_predictors_pretrained_BP_30_4(input_batch: DataFrame, future_hori
     return final_df
 
 def individual_predictors_pretrained_SP500_40_4(input_batch: DataFrame, future_horizon: int) -> DataFrame:
-    '''Loades pretrained SP500 index model (horizon=40) and predicts based on the given input batch. The following individual predictors are implemented:
+    '''Loads pretrained SP500 index model (horizon=40) and predicts based on the given input batch. The following individual predictors are implemented:
 
     1. LSTM
     2. CNN
@@ -453,7 +453,7 @@ def individual_predictors_pretrained_SP500_40_4(input_batch: DataFrame, future_h
     return final_df
 
 def individual_predictors_pretrained_Ford_5_5(input_batch: DataFrame, future_horizon: int) -> DataFrame:
-    '''Loades pretrained Ford stock model (horizon=5) and predicts based on the given input batch. The following individual predictors are implemented:
+    '''Loads pretrained Ford stock model (horizon=5) and predicts based on the given input batch. The following individual predictors are implemented:
 
     1. LSTM
     2. CNN
@@ -499,7 +499,7 @@ def individual_predictors_pretrained_Ford_5_5(input_batch: DataFrame, future_hor
     return final_df
 
 def individual_predictors_pretrained_BP_30_5(input_batch: DataFrame, future_horizon: int) -> DataFrame:
-    '''Loades pretrained BP stock model (horizon=30) and predicts based on the given input batch. The following individual predictors are implemented:
+    '''Loads pretrained BP stock model (horizon=30) and predicts based on the given input batch. The following individual predictors are implemented:
 
     1. LSTM
     2. CNN
@@ -545,7 +545,7 @@ def individual_predictors_pretrained_BP_30_5(input_batch: DataFrame, future_hori
     return final_df
 
 def individual_predictors_pretrained_SP500_40_5(input_batch: DataFrame, future_horizon: int) -> DataFrame:
-    '''Loades pretrained SP500 index model (horizon=40) and predicts based on the given input batch. The following individual predictors are implemented:
+    '''Loads pretrained SP500 index model (horizon=40) and predicts based on the given input batch. The following individual predictors are implemented:
 
     1. LSTM
     2. CNN
