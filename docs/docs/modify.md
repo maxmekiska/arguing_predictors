@@ -16,7 +16,7 @@ Second, the "consensus" directory contains the [algorithms](/../consensus/). tha
 
 Third, the directory "system" contains the activate.py file which brings all of the individual parts together and enables the system to run. Multiple adjustments can be made here to tailor the systems output.
 
-Fourth, the evaluation.py included within the tools directory provides the system with evaluation capabilities. The standard file contains a correlation analysis of the absolute error of all algorithms, MSE metric, MSE Log metric and MAE metric. Moreover, the evaluation.py file includes plotting functionalities. More evaluation metrics can be added if needed. 
+Fourth, the evaluation.py included within the tools directory provides the system with [evaluation](/../evaluation/) capabilities. The standard file contains a correlation analysis of the absolute error of all algorithms, MSE metric, MSE Log metric and MAE metric. Moreover, the evaluation.py file includes plotting functionalities. More evaluation metrics can be added if needed. 
 
 Fifth, the main.py file serves to run the system from a command line. It trains all models specified in the template live and offers a GUI to display the results.
 
@@ -24,27 +24,20 @@ Fifth, the main.py file serves to run the system from a command line. It trains 
 The follwoing section will break down the activate.py file in detail and suggests how possible modifications might be implemented.
 
 ## Imports
-First, all necessary libraries and other parts of the program are imported. More metrices for evaluating the performance of the system can be found [here](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics).
+First, all necessary libraries and other parts of the system are imported.
 
 ```python3
 import pandas as pd
 from pandas import DataFrame
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-from sklearn.metrics import mean_squared_error
-from sklearn.metrics import mean_absolute_error
-from sklearn.metrics import mean_squared_log_error
 
 import sys
 sys.path.append('../')
-
-# The following imports are from the arguing predictor system
 
 from consensus.algorithms import *
 from tools.predictorsI import *
 from tools.predictorsII import *
 from tools.predictorsIII import *
+from tools.evaluation import *
 ```
 ## Data preparation
 The follwoing function is used to prepare the data into an input batch and real value batch. This function might need adjustments depending on what format other possible predictors may requiere. In this version, the function is able to deal with all predictors contained in predictorsI.py, predictorsII.py and predictorsIII.py.
