@@ -64,7 +64,7 @@ class BasicUnivariatePredictor:
         predict(self, data: array):
             Takes in input data and outputs model forecasts.
         save_model(self):
-            Saves current ceras model to current directory.
+            Saves current Keras model to current directory.
         load_model(self, location: str):
             Load model from location specified.
     '''
