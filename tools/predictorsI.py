@@ -81,7 +81,7 @@ class BasicUnivariatePredictor:
         self.model_id = '' # to identify model (example: name)
 
     def __sequence_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
-        '''Prepares data input into X and y sequences. Lenght of the X sequence is dertermined by steps_past while the length of y is determined by steps_future. In detail, the predictor looks at sequence X and predicts sequence y.
+        '''Prepares data input into X and y sequences. Length of the X sequence is determined by steps_past while the length of y is determined by steps_future. In detail, the predictor looks at sequence X and predicts sequence y.
 
             Parameters:
                 input_sequence (array): Sequence that contains time series in array format
@@ -170,7 +170,7 @@ class BasicUnivariatePredictor:
         self.model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_squared_error'])
 
     def fit_model(self, epochs: int, show_progress: int = 1):
-        '''Trains the model on data provided. Perfroms validation. 
+        '''Trains the model on data provided. Performs validation. 
             Parameters:
                 epochs (int): Number of epochs to train the model. 
                 show_progress (int): Prints training progress.
