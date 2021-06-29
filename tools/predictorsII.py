@@ -24,7 +24,7 @@ class UnivariatePredictorII:
         show_performance_neural(self):
             Plots the model performance.
         show_performance_prophet(self):
-            Conducts a cross validation with 80% of initial training. Plots MSE and displays further model performance metrices.
+            Conducts a cross validation with 80% of initial training. Plots MSE and displays further model performance metrics.
         predict_neural(self):
             Outputs prediction values.
         predict_prophet(self):
