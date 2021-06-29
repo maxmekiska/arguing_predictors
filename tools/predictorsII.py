@@ -122,7 +122,7 @@ class UnivariatePredictorII:
         return output
 
     def predict_prophet(self) -> DataFrame:
-        '''Returns the forecasted values starting from teh next data point from teh very last data point of data provided.
+        '''Returns the forecasted values starting from the next data point from teh very last data point of data provided.
             Returns:
                 (DataFrame): Forecast for data provided.
         '''
