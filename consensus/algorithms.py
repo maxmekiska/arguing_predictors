@@ -8,7 +8,7 @@ def disagreement(data: DataFrame) -> DataFrame:
             data (DataFrame): Individual predictors forecast output.
         
         Returns:
-            (DataFrame): Containing overall system disagrement scores.
+            (DataFrame): Containing overall system disagreement scores.
     '''
     system_disagreement = []
     for k in range(data.shape[0]):
