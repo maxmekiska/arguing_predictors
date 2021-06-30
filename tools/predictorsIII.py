@@ -1,6 +1,10 @@
 ''' References:
 Code insperations have been taken from:
 
+Brwonlee, J., 2016. Display deep learning model training history in keras [Online]. Available from:
+https://machinelearningmastery.com/display-deep-
+learning-model-training-history-in-keras/.
+
 Brwonlee, J., 2018b. How to develop lstm models for time series forecasting [Online]. Available from: 
 https://machinelearningmastery.com/how-to-develop-
 lstm-models-for-time-series-forecasting/.
