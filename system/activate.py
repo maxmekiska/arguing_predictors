@@ -73,6 +73,7 @@ def individual_predictors_template1(training_df: DataFrame, input_batch: DataFra
     3. CNN
     4. MLP
     5. LSTM
+    6. Experimental CNN-Bi-LSTM 
 
         Parameters:
             training_df (DataFrame): Data on which the predictors are trained on.
@@ -108,13 +109,19 @@ def individual_predictors_template1(training_df: DataFrame, input_batch: DataFra
     five.fit_model(epochs)
     five.show_performance()
 
+    six = HybridUnivariatePredictor(2, len(input_batch), future_horizon, training_df)
+    six.create_cnnbilstm()
+    six.fit_model(epochs)
+    six.show_performance()
+
     prediction_one = one.predict(input_batch)
     prediction_two = two.predict(input_batch)
     prediction_three = three.predict(input_batch)
     prediction_four = four.predict(input_batch)
     prediction_five = five.predict(input_batch)
+    prediction_six = six.predict(input_batch)
 
-    final_df = pd.concat([prediction_one, prediction_two, prediction_three, prediction_four, prediction_five], axis=1) 
+    final_df = pd.concat([prediction_one, prediction_two, prediction_three, prediction_four, prediction_five, prediction_six], axis=1) 
 
     return final_df
 
