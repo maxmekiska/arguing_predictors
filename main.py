@@ -14,7 +14,7 @@ def main():
     training = training.get_adjclose()
 
     predict_req, real = data_prep(predict, 20, 30) # dividing data into predictor input and real data
-    individual_predictors_forecasts = individual_predictors_template0(training, predict_req, 30, 5) # make forecast
+    individual_predictors_forecasts = individual_predictors_template1(training, predict_req, 30, 10) # make forecast
     consensus_forecasts = consensus(individual_predictors_forecasts, real) # create consolidation values
     #consensus_forecasts = consensus_optimal(individual_predictors_forecasts, real) # create consolidation value only with correcting algorithm
     all_forecasts = combined_frame(individual_predictors_forecasts, consensus_forecasts, real) 

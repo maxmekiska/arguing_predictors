@@ -26,6 +26,7 @@ from keras.layers import Flatten
 from keras.layers.convolutional import Conv1D
 from keras.layers.convolutional import MaxPooling1D
 from keras.layers import TimeDistributed
+from keras.layers import Bidirectional
 
 class HybridUnivariatePredictor:
     '''Implements neural network based univariate multipstep hybrid predictors.
@@ -117,6 +118,22 @@ class HybridUnivariatePredictor:
         self.model.add(TimeDistributed(MaxPooling1D(pool_size=2)))
         self.model.add(TimeDistributed(Flatten()))
         self.model.add(LSTM(50, activation='relu', return_sequences=True))
+        self.model.add(LSTM(25, activation='relu'))
+        self.model.add(Dense(self.input_y.shape[1]))
+        self.model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_squared_error'])
+
+# Experimental model
+    def create_cnnbilstm(self):
+        '''Creates CNN-Bidirectional-LSTM hybrid model by defining all layers with activation functions, optimizer, loss function and evaluation metrics. 
+        '''
+        self.set_model_id('CNN-Bi-LSTM')
+
+        self.model = Sequential()
+        self.model.add(TimeDistributed(Conv1D(filters=64, kernel_size=2, activation='relu'), input_shape=(None,self.modified_back, 1)))
+        self.model.add(TimeDistributed(Conv1D(filters=32, kernel_size=2, activation='relu')))
+        self.model.add(TimeDistributed(MaxPooling1D(pool_size=2)))
+        self.model.add(TimeDistributed(Flatten()))
+        self.model.add(Bidirectional(LSTM(50, activation='relu', return_sequences=True)))
         self.model.add(LSTM(25, activation='relu'))
         self.model.add(Dense(self.input_y.shape[1]))
         self.model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_squared_error'])
