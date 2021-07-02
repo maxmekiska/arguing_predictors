@@ -3,6 +3,7 @@ import pandas as pd
 from pandas_datareader import data
 from pandas.plotting import register_matplotlib_converters
 from pandas import DataFrame
+from datetime import datetime, timedelta
 
 import yfinance as yf
 
@@ -58,6 +59,9 @@ class DataLoader:
         try:
             self.stockdata = data.DataReader(ticker, 'yahoo', start_date, end_date)
         except:
+            temp_end_date = datetime.strptime(end_date, '%Y-%m-%d')
+            end_date = temp_end_date + timedelta(days=1)
+            end_date = datetime.strftime(end_date, '%Y-%m-%d')
             self.stockdata = yf.download(ticker, start_date, end_date) # alternative version of downloading yahoo finance data
 
     def __str__(self) -> str:
