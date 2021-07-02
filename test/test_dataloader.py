@@ -34,7 +34,7 @@ data_alt_stat = data_alt.describe()
 class Testing(unittest.TestCase):
 
     def test_get_data(self):
-        assert_frame_equal(output, data)
+        assert_frame_equal(output, data, check_like=True)
     def test_get_high(self):
         assert_frame_equal(high, data_high)
     def test_get_low(self):
@@ -48,7 +48,7 @@ class Testing(unittest.TestCase):
     def test_get_adj(self):
         assert_frame_equal(adj, data_adj)
     def test_statistics(self):
-        assert_frame_equal(stat, data_stat)
+        assert_frame_equal(stat, data_stat, check_like=True)
 
 # AlternativeDataLoader tests
 
