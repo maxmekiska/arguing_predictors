@@ -6,11 +6,15 @@ from system.activate import *
 def main():
     '''Example main function to execute the system without a jupyter notebook as UI.
     '''
-    predict = DataLoader('BP', '2018-02-01', '2018-05-01') # loading DataFrame of time-frame to be predicted
-    predict = predict.get_adjclose()
+    #predict = DataLoader('BP', '2018-02-01', '2018-05-01') # loading DataFrame of time-frame to be predicted
+    #predict = predict.get_adjclose()
+    predict = AlternativeDataLoader('BP', 'United States', '01/02/2018', '01/05/2018', 'stock') 
+    predict = predict.get_close()
 
-    training = DataLoader('BP', '2015-01-01', '2018-01-01') # loading training DataFrame to train model on
-    training = training.get_adjclose()
+    #training = DataLoader('BP', '2015-01-01', '2018-01-01') # loading training DataFrame to train model on
+    #training = training.get_adjclose()
+    training = AlternativeDataLoader('BP', 'United States', '01/01/2015', '01/01/2018', 'stock') 
+    training = training.get_close()
 
     predict_req, real = data_prep(predict, 20, 30) # dividing data into predictor input and real data
     individual_predictors_forecasts = individual_predictors_template1(training, predict_req, 30, 10) # make forecast
