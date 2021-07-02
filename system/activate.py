@@ -5,6 +5,7 @@ import sys
 sys.path.append('../')
 
 from consensus.algorithms import *
+from tools.dataloader import *
 from tools.predictorsI import *
 from tools.predictorsII import *
 from tools.predictorsIII import *

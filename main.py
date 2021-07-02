@@ -1,7 +1,6 @@
 import PySimpleGUI as sg
 import pandas as pd
 
-from tools.dataloader import *
 from system.activate import *
 
 def main():
