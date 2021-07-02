@@ -4,6 +4,8 @@ from pandas_datareader import data
 from pandas.plotting import register_matplotlib_converters
 from pandas import DataFrame
 
+import yfinance as yf
+
 import investpy
 
 class DataLoader:
@@ -53,7 +55,10 @@ class DataLoader:
         self.start_date = start_date
         self.end_date = end_date
 
-        self.stockdata = data.DataReader(ticker, 'yahoo', start_date, end_date)
+        try:
+            self.stockdata = data.DataReader(ticker, 'yahoo', start_date, end_date)
+        except:
+            self.stockdata = yf.download(ticker, start_date, end_date) # alternative version of downloading yahoo finance data
 
     def __str__(self) -> str:
         '''Returns basic object information on what ticker data, start and end date, and the total count of data points
