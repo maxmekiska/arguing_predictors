@@ -104,7 +104,7 @@ def absolute_error_analytics(predictors: DataFrame, algorithms: DataFrame, real:
             real (DataFrame): DataFrame containing actual future values.
         
         Returns:
-            (DataFrame): DataFrame containing all absolute error values of individual predictors and consenus algorithms togehter with system disagreement and individual disagreement scores.
+            (DataFrame): DataFrame containing all absolute error values of individual predictors and consensus algorithms together with system disagreement and individual disagreement scores.
     '''
     data = evaluation_frame(predictors,real)
     
