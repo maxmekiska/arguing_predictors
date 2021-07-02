@@ -130,7 +130,7 @@ def absolute_error_analytics(predictors: DataFrame, algorithms: DataFrame, real:
     return result
 
 def mse_score(df: DataFrame, plot: bool = False) -> DataFrame:
-    '''Calculates the mean squared error for the individual predictors and consensus algorithms. Option to plot MSE performences in descending order.
+    '''Calculates the mean squared error for the individual predictors and consensus algorithms. Option to plot MSE performances in descending order.
 
         Parameters:
             df (DataFrame): DataFrame containing individual predictors forecasts and consensus values of algorithms.
@@ -165,7 +165,7 @@ def mse_score(df: DataFrame, plot: bool = False) -> DataFrame:
     return result
 
 def mae_score(df: DataFrame, plot: bool = False) -> DataFrame:
-    '''Calculates the mean absolute error for the individual predictors and consensus algorithms. Option to plot MAE performences in descending order.
+    '''Calculates the mean absolute error for the individual predictors and consensus algorithms. Option to plot MAE performances in descending order.
 
         Parameters:
             df (DataFrame): DataFrame containing individual predictors forecasts and consensus values of algorithms.
@@ -199,7 +199,7 @@ def mae_score(df: DataFrame, plot: bool = False) -> DataFrame:
     return result
 
 def mse_log_score(df: DataFrame, plot: bool = False) -> DataFrame:
-    '''Calculates the mean squared log error for the individual predictors and consensus algorithms. Option to plot MSE log performences in descending order.
+    '''Calculates the mean squared log error for the individual predictors and consensus algorithms. Option to plot MSE log performances in descending order.
 
         Parameters:
             df (DataFrame): DataFrame containing individual predictors forecasts and consensus values of algorithms.
