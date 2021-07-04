@@ -1,41 +1,5 @@
-#include <stdio.h>
 #include <math.h>
-
-double disagreement(double predictions[], int len);
-
-int main () {
-  int size;
-  double preds[] = {34, 2, 1, 1};
-  double result;
-
-  size = sizeof preds / sizeof preds[0]; 
-
-  result = disagreement(preds, size);
-
-  printf("%f\n", result);
-
-  return 0;
-}
-
-/*
- * Function:  average
- * --------------------
- * computes the average value of a given array.
- *
- *  list[] (double) : target array
- *  len    (int)    : total count of elements in target array  
- *
- *  returns: average of array.
- */
-double average(double list[], double len){
-  double result;
-  double sum;
-  for(int i = 0; i < len; i++){
-    sum = list[i] + sum;
-  }
-  result = sum/len;
-  return result;
-}
+#include "prototype.h"
 
 /*
  * Function:  disagreement 

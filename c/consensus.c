@@ -1,43 +1,4 @@
-#include <stdio.h>
-
-double average(double list[], double len);
-double consensus(double old_pred[], double new_pred[], double real, int len);
-
-int main () {
-  int size;
-  double old_[] = {3, 7, 5, 10};
-  double new_[] = {4, 5, 7, 7};
-  double real = 10;
-  double result;
-
-  size = sizeof old_ / sizeof new_[0]; 
-
-  result = consensus(old_, new_, real, size);
-
-  printf("%f\n", result);
-
-  return 0;
-}
-
-/*
- * Function:  average
- * --------------------
- * computes the average value of a given array.
- *
- *  list[] (double) : target array
- *  len    (int)    : total count of elements in target array  
- *
- *  returns: average of array.
- */
-double average(double list[], double len){
-  double result;
-  double sum;
-  for(int i = 0; i < len; i++){
-    sum = list[i] + sum;
-  }
-  result = sum/len;
-  return result;
-}
+#include "prototype.h"
 
 /*
  * Function:  consensus 
