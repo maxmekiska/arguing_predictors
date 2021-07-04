@@ -25,8 +25,11 @@ Third, after few seconds mkdocs should provide a local address which can be open
 ```shell
 +---arguing_predictors
     +---c 
-    |   +---correcting_algorithm.c
-    |   +---disagreement_algorithm.c
+    |   +---average.c
+    |   +---correcting.c
+    |   +---disagreement.c
+    |   +---main.c
+    |   +---prototype.h
     +---consensus
     |   +---algorithms.py
     +---docs
