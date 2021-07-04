@@ -107,6 +107,7 @@ class Testing(unittest.TestCase):
 
     def test_weights_correcting_2(self):
         self.assertEqual(new_weights_correcting(list_2, value_2), solution_list_weights_correcting_2, 'Does not match solution')
+
     def test_consolidation(self):
         self.assertEqual(consolidated_predictions(df, df1), solution_consolidation, 'Does not match solution')
 
@@ -133,6 +134,7 @@ class Testing(unittest.TestCase):
 
     def test_consolidation_memory_correcting_fourPredictors(self):
         self.assertEqual(consolidated_predictions_memory_correcting(dftwo, df1), solution_consolidation_memory_correcting_2, 'Does not match solution')
+
     def test_consolidation_focused(self):
         self.assertEqual(consolidated_predictions_focused(df, df1), solution_consolidation_focused_1, 'Does not match solution')
 
