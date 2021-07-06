@@ -9,6 +9,5 @@ nav:
     - Start: usage.md
     - The System: modify.md
     - Pre-trained models: pre-trained_models.md
-    - Data Import: dataloader.md
     - Consensus: consensus.md
     - Evaluation: evaluation.md

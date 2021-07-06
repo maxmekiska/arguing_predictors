@@ -16,15 +16,21 @@ The proof-of-concept system consists of three main parts: the pre-processing pip
 ![Overall System Diagram](resources/General_System.png)
 
 ## The Directory Structure
+
 ```shell
 +---arguing_predictors
     +---c 
-    |   +---correcting_algorithm.c
-    |   +---disagreement_algorithm.c
+    |   +---average.c
+    |   +---correcting.c
+    |   +---disagreement.c
+    |   +---main.c
+    |   +---prototype.h
     +---consensus
     |   +---algorithms.py
     +---docs
-    |   +---...
+    |   +---docs
+    |       +---...
+    |   +---mkdocs.yml	
     +---notebooks
     |   +---System.ipynb
     |   +---TestingEnviornment.ipynb
@@ -48,15 +54,15 @@ The proof-of-concept system consists of three main parts: the pre-processing pip
     |   +---activate.py
     +---test
     |   +---test_activate.py
+    |   +---test_evaluation.py
     |   +---test_algorithms.py
     |   +---test_dataloader.py
-    |   +---test_evaluate.py
     |   +---test_predictorsI.py
     |   +---test_predictorsII.py
     |   +---test_predictorsIII.py
     +---tools
     |   +---dataloader.py
-    |   +---evaluate.py
+    |   +---evaluation.py
     |   +---predictorsI.py
     |   +---predictorsII.py
     |   +---predictorsIII.py 
