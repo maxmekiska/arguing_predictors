@@ -604,8 +604,8 @@ def system_disagreement(df: DataFrame):
         Parameters:
             df (DataFrame): Containing all individual predictors forecasts.
     '''
-    disagreement(df).plot()
-    predictor_score(df).plot()
+    disagreement(df).plot(figsize=(14,7), title = 'System Disagreement', xlabel='Days', ylabel='Disagreement')
+    predictor_score(df).plot(figsize=(14,7), title = 'Individual Disagreement Scores', xlabel='Days', ylabel='Disagreement')
 
 def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
     '''Applies the following consensus algorithm to provide the final system forecast:
