@@ -6,7 +6,7 @@ The program is build to be easily extended. New consensus algorithms or individu
 
 For more detailed information visit the mkdocs build documentation of this program [here](). This documentation was build with the mkdocs python library which can be found [here](https://www.mkdocs.org/). In case of the mkdocs documentation not yet being published, a preview is possible by doing the follwoing:
 
-First, pip install the mkdocs python library via pip (the initial documentation was build in mkdocs==1.1.2):
+First, pip install the mkdocs python library via pip (the initial documentation was build in mkdocs==1.2.1):
 
 ```shell
 pip install mkdocs
