@@ -1,4 +1,6 @@
 site_name: Arguing Predictors
+site_url: ''
+use_directory_urls: False
 
 theme:
     name: mkdocs
