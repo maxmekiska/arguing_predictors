@@ -27,12 +27,14 @@ class BasicMultivariatePredictor:
         
         Methods
         -------
-        sequence_prep(input_sequence: array, steps_past: int, steps_future: int) -> array:
+        data_prep(self, stockdata: DataFrame) -> array:
+            Private method to extract features and convert DataFrame to an array.
+        sequence_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
             Private method to prepare data for predictor ingestion.
+        multistep_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
+            Private method to apply sequence_prep to every feature.
         set_model_id(self, name: str)
             Setter method to change model id name.
-        create_mlp(self):
-            Builds MLP structure.
         create_lstm(self):
             Builds LSTM structure.
         create_cnn(self):
@@ -67,7 +69,16 @@ class BasicMultivariatePredictor:
             
         self.model_id = '' # to identify model (example: name)
 
-    def __data_prep(self, stockdata: array) -> array:
+    def __data_prep(self, stockdata: DataFrame) -> array:
+        ''' Private method to extract features and convert DataFrame to an array. Extracts: Adj Close, Open, High and Low features. 
+
+                Parameters:
+                    stockdata (DataFrame): DataFrame containing multi-feature stock data.
+
+                Retruns:
+                    data (array): Array containing sequences of selected features.
+                    
+        '''
         adj = list(stockdata['Adj Close'])
         open_ = list(stockdata['Open'])
         high = list(stockdata['High'])
@@ -80,6 +91,7 @@ class BasicMultivariatePredictor:
         
     def __sequence_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
         '''Prepares data input into X and y sequences. Lenght of the X sequence is dertermined by steps_past while the length of y is determined by steps_future. In detail, the predictor looks at sequence X and predicts sequence y.
+
                 Parameters:
                     input_sequence (array): Sequence that contains time series in array format
                     steps_past (int): Steps the predictor will look backward
@@ -113,6 +125,7 @@ class BasicMultivariatePredictor:
     
     def __multistep_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
         '''This function prepares input sequences into a suitable input format for a multivariate multistep model. The first seqeunce in the array needs to be the target variable y.
+
                 Parameters:
                     input_sequence (array): Sequence that contains time series in array format
                     steps_past (int): Steps the predictor will look backward
