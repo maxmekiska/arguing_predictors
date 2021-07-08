@@ -268,13 +268,14 @@ class BasicMultivariatePredictor:
                 (DataFrame): Forecast for sequence provided.
         '''
         data = array(data)
+        dimension = (data.shape[0] * data.shape[1]) # MLP case
 
         try:
             data = data.reshape((1, data.shape[0], data.shape[1])) # All other models
             y_pred = self.model.predict(data, verbose=0)
 
         except:
-            data = data.reshape((1, self.dimension)) # MLP case
+            data = data.reshape((1, dimension)) # MLP case
             y_pred = self.model.predict(data, verbose=0)
 
         y_pred = y_pred.reshape(y_pred.shape[1], y_pred.shape[0])
