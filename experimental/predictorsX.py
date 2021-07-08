@@ -256,7 +256,6 @@ class BasicMultivariatePredictor:
         '''
         self.model = keras.models.load_model(location)
 
-
 def pred_input(stockdatapred: DataFrame, steps_past: int, target: str) -> array:
     '''Helper function to prepare data input to enable model to make future predictions.
     
