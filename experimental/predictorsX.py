@@ -1,3 +1,6 @@
+
+
+
 import matplotlib.pyplot as plt
 from numpy import array
 from numpy import reshape
@@ -151,7 +154,23 @@ class BasicMultivariatePredictor:
         '''Setter method to change model id field.
         '''
         self.model_id = name
-        
+
+    def create_mlp(self):
+        '''Creates MLP model by defining all layers with activation functions, optimizer, loss function and evaluation metrics. 
+        '''
+        self.set_model_id('MLP')
+
+        self.dimension = (self.input_x.shape[1] * self.input_x.shape[2])
+
+        self.input_x = self.input_x.reshape((self.input_x.shape[0], self.dimension)) # necessary to account for different shape input for MLP compared to the other models.
+
+        self.model = Sequential()
+        self.model.add(Dense(50, activation='relu', input_dim = self.dimension))
+        self.model.add(Dense(25, activation='relu'))
+        self.model.add(Dense(25, activation='relu'))
+        self.model.add(Dense(self.input_y.shape[1]))
+        self.model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_squared_error'])        
+
     def create_lstm(self):
         '''Creates LSTM model by defining all layers with activation functions, optimizer, loss function and evaluation metrics.
         '''
@@ -237,8 +256,13 @@ class BasicMultivariatePredictor:
         '''
         data = array(data)
 
-        data = data.reshape((1, data.shape[0], data.shape[1]))
-        y_pred = self.model.predict(data, verbose=0)
+        try:
+            data = data.reshape((1, data.shape[0], data.shape[1])) # All other models
+            y_pred = self.model.predict(data, verbose=0)
+
+        except:
+            data = data.reshape((1, self.dimension)) # MLP case
+            y_pred = self.model.predict(data, verbose=0)
 
         y_pred = y_pred.reshape(y_pred.shape[1], y_pred.shape[0])
             
