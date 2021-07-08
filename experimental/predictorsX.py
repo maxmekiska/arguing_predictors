@@ -78,14 +78,14 @@ class BasicMultivariatePredictor:
                 data (DataFrame): Input data for model training.
         '''
         if len(data) > 0:
-            self.data = self.__data_prep(data)
-            self.input_x, self.input_y = self.__multistep_prep(self.data, steps_past, steps_future)
+            self.data = self._data_prep(data)
+            self.input_x, self.input_y = self._multistep_prep(self.data, steps_past, steps_future)
         else:
             self.data = data
             
         self.model_id = '' # to identify model (example: name)
 
-    def __data_prep(self, stockdata: DataFrame) -> array:
+    def _data_prep(self, stockdata: DataFrame) -> array:
         ''' Private method to extract features and convert DataFrame to an array. Extracts: Adj Close, Open, High and Low features. 
 
                 Parameters:
@@ -105,7 +105,7 @@ class BasicMultivariatePredictor:
         
         return data        
         
-    def __sequence_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
+    def _sequence_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
         '''Prepares data input into X and y sequences. Lenght of the X sequence is dertermined by steps_past while the length of y is determined by steps_future. In detail, the predictor looks at sequence X and predicts sequence y.
 
                 Parameters:
@@ -139,7 +139,7 @@ class BasicMultivariatePredictor:
         X = X.reshape((X.shape[0], X.shape[1], 1))
         return X, y
     
-    def __multistep_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
+    def _multistep_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
         '''This function prepares input sequences into a suitable input format for a multivariate multistep model. The first seqeunce in the array needs to be the target variable y.
 
                 Parameters:
@@ -154,10 +154,10 @@ class BasicMultivariatePredictor:
         Y = []
         for i in range(len(input_sequence)):
             if i ==0: # target variable should be first sequence
-                _, y = self.__sequence_prep(input_sequence[0], steps_past, steps_future)
+                _, y = self._sequence_prep(input_sequence[0], steps_past, steps_future)
                 Y.append(y)
                 continue # skip since target column not requiered in X array
-            x, _ = self.__sequence_prep(input_sequence[i], steps_past, steps_future)
+            x, _ = self._sequence_prep(input_sequence[i], steps_past, steps_future)
             X.append(x)
         X = dstack(X)
         Y = Y[0] # getting array out of list
