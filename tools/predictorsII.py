@@ -15,7 +15,7 @@ class UnivariatePredictorII:
 
         Methods
         -------
-        __data_prep(self, data):
+        _data_prep(self, data):
             Private method to shape input data for predictor ingestion.
         fit_neural_model(self, epochs: int, frequency: str):
             Fits the neural model and validates during fitting process.
@@ -36,10 +36,10 @@ class UnivariatePredictorII:
                 data (DataFrame): Input data onto which future predictions will be made. Next date after the last date in data is the first prediction value of model.
                 future (int): How many days will be predicted into the future.
         '''
-        self.data = self.__data_prep(data)
+        self.data = self._data_prep(data)
         self.future = future
 
-    def __data_prep(self, data: DataFrame) -> DataFrame:
+    def _data_prep(self, data: DataFrame) -> DataFrame:
         '''Private function to prepare intake data into format that is digestible by the Neural Prophet library. The final format is a DataFrame with column 1 name = 'ds' containing date values and column 2 name = 'y' containing the data points.
             Parameters:
                 data (DataFrame): Original non-formatted time series DataFrame.

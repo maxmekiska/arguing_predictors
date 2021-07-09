@@ -43,7 +43,7 @@ class BasicUnivariatePredictor:
         
         Methods
         -------
-        sequence_prep(input_sequence: array, steps_past: int, steps_future: int) -> array:
+        _sequence_prep(input_sequence: array, steps_past: int, steps_future: int) -> array:
             Private method to prepare data for predictor ingestion.
         set_model_id(self, name: str)
             Setter method to change model id name.
@@ -76,11 +76,11 @@ class BasicUnivariatePredictor:
                 data (DataFrame): Input data for model training.
         '''
         self.data = array(data)
-        self.input_x, self.input_y = self.__sequence_prep(data, steps_past, steps_future)
+        self.input_x, self.input_y = self._sequence_prep(data, steps_past, steps_future)
         
         self.model_id = '' # to identify model (example: name)
 
-    def __sequence_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
+    def _sequence_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
         '''Prepares data input into X and y sequences. Length of the X sequence is determined by steps_past while the length of y is determined by steps_future. In detail, the predictor looks at sequence X and predicts sequence y.
 
             Parameters:
