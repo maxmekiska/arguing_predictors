@@ -37,7 +37,6 @@ from keras.layers import Dropout
 
 from keras.layers import Bidirectional
 
-
 class BasicMultivariatePredictor:
     '''Implements neural network based univariate multipstep predictors.
         
