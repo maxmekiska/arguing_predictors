@@ -104,7 +104,7 @@ class BasicMultivariatePredictor:
         
         return data        
         
-    def _sequence_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
+    def _sequence_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> [(array, array)]:
         '''Prepares data input into X and y sequences. Lenght of the X sequence is dertermined by steps_past while the length of y is determined by steps_future. In detail, the predictor looks at sequence X and predicts sequence y.
 
                 Parameters:
@@ -138,7 +138,7 @@ class BasicMultivariatePredictor:
         X = X.reshape((X.shape[0], X.shape[1], 1))
         return X, y
     
-    def _multistep_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
+    def _multistep_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> [(array, array)]:
         '''This function prepares input sequences into a suitable input format for a multivariate multistep model. The first seqeunce in the array needs to be the target variable y.
 
                 Parameters:
