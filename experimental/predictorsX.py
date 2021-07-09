@@ -42,11 +42,11 @@ class BasicMultivariatePredictor:
         
         Methods
         -------
-        data_prep(self, stockdata: DataFrame) -> array:
+        _data_prep(self, stockdata: DataFrame) -> array:
             Private method to extract features and convert DataFrame to an array.
-        sequence_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
+        _sequence_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
             Private method to prepare data for predictor ingestion.
-        multistep_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
+        _multistep_prep(self, input_sequence: array, steps_past: int, steps_future: int) -> array:
             Private method to apply sequence_prep to every feature.
         set_model_id(self, name: str)
             Setter method to change model id name.
