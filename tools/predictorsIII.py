@@ -33,7 +33,7 @@ class HybridUnivariatePredictor:
         
         Methods
         -------
-        _sequence_prep(input_sequence: array, steps_past: int, steps_future: int) -> array:
+        _sequence_prep(input_sequence: array, steps_past: int, steps_future: int) -> [(array, array, int)]:
             Private method to prepare data for predictor ingestion.
         set_model_id(self, name: str):
             Setter method to change model id name.
@@ -66,7 +66,7 @@ class HybridUnivariatePredictor:
 
         self.model_id = '' # identify model (example: name)
 
-    def _sequence_prep(self, input_sequence: array, sub_seq: int, steps_past: int, steps_future: int) -> array:
+    def _sequence_prep(self, input_sequence: array, sub_seq: int, steps_past: int, steps_future: int) -> [(array, array, int)]:
         '''Prepares data input into X and y sequences. Lenght of the X sequence is dertermined by steps_past while the length of y is determined by steps_future. In detail, the predictor looks at sequence X and predicts sequence y.
 
             Parameters:
