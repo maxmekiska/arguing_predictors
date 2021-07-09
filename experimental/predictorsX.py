@@ -90,7 +90,7 @@ class BasicMultivariatePredictor:
                 Parameters:
                     stockdata (DataFrame): DataFrame containing multi-feature stock data.
 
-                Retruns:
+                Returns:
                     data (array): Array containing sequences of selected features.
                     
         '''
