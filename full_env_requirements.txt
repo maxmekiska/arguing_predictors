@@ -163,5 +163,5 @@ win-inet-pton==1.1.0
 wincertstore==0.2
 wrapt==1.12.1
 yarl==1.6.3
-yfinance==0.1.59
+yfinance==0.1.62
 zipp==3.4.1
