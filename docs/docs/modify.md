@@ -745,7 +745,7 @@ The next part defines the GUI pop-up window layout:
     window = sg.Window('Arguing Predictors', layout, default_element_size=(40, 1))
 ```
 
-The code in the above generates with help of the PySimpleGUI the fllowing simple GUI windnow:
+The code in the above generates with help of the PySimpleGUI library the fllowing simple GUI windnow:
 
 ![Gui window](resources/gui.png)
 
