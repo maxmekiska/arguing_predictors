@@ -84,13 +84,13 @@ The proof of concept program uses a Jupyter notebook as UI. The program can also
 
 I recommend to use Anaconda to use Jupyter notebook and manage the necessary python libraries for this program. Anaconda can be downloaded [here](https://www.anaconda.com/products/individual#Downloads).
 
-After Anaconda has been downloaded and successfully installed, open the anaconda terminal/command line and create a virtual enviornment with the following command:
+After Anaconda has been downloaded and successfully installed, open the anaconda terminal/command line and create a virtual environment with the following command:
 
 ```shell
 conda create -n yourenvname python=3.8. 
 ```
 
-After the enviornment is installed, activate it by typing: 
+After the environment is installed, activate it by typing: 
 
 ```shell
 conda activate yourenvname
@@ -102,29 +102,33 @@ Please proceed by installing Jupyter notebook by executing:
 conda install jupyter notebook
 ```
 
-Now, all dependiencies for the program need to be installed. First, pip install torch v.1.6 from [here](https://pytorch.org/get-started/previous-versions/). I recommend to use the CPU only version.
+Now, all dependencies for the program need to be installed. First, pip install torch v.1.6 from [here](https://pytorch.org/get-started/previous-versions/). I recommend to use the CPU only version.
 
 Finally, cd into the program directory and execute:
 
 ```shell
-pip install -r requierements.txt
+pip install -r requirements.txt
 ```
 
-This will install all other necessary dependencies. For full reference, the full_env_requirements.txt contains all dependencies installed in the anaconda enviornment that was used to build this prototype system.
+This will install all other necessary dependencies. For full reference, the full_env_requirements.txt contains all dependencies installed in the anaconda environment that was used to build this prototype system.
 
 ## Starting the program
 
-Open up an anaconda terminal/command line and activate your enviorment. Now open a Jupyter notebook by executing: 
+Open up an anaconda terminal/command line and activate your environment. Now open a Jupyter notebook by executing: 
 ```shell
 jupyter notebook
 ```
-Finally, locate the downloaded repository and open up the System.ipynb contained in the notebook folder. 
+Finally, locate the downloaded repository and open up the System.ipynb contained in the notebook folder. The system can also be imported in any new jupyter notebook with the following line within the notebook (the path might differ depending on where the new jupyter notebook is located): 
+
+```python3
+%run ../system/activate.py
+```
 
 Alternatively, to run the program via the main.py file (make sure to be in the directory where the main.py file is located):
 ```shell
 python main.py
 ```
-Depending on what individual predictor configuration is used, training of the model begins and after each completed model training cycle test and validation metrices are graphically shown. After all models in the configuration have been trained, the follwing GUI will appear:
+Depending on what individual predictor configuration is used, training of the model begins and after each completed model training cycle test and validation metrics are graphically shown. After all models in the configuration have been trained, the following GUI will appear:
 
 ![GUI menu main.py](docs/docs/resources/gui.png)
 
