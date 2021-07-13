@@ -750,7 +750,6 @@ The code in the above generates with help of the PySimpleGUI the fllowing simple
 ![Gui window](resources/gui.png)
 
 
-
 Finally, the while loop in the below adds functionality to the buttons created in the prior part:
 ```python3
     while True:
