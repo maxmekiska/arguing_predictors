@@ -15,7 +15,7 @@ In addition, it is recommend to use Anaconda to run the Jupyter notebook and man
 After Anaconda has been downloaded and successfully installed, open the anaconda terminal/command line and create a virtual environment with the following command:
 
 ```shell
-conda create -n yourenvname python=3.8. 
+conda create -n yourenvname python=3.8
 ```
 
 After the environment is installed, activate it by typing: 
