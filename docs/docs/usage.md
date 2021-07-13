@@ -7,7 +7,7 @@
 # Starting the program
 <div class="formatting">
 ## Jupyter Notebook
-Open up an anaconda terminal/command line and activate your enviorment. Now open a Jupyter notebook by executing: 
+Open up an anaconda terminal/command line and activate your environment. Now open a Jupyter notebook by executing: 
 ```shell
 jupyter notebook
 ```
@@ -24,7 +24,7 @@ Alternatively, to run the program via the main.py file (make sure to be in the d
 ```shell
 python main.py
 ```
-Depending on what individual predictor configuration is used, training of the model begins and after each completed model training cycle test and validation metrices are graphically shown. After all models in the configuration have been trained, the follwing GUI will appear:
+Depending on what individual predictor configuration is used, training of the model begins and after each completed model training cycle test and validation metrics are graphically shown. After all models in the configuration have been trained, the following GUI will appear:
 
 ![GUI menu main.py](resources/gui.png)
 
