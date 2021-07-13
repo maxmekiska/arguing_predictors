@@ -34,6 +34,7 @@ import sys
 sys.path.append('../')
 
 from consensus.algorithms import *
+from tools.dataloader import *
 from tools.predictorsI import *
 from tools.predictorsII import *
 from tools.predictorsIII import *
@@ -743,7 +744,14 @@ The next part defines the GUI pop-up window layout:
 
     window = sg.Window('Arguing Predictors', layout, default_element_size=(40, 1))
 ```
-Finally, this while loop adds functionality to the buttons created in the prior part:
+
+The code in the above generates with help of the PySimpleGUI the fllowing simple GUI windnow:
+
+![Gui window](resources/gui.png)
+
+
+
+Finally, the while loop in the below adds functionality to the buttons created in the prior part:
 ```python3
     while True:
         event, values = window.read()
