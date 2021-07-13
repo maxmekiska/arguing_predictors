@@ -767,7 +767,7 @@ Finally, this while loop adds functionality to the buttons created in the prior 
             mae_score(all_forecasts, True)
             plt.show(block=False)
         elif event == 'All Forecasts':
-            all_forecasts.to_csv('All_Forecasts.csv')
+            all_forecasts.to_csv('All_Forecasts.csv') # the following four buttons save the target data in csv format into the same directory where the main.py file has been executed
         elif event == 'MSE values':
             mse_score(all_forecasts).to_csv('MSE.csv')
         elif event == 'MSE Log values':
