@@ -12,6 +12,6 @@ nav:
     - Installation: installation.md
     - Start: usage.md
     - The System: modify.md
-    - Pre-trained models: pre-trained_models.md
+    - Pre-Trained Models: pre-trained_models.md
     - Consensus: consensus.md
     - Evaluation: evaluation.md
