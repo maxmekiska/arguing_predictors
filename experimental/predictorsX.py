@@ -237,25 +237,15 @@ class BasicMultivariatePredictor:
         self.model.summary()
     
     def show_performance(self):
-        '''Plots two graphs.
-        1. Models mean squared error of trainings and validation data.
-        2. Models loss of trainings and validation data.
+        '''Plots:
+        1. Models mean squared error of trainings and validation data. (Model loss)
         '''
         information = self.details
 
-        plt.subplot(1, 2, 1)
-        plt.plot(information.history['mean_squared_error'])
-        plt.plot(information.history['val_mean_squared_error'])
-        plt.title(self.model_id + ' Model Mean Squared Error')
-        plt.ylabel('MSE')
-        plt.xlabel('Epoch')
-        plt.legend(['Train', 'Test'], loc='upper right')
-
-        plt.subplot(1, 2, 2)
         plt.plot(information.history['loss'])
         plt.plot(information.history['val_loss'])
         plt.title(self.model_id + ' Model Loss')
-        plt.ylabel('Loss')
+        plt.ylabel('MSE')
         plt.xlabel('Epoch')
         plt.legend(['Train', 'Test'], loc='upper right')
         plt.tight_layout()
