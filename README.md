@@ -32,7 +32,7 @@ Third, after few seconds mkdocs should provide a local address which can be open
     |   +---prototype.h
     +---consensus
     |   +---algorithms.py
-    +---docs
+    +---documentation
     |   +---docs
     |       +---...
     |   +---mkdocs.yml	
