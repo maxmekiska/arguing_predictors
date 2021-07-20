@@ -14,4 +14,5 @@ nav:
     - The System: modify.md
     - Pre-Trained Models: pre-trained_models.md
     - Consensus: consensus.md
+    - Predictors: individual.md
     - Evaluation: evaluation.md
