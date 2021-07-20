@@ -28,7 +28,7 @@ The proof-of-concept system consists of three main parts: the pre-processing pip
     +---consensus
     |   +---algorithms.py
     +---docs
-    |   +---docs
+    |   +---documentation
     |       +---...
     |   +---mkdocs.yml	
     +---experimental
