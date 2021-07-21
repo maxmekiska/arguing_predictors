@@ -13,7 +13,7 @@ jupyter notebook
 ```
 Finally, locate the downloaded repository and open up the System.ipynb contained in the notebook folder. 
 
-The follwoning is an example of a successful System.ipynb run:
+The following is an example of a successful System.ipynb run:
 
 
 <embed src="/resources/ExampleSystem.pdf" type="application/pdf" width="100%" height="1200px">

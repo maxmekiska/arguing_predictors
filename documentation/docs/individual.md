@@ -6,7 +6,7 @@
 
 # Individual predictors
 <div class="formatting">
-There are three different categories of example individual predictors included in the proof-of-concept system. The first category consists of univariate multistep Kears based predictors which are implemented in the predictorsI.py and predictorsIII.py files. The second category includes Facebook's Prophet model and the Neural Prophet model which are contained within the predictorsII.py file. The third and last category translates the univariate multistep predictors in the predictorsI.py file into multivariate multistep Keras predictors. The last category is implemented in the predictorsX.py file which is contained within the experimental directory.
+There are three different categories of example individual predictors included in the proof-of-concept system. The first category consists of univariate multistep Keras based predictors which are implemented in the predictorsI.py and predictorsIII.py files. The second category includes Facebook's Prophet model and the Neural Prophet model which are contained within the predictorsII.py file. The third and last category translates the univariate multistep predictors in the predictorsI.py file into multivariate multistep Keras predictors. The last category is implemented in the predictorsX.py file which is contained within the experimental directory.
 
 ## Simple modification example
 
@@ -29,7 +29,7 @@ def create_cnnlstm(self):
 	self.model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_squared_error'])
 ```
 
-A possible new architecture might be based on the CNN-LSTM strucutre shown in the above. For example, by substituting the first LSTM layer with a bidierectional LSTM layer a new architecture is created.
+A possible new architecture might be based on the CNN-LSTM structure shown in the above. For example, by substituting the first LSTM layer with a bidirectional LSTM layer a new architecture is created.
 
 ```python3
 def create_cnnbilstm(self):
@@ -47,6 +47,4 @@ def create_cnnbilstm(self):
 	self.model.add(Dense(self.input_y.shape[1]))
 	self.model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_squared_error'])
 ```
-
-
 </div>

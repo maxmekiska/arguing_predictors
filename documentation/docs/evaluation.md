@@ -2,7 +2,7 @@
 
 ## Importing libraries
 It is recommended to use already implemented metrics from libraries such as Scikit-learn.org.
-More metrics for regression evaluation can be found on the Scikit-learn.org documenatation page [here](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics).
+More metrics for regression evaluation can be found on the Scikit-learn.org documentation page [here](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics).
 ```python3
 import pandas as pd
 from pandas import DataFrame
@@ -19,7 +19,7 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_squared_log_error
 ```
 ## Data summary generation
-The following functions are used to collect all in the prior generated data and summarize them into one DataFrame. It also supports the functionality of generating a correlation matrix of the summarized data.
+The following functions are used to collect all in the prior generated data and summarize them into one data frame. It also supports the functionality of generating a correlation matrix of the summarized data.
 ```python3
 def set_same_index(to_df: DataFrame, from_df: DataFrame) -> DataFrame:
     '''Helper function to transfer the dates of a date-time indexed dataframe to another.
@@ -107,7 +107,7 @@ def absolute_error_analytics(predictors: DataFrame, algorithms: DataFrame, real:
             real (DataFrame): DataFrame containing actual future values.
         
         Returns:
-            (DataFrame): DataFrame containing all absolute error values of individual predictors and consenus algorithms togehter with system disagreement and individual disagreement scores.
+            (DataFrame): DataFrame containing all absolute error values of individual predictors and consensus algorithms together with system disagreement and individual disagreement scores.
     '''
     data = evaluation_frame(predictors,real)
     
@@ -136,7 +136,7 @@ def absolute_error_analytics(predictors: DataFrame, algorithms: DataFrame, real:
 The following functions apply different regression metrices onto the forecasted data. More, metrics can be added using the same template. Further regression metrices can be important from the Scikit-learn python library [here](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics).
 ```python3
 def mse_score(df: DataFrame, plot: bool = False) -> DataFrame:
-    '''Calculates the mean squared error for the individual predictors and consensus algorithms. Option to plot MSE performences in descending order.
+    '''Calculates the mean squared error for the individual predictors and consensus algorithms. Option to plot MSE performances in descending order.
         Parameters:
             df (DataFrame): DataFrame containing individual predictors forecasts and consensus values of algorithms.
             plot (bool): Option to plot MSE performance chart.
@@ -169,7 +169,7 @@ def mse_score(df: DataFrame, plot: bool = False) -> DataFrame:
     return result
 
 def mae_score(df: DataFrame, plot: bool = False) -> DataFrame:
-    '''Calculates the mean absolute error for the individual predictors and consensus algorithms. Option to plot MAE performences in descending order.
+    '''Calculates the mean absolute error for the individual predictors and consensus algorithms. Option to plot MAE performances in descending order.
         Parameters:
             df (DataFrame): DataFrame containing individual predictors forecasts and consensus values of algorithms.
             plot (bool): Option to plot MAE performance chart.
@@ -201,7 +201,7 @@ def mae_score(df: DataFrame, plot: bool = False) -> DataFrame:
     return result
 
 def mse_log_score(df: DataFrame, plot: bool = False) -> DataFrame:
-    '''Calculates the mean squared log error for the individual predictors and consensus algorithms. Option to plot MSE log performences in descending order.
+    '''Calculates the mean squared log error for the individual predictors and consensus algorithms. Option to plot MSE log performances in descending order.
         Parameters:
             df (DataFrame): DataFrame containing individual predictors forecasts and consensus values of algorithms.
             plot (bool): Option to plot MSE log performance chart.

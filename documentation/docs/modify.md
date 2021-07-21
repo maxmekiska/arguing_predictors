@@ -6,7 +6,7 @@
 
 # System Configuration
 <div class="formatting">
-The system was designed to be adjusted and modified in multiple ways. First, the "tools" directory contains the individual predictors and supports example predictors based on the Keras python library. This overal framework can be used to add further individual predictor configurations but also offers the liberty to add predictors independent of this format. In the case of diverting from this structure, it is important that the predictor returns a DataFrame containing the future predictions. Lastly, the Keras models already contained within the system can be trained and used as pre-trained models.
+The system was designed to be adjusted and modified in multiple ways. First, the "tools" directory contains the individual predictors and supports example predictors based on the Keras python library. This overall framework can be used to add further individual predictor configurations but also offers the liberty to add predictors independent of this format. In the case of diverting from this structure, it is important that the predictor returns a DataFrame containing the future predictions. Lastly, the Keras models already contained within the system can be trained and used as pre-trained models.
 
 Please find in the following examples of the pre-training process in the Pre-trained models section.
 
@@ -21,7 +21,7 @@ Fourth, the evaluation.py included within the tools directory provides the syste
 Fifth, the main.py file serves to run the system from a command line. It trains all models specified in the template live and offers a GUI to display the results.
 
 # activate.py
-The follwoing section will break down the activate.py file in detail and suggests how possible modifications might be implemented.
+The following section will break down the activate.py file in detail and suggests how possible modifications might be implemented.
 
 ## Imports
 First, all necessary libraries and other parts of the system are imported.
@@ -41,10 +41,10 @@ from tools.predictorsIII import *
 from tools.evaluation import *
 ```
 ## Data preparation
-The follwoing function is used to prepare the data into an input batch and real value batch. This function might need adjustments depending on what format other possible predictors may requiere. In this version, the function is able to deal with all predictors contained in predictorsI.py, predictorsII.py and predictorsIII.py.
+The following function is used to prepare the data into an input batch and real value batch. This function might need adjustments depending on what format other possible predictors may require. In this version, the function is able to deal with all predictors contained in predictorsI.py, predictorsII.py and predictorsIII.py.
 ```python3
 def data_prep(df: DataFrame, input_batch_size: int, future_horizon: int) -> [(DataFrame, DataFrame)]:
-    '''Takes in data and splits it into an input batch for the individual predictors to perform a prediction on and the the real values observed.
+    '''Takes in data and splits it into an input batch for the individual predictors to perform a prediction on and the real values observed.
 
         Parameters:
             df (DataFrame): Whole data set to be divided into prediction batch and real values.
@@ -154,7 +154,7 @@ def individual_predictors_template1(training_df: DataFrame, input_batch: DataFra
 
     return final_df
 ```
-The following template is a special version of the prior two. This template enables the use of the Facebook prophet and Facebook neural prophet python libraries. These models do not requiere a specific batch input to forecast.
+The following template is a special version of the prior two. This template enables the use of the Facebook prophet and Facebook neural prophet python libraries. These models do not require a specific batch input to forecast.
 ```python3
 def individual_predictors_template2(training_df: DataFrame, future_horizon: int) -> DataFrame:
     '''Handles the individual predictors by training them and feeding them the data to predict the specified future horizon. The following individual predictors are implemented:
@@ -184,7 +184,7 @@ def individual_predictors_template2(training_df: DataFrame, future_horizon: int)
 
     return final_df
 ```
-Please find in the follwoing an example run of this predictor template:
+Please find in the following an example run of this predictor template:
 
 <embed src="/resources/Facebook.pdf" type="application/pdf" width="100%" height="620px">
 
@@ -600,7 +600,7 @@ def individual_predictors_pretrained_SP500_40_5(input_batch: DataFrame, future_h
     return final_df
 ```
 ## System disagreement
-This function wrapps around the system disagreement functions contained in the algorithms.py and plots the results.
+This function wraps around the system disagreement functions contained in the algorithms.py and plots the results.
 ```python3
 def system_disagreement(df: DataFrame):
     '''Plots the overall system disagreement and the individual disagreement scores of the algorithms.
@@ -612,7 +612,7 @@ def system_disagreement(df: DataFrame):
     predictor_score(df).plot()
 ```
 ## System consensus value
-This function wrapps around the consensus value creation functions contained in the algorithms.py.
+This function wraps around the consensus value creation functions contained in the algorithms.py.
 ```python3
 def consensus(df: DataFrame, real: DataFrame) -> DataFrame:
     '''Applies the following consensus algorithm to provide the final system forecast:
@@ -673,7 +673,7 @@ def consensus_optimal(df: DataFrame, real: DataFrame) -> DataFrame:
     return consensus
 ```
 # main.py
-This file contains the logic of running the system from a command line. Multiple adjustments can be made to further tailr the system.
+This file contains the logic of running the system from a command line. Multiple adjustments can be made to further tailor the system.
 ## Importing the system
 This part of the code imports the python library PySimpleGUI to generate the GUI after the models have completed the training cycle. Moreover, it imports the proof-of-concept system.
 ```python3
@@ -684,7 +684,7 @@ from tools.dataloader import *
 from system.activate import *
 ```
 ## System activation - Live training
-The next part initiates the live training process of the models defined and applies all other functions to genereate the consensus value and evaluation metrics. This code should be modified to change the stock, trainings data, prediction horizon data, evaluation function, individual prediction models and consensus algorithms used. It is recommended to set-up other prediction and consensus algorithms and any other new functions within the activate.py file.
+The next part initiates the live training process of the models defined and applies all other functions to generate the consensus value and evaluation metrics. This code should be modified to change the stock, trainings data, prediction horizon data, evaluation function, individual prediction models and consensus algorithms used. It is recommended to set-up other prediction and consensus algorithms and any other new functions within the activate.py file.
 ```python3
 def main():
     '''Example main function to execute the system without a jupyter notebook as UI.
@@ -745,7 +745,7 @@ The next part defines the GUI pop-up window layout:
     window = sg.Window('Arguing Predictors', layout, default_element_size=(40, 1))
 ```
 
-The code in the above generates with help of the PySimpleGUI library the fllowing simple GUI windnow:
+The code in the above generates with help of the PySimpleGUI library the following simple GUI window:
 
 ![Gui window](resources/gui.png)
 
