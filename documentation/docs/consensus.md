@@ -39,7 +39,7 @@ def disagreement(data: DataFrame) -> DataFrame:
             data (DataFrame): Individual predictors forecast output.
         
         Returns:
-            (DataFrame): Containing overall system disagrement scores.
+            (DataFrame): Containing overall system disagreement scores.
     '''
     system_disagreement = []
     for k in range(data.shape[0]):
@@ -86,7 +86,7 @@ def predictor_score(data: DataFrame) -> DataFrame:
 The function below serves as a helper function to ensure correct formatting after the weight calculation functions have been applied.
 ```python3
 def formatting(target: list) -> list:
-    '''Helper function to transform a list containing additional, unnecessary dataframe details into a pure list containing only target values.
+    '''Helper function to transform a list containing additional, unnecessary data frame details into a pure list containing only target values.
         
         Parameters:
             target (list): List containing unnecessary additional information.
