@@ -58,7 +58,7 @@ class HybridUnivariatePredictor:
                 sub_seq (int): Further division of given steps a predictor will look backward.
                 steps_past (int): Steps predictor will look backward.
                 steps_future (int): Steps predictor will look forward.
-                data (array): Input data for model training. Default is empty to enable loading modles.
+                data (array): Input data for model training. Default is empty to enable loading pre-trained models.
         '''
         self.data = array(data) 
         self.sub_seq = sub_seq
