@@ -26,10 +26,13 @@ Third, after few seconds mkdocs should provide a local address which can be open
 +---arguing_predictors
     +---c 
     |   +---average.c
+    |   +---c_wrapper.py
     |   +---correcting.c
     |   +---disagreement.c
+    |   +---lib.so
     |   +---main.c
     |   +---prototype.h
+    |   +---test_integrate_c.py
     +---consensus
     |   +---algorithms.py
     +---documentation
