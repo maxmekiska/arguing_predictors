@@ -21,10 +21,13 @@ The proof-of-concept system consists of three main parts: the pre-processing pip
 +---arguing_predictors
     +---c 
     |   +---average.c
+    |   +---c_wrapper.py
     |   +---correcting.c
     |   +---disagreement.c
+    |   +---lib.so
     |   +---main.c
     |   +---prototype.h
+    |   +---test_integrate_c.py
     +---consensus
     |   +---algorithms.py
     +---docs
