@@ -6,7 +6,7 @@
  * computes the average value of a given array.
  *
  *  list[] (double) : target array
- *  len    (int)    : total count of elements in target array  
+ *  len    (double)    : total count of elements in target array  
  *
  *  returns: average of array.
  */
