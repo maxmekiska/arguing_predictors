@@ -62,7 +62,7 @@ class HybridUnivariatePredictor:
         '''
         self.data = array(data) 
         self.sub_seq = sub_seq
-        self.input_x, self.input_y, self.modified_back = self._sequence_prep(data, sub_seq, steps_past, steps_future)
+        self.input_x, self.input_y, self.modified_back = self._sequence_prep(self.data, sub_seq, steps_past, steps_future)
 
         self.model_id = '' # identify model (example: name)
 

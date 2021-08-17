@@ -76,7 +76,7 @@ class BasicUnivariatePredictor:
                 data (DataFrame): Input data for model training.
         '''
         self.data = array(data)
-        self.input_x, self.input_y = self._sequence_prep(data, steps_past, steps_future)
+        self.input_x, self.input_y = self._sequence_prep(self.data, steps_past, steps_future)
         
         self.model_id = '' # to identify model (example: name)
 
