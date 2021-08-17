@@ -32,6 +32,18 @@ conda install jupyter notebook
 
 Now, all dependencies for the program need to be installed. First, pip install torch v.1.6 from [here](https://pytorch.org/get-started/previous-versions/). I recommend to use the CPU only version.
 
+As indicated on the official PyTorch website, the CPU version for Windows (and Linux) can be installed by executing:
+
+```shell
+pip install torch==1.6.0+cpu torchvision==0.7.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+```
+
+Or alternatively for OSX:
+
+```shell
+pip install torch==1.6.0 torchvision==0.7.0
+```
+
 Finally, cd into the program directory and execute:
 
 ```shell
