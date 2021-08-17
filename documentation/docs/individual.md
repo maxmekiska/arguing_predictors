@@ -8,11 +8,12 @@
 <div class="formatting">
 There are three different categories of example individual predictors included in the proof-of-concept system. The first category consists of univariate multistep Keras based predictors which are implemented in the predictorsI.py and predictorsIII.py files. The second category includes Facebook's Prophet model and the Neural Prophet model which are contained within the predictorsII.py file. The third and last category translates the univariate multistep predictors in the predictorsI.py file into multivariate multistep Keras predictors. The last category is implemented in the predictorsX.py file which is contained within the experimental directory.
 
+</div>
 ## Simple modification example
-
+<div class="formatting">
 The example predictors contained within the first and third category can be used as basis for new architectures. For example, the following code is contained within the predictorsIII.py file and creates a CNN-LSTM structure.
 
-```python3
+```python
 def create_cnnlstm(self):
 	'''Creates CNN-LSTM hybrid model by defining all layers with activation functions, optimizer, loss function and evaluation metrics. 
 	'''
@@ -31,7 +32,7 @@ def create_cnnlstm(self):
 
 A possible new architecture might be based on the CNN-LSTM structure shown in the above. For example, by substituting the first LSTM layer with a bidirectional LSTM layer a new architecture is created.
 
-```python3
+```python
 def create_cnnbilstm(self):
 	'''Creates CNN-Bidirectional-LSTM hybrid model by defining all layers with activation functions, optimizer, loss function and evaluation metrics. 
 	'''

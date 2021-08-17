@@ -10,13 +10,16 @@ The aim of this proof-of-concept program is to let multiple individual predictor
 
 The program is build to be easily extended. New consensus algorithms, individual predictors, evaluation methods and data import methods can be added. 
 
+</div>
 ## The System
+<div class="formatting">
 The proof-of-concept system consists of three main parts: the pre-processing pipeline, the core system and the evaluation pipeline.
 
 ![Overall System Diagram](resources/General_System.png)
 
+</div>
 ## The Directory Structure
-
+<div class="formatting">
 ```shell
 +---arguing_predictors
     +---c 

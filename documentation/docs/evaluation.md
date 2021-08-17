@@ -1,9 +1,17 @@
+<style>
+	.formatting {
+		text-align: justify;
+	 }
+</style>
+
+
 # Evaluation
 
 ## Importing libraries
+<div class="formatting">
 It is recommended to use already implemented metrics from libraries such as Scikit-learn.org.
 More metrics for regression evaluation can be found on the Scikit-learn.org documentation page [here](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics).
-```python3
+```python
 import pandas as pd
 from pandas import DataFrame
 import seaborn as sns
@@ -18,9 +26,11 @@ from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_squared_log_error
 ```
+</div>
 ## Data summary generation
+<div class="formatting">
 The following functions are used to collect all in the prior generated data and summarize them into one data frame. It also supports the functionality of generating a correlation matrix of the summarized data.
-```python3
+```python
 def set_same_index(to_df: DataFrame, from_df: DataFrame) -> DataFrame:
     '''Helper function to transfer the dates of a date-time indexed dataframe to another.
         Parameter:
@@ -132,9 +142,11 @@ def absolute_error_analytics(predictors: DataFrame, algorithms: DataFrame, real:
     
     return result
 ```
+</div>
 ## Evaluation Metrics
+<div class="formatting">
 The following functions apply different regression metrices onto the forecasted data. More, metrics can be added using the same template. Further regression metrices can be important from the Scikit-learn python library [here](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics).
-```python3
+```python
 def mse_score(df: DataFrame, plot: bool = False) -> DataFrame:
     '''Calculates the mean squared error for the individual predictors and consensus algorithms. Option to plot MSE performances in descending order.
         Parameters:
@@ -232,9 +244,11 @@ def mse_log_score(df: DataFrame, plot: bool = False) -> DataFrame:
 
     return result
 ```
+</div>
 ## Plotting
+<div class="formatting">
 The last part of the activate.py file plots all predictions vs the real values:
-```python3
+```python
 def plot_performance(data: DataFrame):
     '''Plots individual predictors forecasts and consensus values of algorithms against the real values.
         Parameters:
@@ -263,3 +277,4 @@ def plot_performance(data: DataFrame):
 
         plt.tight_layout()
 ```
+</div>

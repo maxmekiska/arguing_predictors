@@ -4,12 +4,14 @@
 	 }
 </style>
 
+
 # Pre-trained models
 <div class="formatting">
 In the following you can find the training processes of all pre-trained individual predictors.
 
+</div>
 ## Horizon 5
-
+<div class="formatting">
 The first dataset used is the stock price of Ford Motor Company (F). Prices are in USD and listed on NYSE - Nasdaq. The data is extracted via the Yahoo Finance API accessed via the pandas data reader function. The
 adjusting closing price was used to train the following predictors. [Link](https://uk.finance.yahoo.com/quote/F/history?p=F) to the data.
 
@@ -25,8 +27,9 @@ The resulting pre-trained models are:
 - LSTM_Ford_5
 - MLP_Ford_5
 
+</div>
 ## Horizon 30
-
+<div class="formatting">
 The second dataset used is the stock price of BP p.l.c. (BP). Prices are in USD and listed on NYSE - Nasdaq. The data is extracted via the Yahoo Finance API accessed via the pandas data reader function. The
 adjusting closing price was used to train the following predictors. [Link](https://uk.finance.yahoo.com/quote/BP/history?p=BP) to the data.
 
@@ -44,8 +47,9 @@ The resulting pre-trained models are:
 - LSTM_BP_30
 - MLP_BP_30
 
+</div>
 ## Horizon 40
-
+<div class="formatting">
 The third dataset used is the S&P 500 (^GSPC). Prices are in USD and listed on SNP. The data is extracted via the Yahoo Finance API accessed via the pandas data reader function. The adjusting closing price was
 used to train the following predictors. [Link](https://uk.finance.yahoo.com/quote/%5EGSPC/history?p=%5EGSPC) to the data.
 

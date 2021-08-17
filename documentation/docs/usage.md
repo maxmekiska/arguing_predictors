@@ -5,8 +5,8 @@
 </style>
 
 # Starting the program
-<div class="formatting">
 ## Jupyter Notebook
+<div class="formatting">
 Open up an anaconda terminal/command line and activate your environment. Now open a Jupyter notebook by executing: 
 ```shell
 jupyter notebook
@@ -19,7 +19,9 @@ The following is an example of a successful System.ipynb run:
 <embed src="/resources/ExampleSystem.pdf" type="application/pdf" width="100%" height="1200px">
 
 
+</div>
 ## main.py script
+<div class="formatting">
 Alternatively, to run the program via the main.py file (make sure to be in the directory where the main.py file is located):
 ```shell
 python main.py
