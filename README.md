@@ -136,3 +136,7 @@ Depending on what individual predictor configuration is used, training of the mo
 ![GUI menu main.py](documentation/docs/resources/gui.png)
 
 This GUI enables the user to explore the systems consensus predictions and performances in detail.
+
+## Example main.py execution
+
+![Gif example execution](documentation/docs/resources/ExampleMain.gif)
