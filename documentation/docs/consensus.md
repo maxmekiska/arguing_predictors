@@ -8,6 +8,7 @@
 <div class="formatting">
 The algorithms.py file can be located in the consensus directory which houses all algorithms that determine the final systems consensus prediction. The systems current version contains in total the following 7 consensus algorithms and 2 disagreement algorithms:
 
+</div>
 Disagreement algorithms:
 
 - System disagreement
@@ -25,7 +26,7 @@ Consensus algorithms:
 
 More algorithms can be easily added by following the examples shown in the file below.
 
-</div>
+
 # algorithms.py
 
 ## Disagreement algorithms
