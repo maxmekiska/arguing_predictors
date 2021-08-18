@@ -28,6 +28,7 @@ python main.py
 ```
 Depending on what individual predictor configuration is used, training of the model begins and after each completed model training cycle test and validation metrics are graphically shown. After all models in the configuration have been trained, the following GUI will appear:
 
+</div>
 ![GUI menu main.py](resources/gui.png)
 
 The following shows a full test run of the main.py:
@@ -36,4 +37,3 @@ The following shows a full test run of the main.py:
 ![Test run main.py](resources/ExampleMain.gif)
 
 This GUI enables the user to explore the systems consensus predictions and performances in detail.
-</div>

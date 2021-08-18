@@ -10,7 +10,7 @@ First download the program repository.
 
 The proof of concept program uses a Jupyter notebook as UI. The program can also be used without a Jupyter notebook by executing the main.py file. In case of executing the main.py file, a small GUI will appear after the model set-up in the file has been successfully trained. The GUI is a window containing buttons to display different statistics about the systems overall performance. However, it is recommended to use the system with a Jupyter notebook and the main.py file to demo the system.
 
-In addition, it is recommend to use Anaconda to run the Jupyter notebook and manage the necessary python libraries for this program. Anaconda can be downloaded [here](https://www.anaconda.com/products/individual#Downloads).
+In addition, it is recommend to use Anaconda to run the Jupyter notebook and manage the necessary python libraries for this program. Anaconda can be downloaded <a href="https://www.anaconda.com/products/individual#Downloads">here</a>.
 
 After Anaconda has been downloaded and successfully installed, open the anaconda terminal/command line and create a virtual environment with the following command:
 
@@ -30,7 +30,7 @@ Please proceed by installing Jupyter notebook by executing:
 conda install jupyter notebook
 ```
 
-Now, all dependencies for the program need to be installed. First, pip install torch v.1.6 from [here](https://pytorch.org/get-started/previous-versions/). I recommend to use the CPU only version.
+Now, all dependencies for the program need to be installed. First, pip install torch v.1.6 from <a href="https://pytorch.org/get-started/previous-versions/">here</a>. I recommend to use the CPU only version.
 
 As indicated on the official PyTorch website, the CPU version for Windows (and Linux) can be installed by executing:
 

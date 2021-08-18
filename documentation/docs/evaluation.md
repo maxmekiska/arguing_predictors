@@ -10,7 +10,7 @@
 ## Importing libraries
 <div class="formatting">
 It is recommended to use already implemented metrics from libraries such as Scikit-learn.org.
-More metrics for regression evaluation can be found on the Scikit-learn.org documentation page [here](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics).
+More metrics for regression evaluation can be found on the Scikit-learn.org documentation page <a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics">here</a>.
 ```python
 import pandas as pd
 from pandas import DataFrame
@@ -145,7 +145,7 @@ def absolute_error_analytics(predictors: DataFrame, algorithms: DataFrame, real:
 </div>
 ## Evaluation Metrics
 <div class="formatting">
-The following functions apply different regression metrices onto the forecasted data. More, metrics can be added using the same template. Further regression metrices can be important from the Scikit-learn python library [here](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics).
+The following functions apply different regression metrices onto the forecasted data. More, metrics can be added using the same template. Further regression metrices can be important from the Scikit-learn python library <a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics">here</a>.
 ```python
 def mse_score(df: DataFrame, plot: bool = False) -> DataFrame:
     '''Calculates the mean squared error for the individual predictors and consensus algorithms. Option to plot MSE performances in descending order.
