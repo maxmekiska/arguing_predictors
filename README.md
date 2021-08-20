@@ -81,6 +81,8 @@ Third, after few seconds mkdocs should provide a local address which can be open
 
 ## Installation
 
+**The installation instruction are tested on a Windows 10 operating system**
+
 First download the program repository.
 
 The proof of concept program uses a Jupyter notebook as UI. The program can also be used without a Jupyter notebook by executing the main.py file. In case of executing the main.py file, a small GUI will appear after the model set-up in the file has been successfully trained. The GUI is a window containing buttons to display different statistics about the systems overall performance. However, it is recommended to use the system with a Jupyter notebook and the main.py file to demo the system.
