@@ -81,7 +81,7 @@ Third, after few seconds mkdocs should provide a local address which can be open
 
 ## Installation
 
-**The installation instruction are tested on a Windows 10 operating system**
+**IMPORTANT: The installation instruction are tested on a Windows 10 operating system. There might be alterations necessary to run the program on another operating system**
 
 First download the program repository.
 
