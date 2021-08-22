@@ -769,6 +769,9 @@ The next part defines the GUI pop-up window layout:
 
 The code in the above generates with help of the PySimpleGUI library the following simple GUI window:
 
+
+</div>
+
 ![Gui window](resources/gui.png)
 
 
@@ -812,5 +815,3 @@ Finally, the while loop in the below adds functionality to the buttons created i
 if __name__ == "__main__":
     main()
 ```
-</div>
-

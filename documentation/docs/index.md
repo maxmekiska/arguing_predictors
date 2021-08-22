@@ -15,9 +15,12 @@ The program is build to be easily extended. New consensus algorithms, individual
 <div class="formatting">
 The proof-of-concept system consists of three main parts: the pre-processing pipeline, the core system and the evaluation pipeline.
 
-![Overall System Diagram](resources/General_System.png)
 
 </div>
+
+![Overall System Diagram](resources/General_System.png)
+
+
 ## The Directory Structure
 <div class="formatting">
 ```shell
