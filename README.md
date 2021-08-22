@@ -9,7 +9,7 @@ For more detailed information visit the mkdocs build documentation of this progr
 First, pip install the mkdocs python library via pip (the initial documentation was build in mkdocs==1.2.1):
 
 ```shell
-pip install mkdocs
+pip install mkdocs==1.2.1
 ```
 
 Second, cd into the docs directory and execute:
