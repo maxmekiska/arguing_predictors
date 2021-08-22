@@ -25,7 +25,7 @@ Alternatively, to run the program via the main.py file (make sure to be in the d
 ```shell
 python main.py
 ```
-Depending on what individual predictor configuration is used, training of the model begins and after each completed model training cycle test and validation metrics are graphically shown. After all models in the configuration have been trained, the following GUI will appear:
+Depending on what individual predictor configuration is used, training of the model begins and after each completed model training cycle test and validation metrics are graphically shown. Each appearing window containing plots/graphics need to be closed manually before the program can proceed running (close pop-up windows by clicking on the upper right red corner "x" button). After all models in the configuration have been trained, the following GUI will appear:
 
 </div>
 ![GUI menu main.py](resources/gui.png)
