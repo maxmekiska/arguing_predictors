@@ -194,9 +194,9 @@ def individual_predictors_template2(training_df: DataFrame, future_horizon: int)
 ```
 Please find in the following an example run of this predictor template:
 
+</div>
 <embed src="/resources/Facebook.pdf" type="application/pdf" width="100%" height="620px">
 
-</div>
 ## Individual predictor pre-trained templates
 <div class="formatting">
 The next templates are configured so that a pre-trained Keras model can be used to forecast. These examples use the pre-trained models saved in the "pretrained" directory. It is important to manually set the model id via the set_model_id() setter function.
