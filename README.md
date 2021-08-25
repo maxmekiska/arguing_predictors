@@ -4,7 +4,7 @@ The aim of this proof-of-concept program is to let multiple individual predictor
 
 The program is build to be easily extended. New consensus algorithms or individual predictors can be added. 
 
-For more detailed information visit the mkdocs build documentation of this program [here](). This documentation was build with the mkdocs python library which can be found [here](https://www.mkdocs.org/). In case of the mkdocs documentation not yet being published, a preview is possible by doing the follwoing:
+For more detailed information visit the mkdocs build documentation of this program [here](). This documentation was build with the mkdocs python library which can be found [here](https://www.mkdocs.org/). In case of the mkdocs documentation not yet being published, a preview is possible by doing the following:
 
 First, pip install the mkdocs python library via pip (the initial documentation was build in mkdocs==1.2.1):
 
@@ -12,7 +12,7 @@ First, pip install the mkdocs python library via pip (the initial documentation 
 pip install mkdocs==1.2.1
 ```
 
-Second, cd into the docs directory and execute:
+Second, cd into the documentation directory and execute:
 
 ```shell
 mkdocs serve
