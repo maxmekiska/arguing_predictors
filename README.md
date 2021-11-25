@@ -159,4 +159,4 @@ This GUI enables the user to explore the systems consensus predictions and perfo
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/maxmekiska/arguing_predictors/master?labpath=notebooks%2FSystem.ipynb)
 
-Important: May take a while until build and not all functionalities are available. For full functionality, please follow the installation guide.
+**IMPORTANT: May take a while until build and not all functionalities are available. For full functionality, please follow the installation guide.**
