@@ -18,7 +18,6 @@ adjusting closing price was used to train the following predictors. <a href="htt
 The data the model was trained on is the historical adjusted close stock price of Ford Motor Company, ranging from 1st of January 2010 to the 1st of January 2018.
 
 </div>
-<embed src="/resources/ModelTrainingHorizon5.pdf" type="application/pdf" width="100%" height="620px">
 
 The resulting pre-trained models are:
 
@@ -38,8 +37,6 @@ adjusting closing price was used to train the following predictors. <a href="htt
 The data the model was trained on is the historical adjusted close stock price of Ford BP, ranging from 1st of January 2010 to the 1st of January 2018.
 
 </div>
-<embed src="/resources/ModelTraining2Horizon30.pdf" type="application/pdf" width="100%" height="620px">
-
 
 The resulting pre-trained models are:
 
@@ -57,7 +54,6 @@ used to train the following predictors. <a href="https://uk.finance.yahoo.com/qu
 The data the model was trained on is the historical adjusted close stock price of the S&P500 index, ranging from 1st of January 2010 to the 1st of January 2018.
 
 </div>
-<embed src="/resources/ModelTraining3Horizon40.pdf" type="application/pdf" width="100%" height="620px">
 
 The resulting pre-trained models are:
 

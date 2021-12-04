@@ -192,10 +192,6 @@ def individual_predictors_template2(training_df: DataFrame, future_horizon: int)
 
     return final_df
 ```
-Please find in the following an example run of this predictor template:
-
-</div>
-<embed src="/resources/Facebook.pdf" type="application/pdf" width="100%" height="620px">
 
 ## Individual predictor pre-trained templates
 <div class="formatting">
