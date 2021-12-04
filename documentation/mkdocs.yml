@@ -4,8 +4,13 @@ use_directory_urls: False
 
 
 theme:
-    name: mkdocs
+        name: material
+        palette:
+                primary: black
 
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences        
 
 nav:
     - Home: index.md
