@@ -127,7 +127,7 @@ Finally, cd into the program directory and execute:
 pip install -r requirements.txt
 ```
 
-This will install all other necessary dependencies. For full reference, the full_env_requirements.txt contains all dependencies installed in the anaconda environment that was used to build this prototype system.
+This will install all other necessary dependencies.
 
 ## Starting the program
 
