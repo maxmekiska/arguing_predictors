@@ -4,21 +4,13 @@ The aim of this proof-of-concept program is to let multiple individual predictor
 
 The program is build to be easily extended. New consensus algorithms or individual predictors can be added. 
 
-For more detailed information visit the mkdocs build documentation of this program [here](https://maxmekiska.github.io/arguing_predictors/index.html). This documentation was build with the mkdocs python library which can be found [here](https://www.mkdocs.org/). In case of the mkdocs documentation not yet being published, a preview is possible by doing the following:
+For more detailed information visit the mkdocs build documentation of this program [here](https://maxmekiska.github.io/arguing_predictors/index.html): 
 
-First, pip install the mkdocs python library via pip (the initial documentation was build in mkdocs==1.2.1):
 
-```shell
-pip install mkdocs==1.2.1
-```
+[![Website](documentation/docs/resources/WebsiteExample.png)](https://maxmekiska.github.io/arguing_predictors/index.html)
 
-Second, cd into the documentation directory and execute:
+This documentation was build with the mkdocs python library which can be found [here](https://www.mkdocs.org/).
 
-```shell
-mkdocs serve
-```
-
-Third, after few seconds mkdocs should provide a local address which can be opened in a browser. This address contains the preview of the documentation.
 
 ## System structure
 
